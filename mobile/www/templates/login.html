@@ -1,0 +1,31 @@
+<ion-view view-title="Login" name="login-view">
+  <ion-content class="padding">
+    <form  name="loginform" ng-submit="userlogin(data,loginform.$valid)" id="loginfrm" novalidate>
+      <div class="list list-inset">
+
+          <label class="item item-input">
+            <input type="text" placeholder="Email" name="email" ng-model="data.user_email" data-ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i" required>
+          </label>
+         <span ng-if="!usersession.login">
+            <div data-ng-messages="loginform.$submitted && loginform.email.$error" role="alert" class="assertive error_msg">
+                  <div data-ng-message="required">Please Enter Email Address</div>
+                  <div data-ng-message="pattern">Enter Valid Email Address</div>
+            </div>
+          </span>
+
+          <label class="item item-input">
+              <input type="password" placeholder="Password" name="password" ng-model="data.user_password" required>
+          </label>
+          <span ng-if="!usersession.login">
+            <div data-ng-messages="loginform.$submitted && loginform.password.$error" role="alert" class="assertive error_msg">
+                  <div data-ng-message="required">Please Enter Password </div>
+            </div>
+          </span>
+
+      </div>
+          <button class="button button-block button-calm" type="submit">Login</button>
+          <div ng-model="loginerrormsg" ng-show="showloginerrormsg" class="assertive error_msg">{{loginerrormsg}}</div>
+    </form>
+      
+  </ion-content>
+</ion-view>

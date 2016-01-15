@@ -1,0 +1,138 @@
+<div class="comman_background">
+<div class="container container_margin" data-ng-controller="usercontroller" data-ng-init="init()" >
+<div class="col-12" class="comman_border">
+	<div class="col-2" style="margin-bottom:30px;">
+	</div>
+	<div class="col-8">
+		<div>
+			<h1>Welcome {{ userSession.user_name }}</h1>
+			<h2>Reminders List</h2>
+			<div>
+	        	<button ng-click="ShowHide()">ADD Reminder</button>
+	      	</div>
+	      	<div ng-show = "IsVisible">
+				<form name="addreminderfrm" data-ng-submit="addUpdateTodos(data,addreminderfrm.$valid)" id="addreminderForm" novalidate>
+					<fieldset>
+						<div class="field-group clear row" >
+							<div style="margin-top: 7px;">
+								<label class="field lable_margin" for="addtodos" ng-if="!stateParams">Add Reminder</label>
+								<label class="field lable_margin" for="edittodos" ng-if="stateParams">Edit Reminder</label>
+							</div>
+							<div class="col-8">
+								<input type="text" class="field" Placeholder="Please Enter Reminder" name="todos" data-ng-model="data.todo_data" required>
+								<span >
+		            				<div data-ng-messages="addreminderfrm.$submitted && addreminderfrm.todos.$error" role="alert" class="error_msg">
+			                  			<div data-ng-message="required">Please Enter Reminder</div>
+		            				</div>
+          						</span>
+							</div>
+							<!-- <div class="col-4"> -->
+							<!-- Angular bootstrap datetimepicker -->
+								<!-- <div class="dropdown" >
+									<a class="dropdown-toggle" id="dropdown2" role="button" data-toggle="dropdown" style="color:black;">
+										<div class="input-group" style="position: relative;"><input type="text" class="form-control" data-ng-model="data.reminder_date" placeholder="click icon to select date" name="reminderdate" required>
+											<i class="fa fa-calendar" ng-click="ShowHidecal()"></i>
+										</div>
+									</a>
+									
+									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel" ng-show = "IsCalVisible">
+										<datetimepicker data-ng-model="data.reminder_date" data-datetimepicker-config="{ dropdownSelector: '#dropdown2' }"/>
+									</ul>
+								</div>
+								<span >
+		            				<div data-ng-messages="addreminderfrm.$submitted && addreminderfrm.reminderdate.$error" role="alert" class="error_msg">
+			                  			<div data-ng-message="required">Please Select Date</div>
+		            				</div>
+          						</span> -->
+          					<!-- <div id="datepickerdemoBasicUsage">
+							  <md-content>
+							    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+							  </md-content>
+							</div> -->
+							<!-- </div> -->
+							
+							<!-- <div class="col-2">
+								
+							</div> -->
+						</div>
+						<div class="field-group clear row" >
+							<div class="col-4">
+								<!-- <div id="datepickerdemoBasicUsage">
+								  <md-content>
+								    <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+								  </md-content>
+								</div> -->
+								<md-input-container>
+							        <input time="false" date="true" mdc-datetime-picker="" type="text" id="date" placeholder="Date"
+										ng-model="data.reminderdate" 
+										min-date="minDate" 
+										max-date="maxDate" 
+										class=" md-input">
+    							</md-input-container>
+							</div>
+							<div class="col-6">
+								<md-input-container>
+							        <input mdc-datetime-picker date="false" time="true" type="text" id="time" short-time="true"
+							               placeholder="Time"
+							               min-date="minDate"
+							               format="hh:mm a"
+							               ng-model="data.remindertime">
+    							</md-input-container>
+							</div>
+						</div>
+						<div class="field-group clear row" >
+							<div class="col-4">
+								<button name="Add" type="submit" value="Addtodos" ng-if="stateParams == '' " class="field" style="height: 35px;">Add</button>
+								<button name="Update" type="submit" value="updatetodos" ng-if="stateParams != '' " class="field" style="height: 35px;">Update</button>
+							</div>
+						</div>
+						 
+					</fieldset>
+				</form>
+	      	</div>
+	      		<div ng-model="Remindersuccessmsg" ng-show="showRemindersuccessmsg" class="success_msg">{{Remindersuccessmsg}}</div>
+	      		<div ng-model="updateRemindermsg" ng-show="showupdateRemindermsg" class="success_msg">{{updateRemindermsg}}</div>
+
+	      	<div>
+				<table>
+					<div ng-model="Reminderdelmsg" ng-show="showReminderdelmsg" class="success_msg">{{Reminderdelmsg}}</div>
+					<caption>Reminder List</caption>
+					<thead>
+						<tr>
+							<th>id</th>
+							<th>Reminder</th>
+							<th>Reminder_Date</th>
+							<th>Reminder_Time</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="todo in todolist">
+							<td>
+								{{todo.todo_id}}
+							</td>
+							<td>
+								{{todo.todo_data}}
+							</td>
+							<td>
+								{{todo.reminder_date | date:"dd/MM/yyyy"}}
+							</td>
+							<td>
+								{{todo.reminder_time | date:"shortTime"}}
+							</td>
+							<td>
+								<button ui-sref="welcomepage({todo_id :todo.todo_id})" ng-click="ShowHide()">Edit</button>
+								<button ng-click="deletetodo(todo)">Delete</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+	      	</div>
+
+		</div>	
+	</div>
+	<div class="col-2">
+	</div>
+</div>
+</div>
+</div>

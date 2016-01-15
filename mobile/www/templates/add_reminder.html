@@ -1,0 +1,75 @@
+<ion-view view-title="Dashboard" ng-init="init()">
+  <ion-nav-bar class="bar bar-header bar-calm">
+     <ion-nav-back-button></ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content class="padding">
+    <div class="row" ng-controller="logincontroller">
+      <div class="col-80">
+        <label>Welcome Have a Great Day</label>
+      </div>
+      <div class="col-20">
+        <button class="button" ng-click="usersignout()">Logout</button>
+      </div>
+    </div>
+    <label ng-click="ShowHide()"><i class="ion-plus"></i>Add Reminder</label>
+    <div class="list card" ng-show = "IsVisible">
+      <div class="item item-divider">Add Reminder Here</div>
+      <form ng-submit="addUpdateReminder(reminder,addreminderfrm.$valid)" name="addreminderfrm" id="addreminderform" novalidate>
+        <div class="item item-body">
+            <div class="item item-input-inset">
+                <label class="item-input-wrapper">
+                  <input type="text" placeholder="Add Reminder" ng-model="reminder.todo_data" name="add_reminder" required>
+                </label>
+            </div>
+            <div data-ng-messages="addreminderfrm.$submitted && addreminderfrm.add_reminder.$error" role="alert" class="assertive error_msg" ng-if="addreminderfrm.add_reminder.$error">
+              <div data-ng-message="required">Please Enter Reminder </div>
+            </div>
+            <!-- <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                 <input type="date" ng-model="reminder.reminder_date" name="reminderdate"required> 
+              </label>
+            </div>
+            <div data-ng-messages="addreminderfrm.$submitted && addreminderfrm.reminderdate.$error" role="alert" class="assertive error_msg" ng-if="addreminderfrm.reminderdate.$error">
+              <div data-ng-message="required">Please Select Date</div>
+            </div> -->
+            <ionic-datepicker input-obj="datepickerObject" ng-model="reminder.reminder_date">
+              <div class="card"> <span>Date:
+                <label>{{datepickerObject.inputDate | date:'dd - MMMM - yyyy'}}</label>
+                </span></div>
+            </ionic-datepicker>
+
+            <ionic-timepicker input-obj="timePickerObject">
+              <div class="card"> <span>Time:
+                <standard-time-meridian etime='timePickerObject.inputEpochTime'><label ng-if="!remindertime"> {{currenttime |  date:"DD/mm/yyyy 'at' h:mma"}}</label></standard-time-meridian>{{time12hr}}
+                </span>
+              </div>  
+            </ionic-timepicker>
+           <!--  <div class="card">
+              <input type="time" ng-model="reminder.remindertime">
+            </div> -->
+            <div>
+              <button class="button button-positive" type="submit" ng-if="stateParams == '' ">Add</button>
+              <button class="button button-positive" type="submit" ng-if="stateParams != '' ">Update</button>
+            </div>
+
+            <div ng-model="reminderaddmsg" ng-show="showreminderaddmsg" class="balanced">{{reminderaddmsg}}</div>
+            <div ng-model="reminderupdatemsg" ng-show="showreminderupdatemsg" class="balanced">{{reminderupdatemsg}}</div>
+        </div>
+      </form>
+    </div>
+    <div class="list card">
+      <div class="item item-divider">Reminder list</div>
+    </div>
+    <div ng-model="reminderdeletemsg" ng-show="showreminderdeletemsg" class="balanced">{{reminderdeletemsg}}</div>
+    <div>
+        <ul ng-repeat="reminder in reminderlist">
+          <li class="item">
+             <i class="icon ion-compose" ui-sref="tab.addreminder({todo_id :reminder.todo_id})" ng-click="ShowHide()"></i> <i class="icon ion-trash-b" ng-click="deleteReminder(reminder)"></i> {{reminder.todo_data}} <br>
+             <label class="date_margin"> {{reminder.reminder_date | date:"MMM d, y"}} </label> |
+             <label class="time">{{reminder.reminder_time | date:"shortTime"}}</label> 
+          </li>
+          
+        </ul>
+    </div>
+  </ion-content>
+</ion-view>
