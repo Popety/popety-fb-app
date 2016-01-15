@@ -1,0 +1,5 @@
+.DS_Store
+.config.codekit
+.codekit.cache
+scss/.sass-cache
+config.codekit
