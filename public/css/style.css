@@ -1572,12 +1572,23 @@ table caption {
 }
 .submit_form input{
     width: 100%;
+    outline: none;
     border: none;
     border-bottom: 2px solid #FCC206;
     margin-bottom: 50px;
     margin-left: 42px;
     font-family: 'syncopateregular';
     text-transform: uppercase;
+}
+.terms{
+      text-align: center;
+    margin: 43px auto;
+    background: #F1F1F1;
+    width: 218px;
+    border: 1px solid #E0E0E0;
+    padding: 5px;
+    border-radius: 2px;
+
 }
 .user_name{
     font-family: 'syncopatebold';
