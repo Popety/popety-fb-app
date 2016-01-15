@@ -1572,12 +1572,23 @@ table caption {
 }
 .submit_form input{
     width: 100%;
+    outline: none;
     border: none;
     border-bottom: 2px solid #FCC206;
     margin-bottom: 50px;
     margin-left: 42px;
     font-family: 'syncopateregular';
     text-transform: uppercase;
+}
+.terms{
+      text-align: center;
+    margin: 43px auto;
+    background: #F1F1F1;
+    width: 218px;
+    border: 1px solid #E0E0E0;
+    padding: 5px;
+    border-radius: 2px;
+
 }
 .user_name{
     font-family: 'syncopatebold';
@@ -1604,8 +1615,8 @@ table caption {
     width: 100%;
     height: 558px;
     margin-top: -1px;
-    border-bottom-left-radius: 10px;
-    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
 }
 .banner_contain{
     text-align: center;
@@ -1675,4 +1686,22 @@ input[type=file]:before {
 
 input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
+}
+.rules{
+  position: absolute;
+  bottom: 35px;
+  padding: 20px;
+}
+.rules ul li{
+  font-size: 15px;
+  font-weight: lighter;
+  color: #fff;
+}
+.simple_rules h3{
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+}
+.simple_rules h1{
+  text-align: center;
 }
