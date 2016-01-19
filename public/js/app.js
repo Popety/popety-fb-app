@@ -27,7 +27,21 @@ angular.module('popetyfbapp',['ui.router'])
     templateUrl: "templates/gallery.html",
     // controller: 'galleryController'
   })
-
+  .state('tab.galleryb', {
+    url: "/galleryb",
+    templateUrl: "templates/gallery_b.html",
+    // controller: 'galleryController'
+  })
+  .state('tab.galleryc', {
+    url: "/galleryc",
+    templateUrl: "templates/gallery_c.html",
+    // controller: 'galleryController'
+  })
+  .state('tab.galleryz', {
+    url: "/galleryz",
+    templateUrl: "templates/gallery_z.html",
+    // controller: 'galleryController'
+  })
   .state('tab.winners', {
     url: "/winners",
     templateUrl: "templates/winners.html",
