@@ -2,7 +2,6 @@ angular.module('popetyfbapp',['ui.router'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
-
   $stateProvider
 
   .state('home', {
@@ -20,7 +19,7 @@ angular.module('popetyfbapp',['ui.router'])
   .state('tab.submit', {
     url: "/submit",
     templateUrl: "templates/submit.html",
-    // controller: 'submitController'
+    controller: 'submitController'
   })
 
   .state('tab.gallery', {
