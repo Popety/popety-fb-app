@@ -1,4 +1,4 @@
-angular.module('popetyfbapp',['ui.router'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 
