@@ -3,6 +3,7 @@ var http = require('http');
 var cfg = require('../config');
 var db = cfg.connection;
 
+
 exports.condoList = function (req, res) {
   var query = "select unit_name from srx_condo_details";
   db.query(query, function (err, rows) {
@@ -15,6 +16,39 @@ exports.condoList = function (req, res) {
       });
     }else {
         res.jsonp(rows);
+    }
+  });
+};
+
+
+exports.condosubmit = function (req, res) {
+  var query = "INSERT INTO fb_condo_list( name , mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('"+req.body.name+"',"+req.body.mobile_no+",'"+req.body.condo_name+"',"+req.body.bedroom+","+cfg.timestamp()+","+cfg.timestamp()+")";
+  db.query(query, function (err, rows) {
+    if(err){
+      console.log("err:",err);      
+      res.status(500);
+      res.jsonp({
+        "status": 500,
+        "message": "Internal Server Error"
+      });
+    }else {
+
+      var responsedata = {
+        status: true,
+        record: rows,
+        condo_id: rows.insertId,
+        message: 'Condo Added successfully'
+      }
+      console.log("responsedata:",responsedata);
+      //res.jsonp(responsedata);
+
+      var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('"+responsedata.condo_id+"','"+req.body.attachmentfile+"',"+cfg.timestamp()+")";
+      console.log("query1:",query1);
+      db.query(query1, function (error,result) {
+        //console.log("result:",result);
+        //console.log("error:",error);
+        res.jsonp(result);
+      });
     }
   });
 };

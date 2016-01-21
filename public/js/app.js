@@ -1,4 +1,18 @@
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages'])
+
+.directive('checkRequired', function(){
+  return {
+    require: 'ngModel',
+    restrict: 'A',
+    link: function (scope, element, attrs, ngModel) {
+      ngModel.$validators.checkRequired = function (modelValue, viewValue) {
+        var value = modelValue || viewValue;
+        var match = scope.$eval(attrs.ngTrueValue) || true;
+        return value && match === value;
+      };
+    }
+  }; 
+})    
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -19,7 +33,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete'])
   .state('tab.submit', {
     url: "/submit",
     templateUrl: "templates/submit.html",
-    controller: 'submitController'
+    //controller: 'submitController'
   })
 
   .state('tab.gallery', {
@@ -57,3 +71,4 @@ angular
     .controller('AppController', function($scope, FileUploader) {
         $scope.uploader = new FileUploader();
     });
+

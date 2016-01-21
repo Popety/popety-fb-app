@@ -8,6 +8,11 @@ var config = {
                 password : '10gXWOqeaf',
                 database : 'transparent'
               }),
+
+	timestamp: function() {
+	  var UTCtimestamp = new Date();
+	  return UTCtimestamp.getTime();
+	}
 };
 
 module.exports = config;

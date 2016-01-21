@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('submitController', function ($scope, $http) {
+.controller('submitController', function ($scope, $http, $timeout) {
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
@@ -45,5 +45,65 @@ angular.module('popetyfbapp')
   }).error(function (err) {
     console.log(err);
   });
+
+  /**
+   @function condosubmit
+   @returns success message
+   @author sameer vedpathak
+   @initialDate 
+   */
+
+  $scope.condosubmit = function(condodata,valid){
+   
+    var condoinfo = {
+      mobile_no : condodata.mobile_no,
+      bedroom : condodata.bedroom,
+      condo_name:condodata.condo_name,
+      attachmentfile : $scope.attachmentfile
+    }
+    
+    if(valid){
+        condoinfo.name = "Harold french";
+        $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
+            //console.log("res:",res);
+            $scope.condosuccessmsg = 'Condo Successfully Added.';
+            $scope.showcondosuccessmsg = true;
+            $timeout(function() {
+              $timeout(function() {
+              $scope.showcondosuccessmsg = false;
+              }, 3000);
+          
+            }, 2000);
+            document.getElementById("condofrm").reset();
+        });
+    }
+  }
+
+  /**
+   @function updateattachment
+   @returns successful upload  message
+   @author sameer vedpathak
+   @initialDate 
+   */
+  $scope.updateattachment = function(file_browse) {
+    var fileDisplayArea = document.getElementById('fileDisplayArea');
+    if (file_browse == 'file_browse1') {
+      var newfile = document.getElementById("file_browse1").files[0];
+    }
+    var imageType = /image.*/;
+    if (newfile.type.match(imageType)) {
+      var oFReader = new FileReader();
+      oFReader.onload = function(oFREvent) {
+        if (file_browse == 'file_browse1') {
+          $scope.attachname = newfile.name;
+          $scope.attachmentfile = oFReader.result;
+          $scope.$apply();
+        }
+      };
+      oFReader.readAsDataURL(newfile);
+    } else {
+      fileDisplayArea.innerHTML = "File not supported!"
+    }
+  };
 
 });

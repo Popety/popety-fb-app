@@ -1,8 +1,8 @@
-<div class="container">
+<div class="container" data-ng-controller="submitController">
   <div class="row submit_form_box">
     <div class="col col-6 tablet-col-4 mobile-col-1-2" style="padding: 20px 60px;">
       <span class="no-tablet no-mobile">
-        <form action="" method="get" class="submit_form">
+        <form name="condosubmitform" class="submit_form" ng-submit="condosubmit(condodata,condosubmitform.$valid)" id="condofrm" novalidate>
           <fieldset>
             <!-- Input[type=text] -->
             <div class="col col-12">
@@ -10,18 +10,28 @@
             </div>
             <div class="col col-12">
               <label for="name"><img src="images/mobile_number.png" class="input_icon">
-                <input type="text" id="name" cols="100" placeholder="MOBILE NUMBER">
+                <input name="mobileno" type="text" id="name" cols="100" placeholder="MOBILE NUMBER" ng-model="condodata.mobile_no" ng-minlength="8" ng-maxlength="10" required>
                 <span class="notifications">Required for communicating winner</span>
                 </label>
+                <div data-ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error" role="alert">
+                    <div data-ng-message="required">Please Enter Mobile Number</div>
+                </div>
+                <div ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error " role="alert">
+                  <div ng-message="maxlength" class="help-block">Enter Mobile Number Upto 10 Digit</div>
+                  <div ng-message="minlength" class="help-block">Enter mobile Number Min 8 Digit</div>
+                </div>
               </div>
               <div class="col col-12">
                 <label for="name"><img src="images/condo_name.png" class="input_icon">
-                <input type="text" id="name" cols="100" placeholder="CONDO NAME">
+                <input name="condoname" type="text" id="name" cols="100" placeholder="CONDO NAME" ng-model="condodata.condo_name" required>
                 </label>
+                <div data-ng-messages="condosubmitform.$submitted && condosubmitform.condoname.$error" role="alert">
+                    <div data-ng-message="required">Please Enter Condo Name</div>
+                </div>
               </div>
               <div class="col col-12">
                 <label for="name"><img src="images/floor.png" class="input_icon">
-                  <select  id="styledSelect1" >
+                  <select  name="bedroom_number" id="styledSelect1" ng-model="condodata.bedroom" required>
                     <option>BEDROOM</option>
                     <option>1</option>
                     <option>2</option>
@@ -29,9 +39,12 @@
                     <option>4</option>
                   </select>
                 </label>
+                <div data-ng-messages="condosubmitform.$submitted && condosubmitform.bedroom_number.$error" role="alert">
+                    <div data-ng-message="required">Please Select Bedroom</div>
+                </div>
               </div>
               <div class="col col-12">
-                  <input type="file">
+                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple/>
               </div>
               <div class="col col-12">
                 <span class="checkbox">
@@ -40,11 +53,15 @@
             <div class="col col-12">
               <span class="checkbox">
                 <label for="checkbox-example">I accept the Terms & Conditions</label>
-                <input id="checkbox-example" type="checkbox">
+                <input name="terms" id="checkbox-example" type="checkbox" ng-model="condodata.Conditions" check-required >
+                  <div ng-messages="condosubmitform.$submitted && condosubmitform.terms.$error">
+                    <p ng-message="checkRequired">You Have Not Accepted The Terms And Conditions</p>
+                  </div>
               </span>
             </div>
             <div class="col col-12">
-              <input type="submit" value="SUBMIT" class="button" id="form_submit">
+              <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button> 
+              <div ng-model="condosuccessmsg" ng-show="showcondosuccessmsg">{{condosuccessmsg}}</div>
             </div>
             <!-- Submit Button -->
 
