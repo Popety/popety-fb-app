@@ -51,7 +51,7 @@ exports.condosubmit = function (req, res) {
 };
 
 exports.getallcondolist = function (req, res) {
-  var query1 = "select * from fb_condo_images";
+  var query1 = "SELECT fb_condo_list.condo_id,fb_condo_list.name,fb_condo_list.condo_name,fb_condo_images.images,fb_condo_images.image_id FROM fb_condo_list INNER JOIN fb_condo_images ON fb_condo_list.condo_id = fb_condo_images.condo_id";
   db.query(query1, function (err, rows) {
     if(err){
       // No user with this name exists, respond back with a 401
@@ -64,4 +64,20 @@ exports.getallcondolist = function (req, res) {
         res.jsonp(rows);
     }
   });
+};
+
+exports.getcondolistbyalphabet = function (req, res) {
+  /*var query1 = "SELECT fb_condo_list.condo_id,fb_condo_list.name,fb_condo_list.condo_name,fb_condo_images.images,fb_condo_images.image_id FROM fb_condo_list INNER JOIN fb_condo_images ON fb_condo_list.condo_id = fb_condo_images.condo_id";
+  db.query(query1, function (err, rows) {
+    if(err){
+      // No user with this name exists, respond back with a 401
+      res.status(500);
+      res.jsonp({
+        "status": 500,
+        "message": "Internal Server Error"
+      });
+    }else {
+        res.jsonp(rows);
+    }
+  });*/
 };

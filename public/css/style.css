@@ -1663,6 +1663,7 @@ a.btn{
     font-family: 'syncopatebold';
     color: #f9c100;
     font-size: 16px;
+    text-transform: uppercase;
 }
 .count{
   padding: 10px;
