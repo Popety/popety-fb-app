@@ -39,14 +39,11 @@ exports.condosubmit = function (req, res) {
         condo_id: rows.insertId,
         message: 'Condo Added successfully'
       }
-      console.log("responsedata:",responsedata);
       //res.jsonp(responsedata);
 
       var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('"+responsedata.condo_id+"','"+req.body.attachmentfile+"',"+cfg.timestamp()+")";
-      console.log("query1:",query1);
       db.query(query1, function (error,result) {
-        //console.log("result:",result);
-        //console.log("error:",error);
+        
         res.jsonp(result);
       });
     }
