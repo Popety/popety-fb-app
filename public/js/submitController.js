@@ -109,20 +109,11 @@ angular.module('popetyfbapp')
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
       $scope.allcondolist = res; 
-      //console.log(res);
+      console.log(res);
 
     });
   }
-  
-    $scope.condo_alpha = "";
-    $scope.getcondolistbyalphabet = function(condo_alpha){
-    console.log("condo_alpha:",$scope.condo_alpha);  
-    /*$http.get(baseurl + 'getcondolistbyalphabet').success(function(res, req){
-      $scope.condolistbyalphabet = res; 
-      console.log(res);*/
-      //console.log()
-    //});
-  }  
+
 
 });
 
