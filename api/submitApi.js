@@ -49,3 +49,19 @@ exports.condosubmit = function (req, res) {
     }
   });
 };
+
+exports.getallcondolist = function (req, res) {
+  var query1 = "select * from fb_condo_images";
+  db.query(query1, function (err, rows) {
+    if(err){
+      // No user with this name exists, respond back with a 401
+      res.status(500);
+      res.jsonp({
+        "status": 500,
+        "message": "Internal Server Error"
+      });
+    }else {
+        res.jsonp(rows);
+    }
+  });
+};

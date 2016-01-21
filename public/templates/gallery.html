@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" data-ng-controller="submitController" data-ng-init="getallcondolist()">
 <div class="modal-wrapper">
   <div class="modal">
     <div class="head">
@@ -56,22 +56,22 @@
 			<a href="#/tab/galleryz"><li>Z</li></a>
 		</ul>
 	</div>		
-		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail">
+		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
 			<span  class="share_icon">SHARE</span>
 			<span class="vote_icon">VOTE</span>
 		<a class="btn trigger" href="javascript:;">
 		    <span class="no-tablet no-mobile main_div">
-		    	<img src="images/condo_1.jpg">
+		    	<img data-ng-src="{{condo.images}}"/>
 		    	<div class="padding">
-			    	<h4>NOVEL MRT <span style="margin-right: 10px;">98</span></h4>
-			    	<h6>Nitin Dolli <span>VOTES</span></h6>
+			    	<!-- <h4>NOVEL MRT <span style="margin-right: 10px;">98</span></h4>
+			    	<h6>Nitin Dolli <span>VOTES</span></h6> -->
 		    	</div>
 		    </span>
 		    <span class="no-desktop show-tablet no-mobile">9</span>
 		    <span class="no-desktop no-tablet show-mobile">1-2</span>
 		</a>
 		</div>
-		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail">
+		<!-- <div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail">
 			<span  class="share_icon">SHARE</span>
 			<span class="vote_icon">VOTE</span>
 		<a class="btn trigger" href="javascript:;">
@@ -145,7 +145,7 @@
 		    <span class="no-desktop show-tablet no-mobile">9</span>
 		    <span class="no-desktop no-tablet show-mobile">1-2</span>
 		</a>
-		</div>
+		</div> -->
 	</div>
 
 </div>

@@ -4,7 +4,7 @@ angular.module('popetyfbapp')
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
-      console.log(res);
+      //console.log(res);
       var condos = res;
 
       function suggest_condos(term) {
@@ -106,4 +106,14 @@ angular.module('popetyfbapp')
     }
   };
 
+  $scope.getallcondolist = function(){
+    $http.get(baseurl + 'getallcondolist').success(function(res, req){
+      $scope.allcondolist = res; 
+
+    });
+  }
+    //$scope.getallcondolist();
+
 });
+
+
