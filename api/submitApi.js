@@ -27,7 +27,7 @@ exports.condosubmit = function (req, res) {
   var query = "INSERT INTO fb_condo_list( name , mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('"+req.body.name+"',"+req.body.mobile_no+",'"+req.body.condo_name+"',"+req.body.bedroom+","+cfg.timestamp()+","+cfg.timestamp()+")";
   db.query(query, function (err, rows) {
     if(err){
-      console.log("err:",err);      
+      //console.log("err:",err);      
       res.status(500);
       res.jsonp({
         "status": 500,
@@ -118,11 +118,19 @@ exports.getallcondolist = function (req, res) {
 };
 
 exports.nextprevcondolist = function (req, res) {
-  console.log(req.body);
-  console.log("nextprevcondolist");
-
-  var conditionpart = "condo_id < "+req.body.condo_id+" ORDER BY condo_id DESC"; 
+  if(req.body.condo_last_id)
+  {
+    //console.log("condo_last_id");
+    var conditionpart = "condo_id < "+req.body.condo_last_id+" ORDER BY condo_id DESC";   
+  }else
+  {
+    //console.log("condo_prev_id");
+    var conditionpart = "condo_id > "+req.body.condo_prev_id+" ORDER BY condo_id ASC";
+  
+  }
+  
   var condo_list_query = " SELECT * FROM fb_condo_list WHERE "+conditionpart+" LIMIT 6";
+  console.log("query:",condo_list_query);
   db.query(condo_list_query , function(err , rows){
     if(err){
       res.status(500);
@@ -147,7 +155,7 @@ exports.nextprevcondolist = function (req, res) {
             }else{
               var response = {
                 status : 0,
-                message : 'INTERNAL ERROR condo information.'
+                message : 'INTERNAL ERROR to get condo information.'
               }
              
             }
@@ -159,7 +167,7 @@ exports.nextprevcondolist = function (req, res) {
           }else{
             var response = {
               status : 0,
-              message : 'INTERNAL ERROR condo information.'
+              message : 'INTERNAL ERROR to get condo information.'
             }
             res.jsonp( response );
           }
