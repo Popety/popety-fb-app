@@ -52,6 +52,6 @@ app.use(function(req, res, next) {
 app.get('/api/condoList', submit.condoList);
 app.post('/api/condosubmit', submit.condosubmit);
 app.get('/api/getallcondolist',submit.getallcondolist);
-app.post('/api/getnextcondolist',submit.getnextcondolist);
+app.post('/api/nextprevcondolist',submit.nextprevcondolist);
 
 module.exports = app;
