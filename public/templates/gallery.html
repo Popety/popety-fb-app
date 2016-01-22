@@ -52,8 +52,8 @@
 	</div>
 	<div class="col col-11">
 		<ul class="list-unstyled">
-			<li data-ng-click="nextprevcondolist('prev')" ng-disabled="count == 0">Prev</li>
-			<li data-ng-click="nextprevcondolist('next')">Next</li>
+			<li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0">Prev</li>
+			<li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6">Next</li>
 		</ul>
 	</div>		
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">

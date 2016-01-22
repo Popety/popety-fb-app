@@ -129,8 +129,9 @@ angular.module('popetyfbapp')
     }
     $http.post(baseurl + 'nextprevcondolist',nextprevid).success(function(res, req){
        $scope.allcondolist = res;
+       console.log(res);
       $scope.prev_id = res[0].condo_id;
-       
+      $scope.lastid = res[res.length - 1].condo_id; 
     });
   } 
 
@@ -146,6 +147,8 @@ angular.module('popetyfbapp')
       $scope.lastid = res[res.length - 1].condo_id;
     });
   }
+
+
 
 });
 
