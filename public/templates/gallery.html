@@ -47,13 +47,13 @@
 	<div class="row gallery_box submit_form_box">
 	<div class="col col-1">
 		<ul class="list-unstyled">
-			<li class="active">All</li>
+			<li class="active" ng-click="getallcondolist()">All</li>
 		</ul>	
 	</div>
 	<div class="col col-11">
 		<ul class="list-unstyled">
-			<li >Prev</li>
-			<li data-ng-click="nextprevcondolist()">Next</li>
+			<li data-ng-click="nextprevcondolist('prev')" ng-disabled="count == 0">Prev</li>
+			<li data-ng-click="nextprevcondolist('next')">Next</li>
 		</ul>
 	</div>		
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">

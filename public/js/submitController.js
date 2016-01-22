@@ -106,30 +106,46 @@ angular.module('popetyfbapp')
     }
   };
 
-  $scope.nextprevcondolist = function(){
-    var lastid = {
-      condo_id : $scope.lastid
-    };
-    console.log("lastid:",lastid);
-    $http.post(baseurl + 'nextprevcondolist',lastid).success(function(res, req){
-      console.log("res:",res);
-      //$scope.allcondolist = res; 
-      //console.log(res);
+  /**
+   @function nextprevcondolist
+   @returns retuns next or previous condolist
+   @author sameer vedpathak
+   @initialDate 
+   */
+    $scope.count = 0; 
+  $scope.nextprevcondolist = function(btn){
+    if(btn == 'next'){
+      $scope.count ++;
+      console.log($scope.count);
+      var nextprevid = { 
+        condo_last_id : $scope.lastid
+      }
+    }else{ 
+       $scope.count --;
+       console.log($scope.count);
+      var nextprevid = {
+        condo_prev_id : $scope.prev_id
+      }
+    }
+    $http.post(baseurl + 'nextprevcondolist',nextprevid).success(function(res, req){
+       $scope.allcondolist = res;
+      $scope.prev_id = res[0].condo_id;
+       
     });
   } 
 
+  /**
+   @function getallcondolist
+   @returns load letest condolist
+   @author sameer vedpathak
+   @initialDate 
+   */
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
-      //console.log("res:",res);
       $scope.allcondolist = res; 
-      //console.log(res[res.length - 1]);
       $scope.lastid = res[res.length - 1].condo_id;
-      //$scope.previd = res
-      //$scope.condopaginate();
     });
   }
-
-
 
 });
 
