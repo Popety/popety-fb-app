@@ -6,7 +6,7 @@ var config = {
                 host     : 'n2.transparent.sg',
                 user     : 'transparent',
                 password : '10gXWOqeaf',
-                database : 'transparent'
+                database : 'popety_fbapp'
               }),
 
 	timestamp: function() {
