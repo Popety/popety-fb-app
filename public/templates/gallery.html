@@ -52,8 +52,8 @@
 	</div>
 	<div class="col col-11">
 		<ul class="list-unstyled">
-			<li>Prev</li>
-			<li>Next</li>
+			<li >Prev</li>
+			<li data-ng-click="getnextcondolist()">Next</li>
 		</ul>
 	</div>		
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
@@ -61,7 +61,7 @@
 			<span class="vote_icon">VOTE</span>
 		<a class="btn trigger" href="javascript:;">
 		    <span class="no-tablet no-mobile main_div">
-		    	<img data-ng-src="{{condo.images}}"/>
+		    	<img data-ng-src="{{condo.condolist.images}}"/>
 		    	<div class="padding">
 			    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
 			    	<h6>{{condo.name}} <span>VOTES</span></h6>

@@ -106,13 +106,27 @@ angular.module('popetyfbapp')
     }
   };
 
+  $scope.getnextcondolist = function(){
+    var lastid = {
+      condo_id : $scope.lastid
+    };
+    console.log("lastid:",lastid);
+    $http.post(baseurl + 'getnextcondolist',lastid).success(function(res, req){
+      //$scope.allcondolist = res; 
+      //console.log(res);
+    });
+  } 
+
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
+      console.log("res:",res);
       $scope.allcondolist = res; 
-      console.log(res);
-
+      //console.log(res[res.length - 1]);
+      //$scope.lastid = res[res.length - 1].condo_id;
+      //$scope.condopaginate();
     });
   }
+
 
 
 });
