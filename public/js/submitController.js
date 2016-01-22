@@ -124,7 +124,7 @@ angular.module('popetyfbapp')
       $scope.allcondolist = res; 
       //console.log(res[res.length - 1]);
       $scope.lastid = res[res.length - 1].condo_id;
-      #sc
+      //$scope.previd = res
       //$scope.condopaginate();
     });
   }
