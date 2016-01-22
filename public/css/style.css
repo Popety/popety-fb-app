@@ -2142,3 +2142,11 @@ article img {
         padding: 0 80px;
     }
 }
+
+.next_prev_row{
+    border: 1px solid;
+    border-color: #E8E8E8;
+    border-bottom: none;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}

@@ -44,8 +44,8 @@
     </div>
   </div>
 </div>
-	<div class="row gallery_box submit_form_box">
-	<div class="col col-1">
+<div class="row next_prev_row">
+		<div class="col col-1">
 		<ul class="list-unstyled">
 			<li class="active" ng-click="getallcondolist()">All</li>
 		</ul>	
@@ -55,7 +55,9 @@
 			<li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0">Prev</li>
 			<li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6">Next</li>
 		</ul>
-	</div>		
+	</div>
+</div>
+	<div class="row gallery_box submit_form_box" style="border-top: none;border-radius:0px;">		
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
 			<span  class="share_icon">SHARE</span>
 			<span class="vote_icon">VOTE</span>
@@ -71,6 +73,7 @@
 		    <span class="no-desktop no-tablet show-mobile">1-2</span>
 		</a>
 		</div>
+	</div>		
 	</div>
 
 </div>
