@@ -1,4 +1,4 @@
-angular.module('MassAutoComplete', [])
+angular.module('MassAutoComplete', ['ngSanitize'])
 .directive('massAutocomplete', ["$timeout", "$window", "$document", "$q", function ($timeout, $window, $document, $q) {
   'use strict';
 
@@ -326,8 +326,8 @@ angular.module('MassAutoComplete', [])
       // Prevent html5/browser auto completion.
       attrs.$set('autocomplete', 'off');
 
-      element.bind('focus', function () {
-        var options = scope.massAutocompleteItem();
+      element.bind('focus', function () 
+{        var options = scope.massAutocompleteItem();
         if (!options)
           throw "Invalid options";
         required[0].attach(required[1], element, options);

@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('submitController', function ($scope, $http, $timeout) {
+.controller('submitController', function ($scope, $http, $timeout, $sce) {
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
@@ -10,26 +10,29 @@ angular.module('popetyfbapp')
       function suggest_condos(term) {
          var q = term.toLowerCase().trim(),
              results = [];
-
+         var limit = 5;
          for (var i = 0; i < condos.length; i++) {
            var condo = condos[i];
-           if (condo.unit_name.toLowerCase().indexOf(q) !== -1)
-             results.push({
-               value: condo.unit_name,
-               // Pass the object as well. Can be any property name.
-               obj: condo,
-               label: $sce.trustAsHtml(
-                 '<div class="row">' +
-                 ' <div class="col-xs-5">' +
-                 '  <i class="fa fa-user"></i>' +
-                 '  <strong>' + highlight(condo.unit_name,term) + '</strong>'+
-                 ' </div>' +
-                 ' <div class="col-xs-7 text-right text-muted">' +
-                 '  <small>' + highlight(condo.unit_name,term) + '</small>' +
-                 ' </div>' +
-                 '</div>'
-               )
-             });
+           if (condo.unit_name.toLowerCase().indexOf(q) !== -1){
+              if(results.length == limit)
+                break;
+               results.push({
+                 value: condo.unit_name,
+                 // Pass the object as well. Can be any property name.
+                 obj: condo,
+                 label: $sce.trustAsHtml(
+                   '<div class="row">' +
+                   ' <div class="col-xs-5">' +
+                   '  <i class="fa fa-user"></i>' +
+                   '  <strong>' + condo.unit_name,term + '</strong>'+
+                   ' </div>' +
+                   ' <div class="col-xs-7 text-right text-muted">' +
+                   '  <small>' + condo.unit_name,term + '</small>' +
+                   ' </div>' +
+                   '</div>'
+                 )
+               });
+             }
          }
          return results;
       }
