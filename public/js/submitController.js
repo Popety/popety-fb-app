@@ -10,7 +10,7 @@ angular.module('popetyfbapp')
       function suggest_condos(term) {
          var q = term.toLowerCase().trim(),
              results = [];
-         var limit = 5;
+         var limit = 10;
          for (var i = 0; i < condos.length; i++) {
            var condo = condos[i];
            if (condo.unit_name.toLowerCase().indexOf(q) !== -1){
@@ -21,7 +21,7 @@ angular.module('popetyfbapp')
                  // Pass the object as well. Can be any property name.
                  obj: condo,
                  label: $sce.trustAsHtml(
-                   '<div class="row">' +
+                   '<div style="padding:0;" class="row">' +
                    ' <div class="col-xs-5">' +
                    '  <i class="fa fa-user"></i>' +
                    '  <strong>' + condo.unit_name,term + '</strong>'+
