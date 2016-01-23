@@ -34,20 +34,44 @@ exports.condosubmit = function (req, res) {
         "message": "Internal Server Error"
       });
     }else {
+       
+        async.each( req.body.attachmentfile , function(item, callback){
+          var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('"+rows.insertId+"','"+item+"',"+cfg.timestamp()+")";
+          db.query( query1, function(err, images) {
+            if(!err){
+            
+              var response = {
+                status : 1,
+                message : 'Image Upload successfully.'
+              }
+              
+              
+            }else{
+              var response = {
+                status : 0,
+                message : 'INTERNAL ERROR condo information.'
+              }
+             
+            }
+            callback();
+          });
+        },
+        function(err){
+          if(!err){
+             var response = {
+                status : 1,
+                message : 'Image Upload successfully.'
+              }
+            res.jsonp(response);
+          }else{
+            var response = {
+              status : 0,
+              message : 'INTERNAL ERROR in Image Upload.'
+            }
+            res.jsonp( response );
+          }
+       });
 
-      var responsedata = {
-        status: true,
-        record: rows,
-        condo_id: rows.insertId,
-        message: 'Condo Added successfully'
-      }
-      //res.jsonp(responsedata);
-
-      var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('"+responsedata.condo_id+"','"+req.body.attachmentfile+"',"+cfg.timestamp()+")";
-      db.query(query1, function (error,result) {
-        
-        res.jsonp(result);
-      });
     }
   });
 };
@@ -85,7 +109,6 @@ exports.getallcondolist = function (req, res) {
               
                 for (var i = 0; i < condolist.length; i++) {
                     item['condolist'] = condolist[i];
-                    //condolist[i].condo_id=item.condo_id;
                 };
               
               data.push(item);

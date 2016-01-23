@@ -62,9 +62,9 @@ angular.module('popetyfbapp')
       mobile_no : condodata.mobile_no,
       bedroom : condodata.bedroom,
       condo_name:condodata.condo_name,
-      attachmentfile : $scope.attachmentfile
+      attachmentfile : $scope.imagefiles
     }
-    
+    console.log(condoinfo);
     if(valid){
         condoinfo.name = "Harold french";
         $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
@@ -88,25 +88,27 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate 
    */
+   $scope.imagefiles = [];
   $scope.updateattachment = function(file_browse) {
-    var fileDisplayArea = document.getElementById('fileDisplayArea');
-    if (file_browse == 'file_browse1') {
-      var newfile = document.getElementById("file_browse1").files[0];
-    }
-    var imageType = /image.*/;
-    if (newfile.type.match(imageType)) {
-      var oFReader = new FileReader();
-      oFReader.onload = function(oFREvent) {
-        if (file_browse == 'file_browse1') {
-          $scope.attachname = newfile.name;
-          $scope.attachmentfile = oFReader.result;
-          $scope.$apply();
-        }
-      };
-      oFReader.readAsDataURL(newfile);
-    } else {
-      fileDisplayArea.innerHTML = "File not supported!"
-    }
+  
+    angular.forEach(document.getElementById("file_browse1").files, function(file) {
+    
+      var fileDisplayArea = document.getElementById('fileDisplayArea');
+      var newfile = file;
+      var imageType = "image";
+
+      if (newfile.type.match(imageType)) {
+          var oFReader = new FileReader();
+          oFReader.onload = function (oFREvent) {
+            $scope.imagefiles.push(oFReader.result);
+            console.log($scope.imagefiles);
+          };
+           oFReader.readAsDataURL( newfile );
+      } else {
+          fileDisplayArea.innerHTML = "File not supported!"
+          alert("file notsupported");
+      }
+    });
   };
 
   /**
@@ -147,6 +149,7 @@ angular.module('popetyfbapp')
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
       $scope.allcondolist = res; 
+      console.log("res:",res);
       $scope.lastid = res[res.length - 1].condo_id;
     });
   }
