@@ -2,6 +2,17 @@ angular.module('popetyfbapp')
 
 .controller('submitController', function ($scope, $http, $timeout, $sce) {
 
+    this.tab = 1;
+
+    this.setTab = function (tabId) {
+        this.tab = tabId;
+    };
+
+    this.isSet = function (tabId) {
+        return this.tab === tabId;
+        console.log(tabId);
+    };
+
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
       //console.log(res);
