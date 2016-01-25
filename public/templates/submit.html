@@ -45,6 +45,9 @@
                   <img src="images/add.svg" class="add_icon">
                   <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept=".jpeg" multiple/>
               </div>
+              <div ng-repeat="img in imagefiles">
+                <a ng-click="removeimage($index)"><img src="{{img}}"></a>
+              </div>
               <div class="col col-12">
                 <span class="checkbox">
               </label>

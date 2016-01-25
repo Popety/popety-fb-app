@@ -138,8 +138,9 @@ angular.module('popetyfbapp')
           var oFReader = new FileReader();
           oFReader.onload = function (oFREvent) {
             $scope.imagefiles.push(oFReader.result);
-            console.log($scope.imagefiles.length);
             console.log($scope.imagefiles);
+
+            $scope.$apply();
           };
            oFReader.readAsDataURL( newfile );
       } else {
@@ -152,9 +153,14 @@ angular.module('popetyfbapp')
             }, 3000);
           }, 2000);
       }
-      
+
     });
   };
+
+  $scope.removeimage = function (img){
+    var index=$scope.imagefiles.indexOf(img)
+      $scope.imagefiles.splice(index,1);  
+  }
 
   /**
    @function nextprevcondolist
