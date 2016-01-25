@@ -134,7 +134,7 @@ angular.module('popetyfbapp')
     }
     $http.post(baseurl + 'nextprevcondolist',nextprevid).success(function(res, req){
        $scope.allcondolist = res;
-       console.log(res);
+       //console.log(res);
       $scope.prev_id = res[0].condo_id;
       $scope.lastid = res[res.length - 1].condo_id; 
     });
@@ -155,23 +155,26 @@ angular.module('popetyfbapp')
   }
 
 
+
   /**
    @function getcondoimages
    @returns list of images by condo_id
    @author sameer vedpathak
    @initialDate 
    */
+  
   $scope.getcondoimages = function(condoinfo){
-    
     var condo_id = {
       condo_id : condoinfo.condo_id
     }
-   
     $http.post(baseurl + 'getcondoimages',condo_id).success(function(res,req){
       console.log("res:",res);
+      $scope.condoimagelist = res;
+       
     });
   }
 
 });
+  
 
 

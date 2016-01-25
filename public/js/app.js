@@ -1,4 +1,4 @@
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAnimate','SlideViewer'])
 
 .directive('checkRequired', function(){
   return {

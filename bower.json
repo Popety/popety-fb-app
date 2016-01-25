@@ -1,0 +1,23 @@
+{
+  "name": "popety_fb_app",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "sameer vedpathak"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-animate": "~1.4.9",
+    "angular-messages": "~1.4.9",
+    "angular-touch": "~1.4.9"
+  }
+}

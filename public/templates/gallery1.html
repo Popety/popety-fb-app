@@ -1,0 +1,74 @@
+<div class="container">
+
+	<div class="row gallery_box submit_form_box">
+	<div class="col col-12">
+		<ul class="list-unstyled">
+			<li class="active">A</li>
+			<a href="#/tab/galleryb"><li>B</li></a>
+			<a href="#/tab/galleryc"><li>C</li></a>
+			<li>. . .</li>
+			<li>X</li>
+			<li>Y</li>
+			<a href="#/tab/galleryz"><li>Z</li></a>
+		</ul>
+	</div>		
+
+		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail">
+			<span  class="share_icon">SHARE</span>
+			<span class="vote_icon">VOTE</span>
+		<a class="btn trigger" href="javascript:;">
+		    <span class="no-tablet no-mobile main_div">
+		    	<img src="images/condo_3.jpg">
+		    	<div class="padding">
+			    	<h4>NOVEL MRT <span style="margin-right: 10px;">98</span></h4>
+			    	<h6>Nitin Dolli <span>VOTES</span></h6>
+		    	</div>
+		    </span>
+		    <span class="no-desktop show-tablet no-mobile">9</span>
+		    <span class="no-desktop no-tablet show-mobile">1-2</span>
+		</a>
+			  
+		</div>
+		<div class="modal-wrapper">
+			  <div class="modal">
+			    <div class="head">
+			      <a class="btn-close trigger" href="javascript:;"></a>
+			    </div>
+			    <div class="content">
+					<article id="slider">
+					    <input type="radio" name="slider" id="slide1" checked />
+					    <input type="radio" name="slider" id="slide2" />
+					    <div id="slides">
+					        <div id="overflow">
+					            <div class="inner">
+					                <article>
+					                    <img src="images/condo_1.jpg" />
+					                </article>
+					                <article>
+					                    <img src="images/condo_2.jpg" />
+					                </article>
+					            </div>
+					        </div>
+					    </div>
+					    
+					    <div id="active">
+					        <label for="slide1"></label>
+					        <label for="slide2"></label>
+					    </div>
+					</article>
+			    </div>
+			  </div>
+			</div>  
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	$( document ).ready(function() {
+  $('.trigger').click(function() {
+     $('.modal-wrapper').toggleClass('open');
+    $('.page-wrapper').toggleClass('blur');
+     return false;
+  });
+});
+</script>
