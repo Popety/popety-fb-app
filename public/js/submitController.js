@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('submitController', function ($scope, $http, $timeout, $sce) {
+.controller('submitController', function ($scope, $http, $timeout, $sce , $state) {
   
     this.tab = 1;
 
@@ -10,7 +10,6 @@ angular.module('popetyfbapp')
 
     this.isSet = function (tabId) {
         return this.tab === tabId;
-        console.log(tabId);
     };
 
     $scope.bedroomdata = {
@@ -26,7 +25,7 @@ angular.module('popetyfbapp')
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
-      //console.log(res);
+     
       var condos = res;
 
       function suggest_condos(term) {
@@ -82,7 +81,6 @@ angular.module('popetyfbapp')
 
     if(valid){
         if ($scope.imagefiles.length > 4) {
-              console.log("image length is exceed");
               $scope.imagelimitmsg = 'Image limit Upto 4 Images';
               $scope.showimagelimitmsg = true;
               $timeout(function() {
@@ -95,25 +93,26 @@ angular.module('popetyfbapp')
         }else{
 
             var condoinfo = {
+            name : "Harold french",
             mobile_no : condodata.mobile_no,
             bedroom : $scope.bedroomdata.selectedOption.name,
-            condo_name:condodata.condo_name,
+            condo_name : condodata.condo_name,
             attachmentfile : $scope.imagefiles
           }
-          condoinfo.name = "Harold french";
-          console.log("condoinfo:",condoinfo);
-         /* $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
-              //console.log("res:",res);
+          //condoinfo.name = "Harold french";
+          //console.log("condoinfo:",condoinfo);
+          $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
               $scope.condosuccessmsg = 'Condo Successfully Added.';
               $scope.showcondosuccessmsg = true;
               $timeout(function() {
                 $timeout(function() {
                 $scope.showcondosuccessmsg = false;
                 }, 3000);
-            
+                //$state.go('tab.gallery');
               }, 2000);
               document.getElementById("condofrm").reset();
-          });*/
+               $scope.imagefiles = {};
+          });
         }
         
     }
@@ -138,8 +137,6 @@ angular.module('popetyfbapp')
           var oFReader = new FileReader();
           oFReader.onload = function (oFREvent) {
             $scope.imagefiles.push(oFReader.result);
-            console.log($scope.imagefiles);
-
             $scope.$apply();
           };
            oFReader.readAsDataURL( newfile );
@@ -158,8 +155,7 @@ angular.module('popetyfbapp')
   };
 
   $scope.removeimage = function (img){
-    var index=$scope.imagefiles.indexOf(img)
-      $scope.imagefiles.splice(index,1);  
+      $scope.imagefiles.splice($scope.imagefiles.indexOf(img),1);
   }
 
   /**
@@ -172,22 +168,19 @@ angular.module('popetyfbapp')
   $scope.nextprevcondolist = function(btn){
     if(btn == 'next'){
       $scope.count ++;
-      console.log($scope.count);
       var nextprevid = { 
         condo_last_id : $scope.lastid
       }
     }else{ 
        $scope.count --;
-       console.log($scope.count);
       var nextprevid = {
         condo_prev_id : $scope.prev_id
       }
     }
     $http.post(baseurl + 'nextprevcondolist',nextprevid).success(function(res, req){
-       $scope.allcondolist = res;
-       //console.log(res);
-      $scope.prev_id = res[0].condo_id;
-      $scope.lastid = res[res.length - 1].condo_id; 
+        $scope.allcondolist = res;
+        $scope.prev_id = res[0].condo_id;
+        $scope.lastid = res[res.length - 1].condo_id; 
     });
   } 
 
@@ -200,7 +193,6 @@ angular.module('popetyfbapp')
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
       $scope.allcondolist = res; 
-      //console.log("res:",res);
       $scope.lastid = res[res.length - 1].condo_id;
     });
   }
@@ -219,7 +211,6 @@ angular.module('popetyfbapp')
       condo_id : condoinfo.condo_id
     }
     $http.post(baseurl + 'getcondoimages',condo_id).success(function(res,req){
-      console.log("res:",res);
       $scope.condoimagelist = res;
        
     });

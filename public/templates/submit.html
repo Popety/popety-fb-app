@@ -18,7 +18,7 @@
                 </div>
                 <div ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error " role="alert" class="valid_msg">
                   <div ng-message="maxlength" class="help-block">Enter Mobile Number Upto 10 Digit</div>
-                  <div ng-message="minlength" class="help-block">Enter mobile Number Min 8 Digit</div>
+                  <div ng-message="minlength" class="help-block">Enter Mobile Number Min 8 Digit</div>
                 </div>
               </div>
               <div class="col col-12">
@@ -46,7 +46,7 @@
                   <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept=".jpeg" multiple/>
               </div>
               <div ng-repeat="img in imagefiles" class="col col-6 img_preview">
-                  <span class="img_close" ng-click="removeimage($index)"><img src="images/add.svg"></span>
+                  <span class="img_close" ng-click="removeimage(img)"><img src="images/add.svg"></span>
                   <img src="{{img}}"> 
               </div>
               <div class="col col-12">
