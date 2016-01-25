@@ -1897,13 +1897,13 @@ input[type=file]::-webkit-file-upload-button {
   padding: 20px;
 }
 .rules ul li{
-  font-size: 15px;
+  font-size: 17px;
   font-weight: lighter;
   color: #fff;
   margin-bottom: 10px;
 }
 .rules ul li:first-child{
-  list-style: inherit;
+  list-style: none;
 }
 .simple_rules h3{
   font-size: 16px;
@@ -2150,7 +2150,12 @@ article img {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
+.add_icon{
+    position: absolute;
+    width: 18px;
+    left: 25%;
+    top: 9px;
+}
 .slide-next, .slide-previous { top: 60px; height: 87px; width: 52px; position: absolute; z-index: 100; background-position: center center; opacity: 0.4; filter: alpha(opacity=40); }
 .slide-next:hover, .slide-previous:hover { opacity: 0.8; filter: alpha(opacity=80); }
 .slide-next, .slide-previous { -webkit-transition: opacity 0.35s ease-in-out; -moz-transition: opacity 0.35s ease-in-out; -ms-transition: opacity 0.35s ease-in-out; -o-transition: opacity 0.35s ease-in-out; transition: opacity 0.35s ease-in-out; }
