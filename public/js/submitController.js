@@ -1,7 +1,7 @@
 angular.module('popetyfbapp')
 
 .controller('submitController', function ($scope, $http, $timeout, $sce) {
-
+  
     this.tab = 1;
 
     this.setTab = function (tabId) {
@@ -11,6 +11,17 @@ angular.module('popetyfbapp')
     this.isSet = function (tabId) {
         return this.tab === tabId;
         console.log(tabId);
+    };
+
+    $scope.bedroomdata = {
+     availableOptions: [
+       {id: '1', name: 'Studio'},
+       {id: '2', name: '1-bedroom'},
+       {id: '3', name: '2-bedroom'},
+       {id: '4', name: '3-bedroom'},
+       {id: '5', name: '4-bedroom'}
+     ],
+     selectedOption: {id: '1', name: 'Studio'} //This sets the default value of the select in the ui
     };
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
@@ -68,16 +79,16 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata,valid){
-   
-    var condoinfo = {
-      mobile_no : condodata.mobile_no,
-      bedroom : condodata.bedroom,
-      condo_name:condodata.condo_name,
-      attachmentfile : $scope.imagefiles
-    }
-    console.log(condoinfo);
+
     if(valid){
+        var condoinfo = {
+          mobile_no : condodata.mobile_no,
+          bedroom : $scope.bedroomdata.selectedOption.name,
+          condo_name:condodata.condo_name,
+          attachmentfile : $scope.imagefiles
+        }
         condoinfo.name = "Harold french";
+        console.log("condoinfo:",condoinfo);
         $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
             //console.log("res:",res);
             $scope.condosuccessmsg = 'Condo Successfully Added.';

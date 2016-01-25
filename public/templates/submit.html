@@ -33,13 +33,9 @@
               </div>
               <div class="col col-12">
                 <label for="name"><img src="images/floor.png" class="input_icon">
-                  <select  name="bedroom_number" id="styledSelect1" data-ng-model="condodata.bedroom" required>
-                    <option>Studio</option>
-                    <option>1-bedroom</option>
-                    <option>2-bedroom</option>
-                    <option>3-bedroom</option>
-                    <option>4-bedroom</option>
-                  </select>
+                  <select name="mySelect" id="mySelect"
+                  ng-options="option.name for option in bedroomdata.availableOptions track by option.id"
+                  ng-model="bedroomdata.selectedOption"></select>
                 </label>
                 <div data-ng-messages="condosubmitform.$submitted && condosubmitform.bedroom_number.$error" role="alert">
                     <div data-ng-message="required">Please Select Bedroom</div>
