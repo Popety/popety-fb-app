@@ -81,26 +81,41 @@ angular.module('popetyfbapp')
   $scope.condosubmit = function(condodata,valid){
 
     if(valid){
-        var condoinfo = {
-          mobile_no : condodata.mobile_no,
-          bedroom : $scope.bedroomdata.selectedOption.name,
-          condo_name:condodata.condo_name,
-          attachmentfile : $scope.imagefiles
-        }
-        condoinfo.name = "Harold french";
-        console.log("condoinfo:",condoinfo);
-        $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
-            //console.log("res:",res);
-            $scope.condosuccessmsg = 'Condo Successfully Added.';
-            $scope.showcondosuccessmsg = true;
-            $timeout(function() {
+        if ($scope.imagefiles.length > 4) {
+              console.log("image length is exceed");
+              $scope.imagelimitmsg = 'Image limit Upto 4 Images';
+              $scope.showimagelimitmsg = true;
               $timeout(function() {
-              $scope.showcondosuccessmsg = false;
-              }, 3000);
-          
+                $timeout(function() {
+                $scope.showimagelimitmsg = false;
+                }, 3000);
+            
             }, 2000);
-            document.getElementById("condofrm").reset();
-        });
+
+        }else{
+
+            var condoinfo = {
+            mobile_no : condodata.mobile_no,
+            bedroom : $scope.bedroomdata.selectedOption.name,
+            condo_name:condodata.condo_name,
+            attachmentfile : $scope.imagefiles
+          }
+          condoinfo.name = "Harold french";
+          console.log("condoinfo:",condoinfo);
+         /* $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
+              //console.log("res:",res);
+              $scope.condosuccessmsg = 'Condo Successfully Added.';
+              $scope.showcondosuccessmsg = true;
+              $timeout(function() {
+                $timeout(function() {
+                $scope.showcondosuccessmsg = false;
+                }, 3000);
+            
+              }, 2000);
+              document.getElementById("condofrm").reset();
+          });*/
+        }
+        
     }
   }
 
@@ -117,19 +132,27 @@ angular.module('popetyfbapp')
     
       var fileDisplayArea = document.getElementById('fileDisplayArea');
       var newfile = file;
-      var imageType = "image";
+      var imageType = ".jpeg";
 
       if (newfile.type.match(imageType)) {
           var oFReader = new FileReader();
           oFReader.onload = function (oFREvent) {
             $scope.imagefiles.push(oFReader.result);
+            console.log($scope.imagefiles.length);
             console.log($scope.imagefiles);
           };
            oFReader.readAsDataURL( newfile );
       } else {
-          fileDisplayArea.innerHTML = "File not supported!"
-          alert("file notsupported");
+          //fileDisplayArea.innerHTML = "File not supported!"
+          $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
+          $scope.showfilenotsupportmsg = true;
+          $timeout(function() {
+            $timeout(function() {
+            $scope.showfilenotsupportmsg = false;
+            }, 3000);
+          }, 2000);
       }
+      
     });
   };
 

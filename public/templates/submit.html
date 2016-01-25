@@ -43,7 +43,7 @@
               </div>
               <div class="col col-12" style="position:relative;">
                   <img src="images/add.svg" class="add_icon">
-                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple/>
+                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept=".jpeg" multiple/>
               </div>
               <div class="col col-12">
                 <span class="checkbox">
@@ -61,6 +61,8 @@
             <div class="col col-12">
               <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button> 
               <div data-ng-model="condosuccessmsg" ng-show="showcondosuccessmsg">{{condosuccessmsg}}</div>
+              <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg">{{imagelimitmsg}}</div>
+              <div data-ng-model="filenotsupportmsg" ng-show="showfilenotsupportmsg">{{filenotsupportmsg}}</div>
             </div>
             <!-- Submit Button -->
 
