@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="submitController">
+<div class="container" data-ng-controller="submitController" ng-show="sub.isSet(1)">
   <div class="row submit_form_box">
     <div class="col col-6 tablet-col-4 mobile-col-1-2" style="padding: 20px 60px;">
       <span class="no-tablet no-mobile">
@@ -33,13 +33,9 @@
               </div>
               <div class="col col-12">
                 <label for="name"><img src="images/floor.png" class="input_icon">
-                  <select  name="bedroom_number" id="styledSelect1" data-ng-model="condodata.bedroom" required>
-                    <option>Studio</option>
-                    <option>1-bedroom</option>
-                    <option>2-bedroom</option>
-                    <option>3-bedroom</option>
-                    <option>4-bedroom</option>
-                  </select>
+                  <select name="mySelect" id="mySelect"
+                  ng-options="option.name for option in bedroomdata.availableOptions track by option.id"
+                  ng-model="bedroomdata.selectedOption"></select>
                 </label>
                 <div data-ng-messages="condosubmitform.$submitted && condosubmitform.bedroom_number.$error" role="alert">
                     <div data-ng-message="required">Please Select Bedroom</div>
@@ -47,7 +43,10 @@
               </div>
               <div class="col col-12" style="position:relative;">
                   <img src="images/add.svg" class="add_icon">
-                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple/>
+                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept=".jpeg" multiple/>
+              </div>
+              <div ng-repeat="img in imagefiles">
+                <a ng-click="removeimage($index)"><img src="{{img}}"></a>
               </div>
               <div class="col col-12">
                 <span class="checkbox">
@@ -65,6 +64,8 @@
             <div class="col col-12">
               <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button> 
               <div data-ng-model="condosuccessmsg" ng-show="showcondosuccessmsg">{{condosuccessmsg}}</div>
+              <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg">{{imagelimitmsg}}</div>
+              <div data-ng-model="filenotsupportmsg" ng-show="showfilenotsupportmsg">{{filenotsupportmsg}}</div>
             </div>
             <!-- Submit Button -->
 

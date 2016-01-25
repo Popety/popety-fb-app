@@ -153,6 +153,7 @@ q {
 }
 a {
   color: #909090;
+   text-decoration: none;
 }
 a:hover {
   text-decoration: none;
@@ -1753,6 +1754,11 @@ a.btn{
   padding: 20px;
   border: 1px solid #E8E8E8;
   border-radius: 10px;
+}
+.active a{
+  color: #303030;
+  outline: none;
+  text-decoration: none;
 }
 .submit_form input{
     width: 100%;

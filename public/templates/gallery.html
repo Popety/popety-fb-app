@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="submitController" >
+<div class="container" data-ng-controller="submitController" ng-show="sub.isSet(2)">
 
 <div class="row next_prev_row">
 		<div class="col col-1">
@@ -19,7 +19,7 @@
 			<span class="vote_icon">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="no-tablet no-mobile main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo)"/>
+			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed"/>
 			    	<div class="padding">
 				    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
 				    	<h6>{{condo.name}} <span>VOTES</span></h6>
@@ -30,9 +30,8 @@
 			</a>
 		</div>
 	</div>
-
-	<div class="col col-4 tablet-col-4 " >
-		<div slide-source="condoimage in condoimagelist" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous">
+	<div class="col col-4 tablet-col-4">
+		<div slide-source="condoimage in condoimagelist" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
 			<img data-ng-src="{{condoimage.images}}" />
 		</div>
 	</div>

@@ -1,11 +1,13 @@
+<div data-ng-controller="submitController as sub">
 <section class="new_homepage">
 	<div class="container">
 		<ul class="header_ul">
-			<a href="#/tab/submit"><li><span><img src="images/submit_icon.png"></span>SUBMIT</li></a>
-			<a href="#/tab/gallery"><li><span><img src="images/gallery_icon.png"></span>GALLERY</li></a>
-			<a href="#/tab/winners"><li><span><img src="images/winner_icon.png"></span>WINNERS</li></a>
+			<li ng-class="{active:sub.isSet(1)}"><a href="#/tab/submit" ng-click="sub.setTab(1)"><span><img src="images/submit_icon.png"></span>SUBMIT</a></li>
+			<li ng-class="{active:sub.isSet(2)}"><a href="#/tab/gallery" ng-click="sub.setTab(2)"><span><img src="images/gallery_icon.png"></span>GALLERY</a></li>
+			<li ng-class="{active:sub.isSet(3)}"><a href="#/tab/winners" ng-click="sub.setTab(3)"><span><img src="images/winner_icon.png"></span>WINNERS</a></li>
 		</ul>
 	</div>
 </section>
 <section class="sumbit_new" ui-view>
 </section>
+</div>

@@ -1,6 +1,28 @@
 angular.module('popetyfbapp')
 
 .controller('submitController', function ($scope, $http, $timeout, $sce) {
+  
+    this.tab = 1;
+
+    this.setTab = function (tabId) {
+        this.tab = tabId;
+    };
+
+    this.isSet = function (tabId) {
+        return this.tab === tabId;
+        console.log(tabId);
+    };
+
+    $scope.bedroomdata = {
+     availableOptions: [
+       {id: '1', name: 'Studio'},
+       {id: '2', name: '1-bedroom'},
+       {id: '3', name: '2-bedroom'},
+       {id: '4', name: '3-bedroom'},
+       {id: '5', name: '4-bedroom'}
+     ],
+     selectedOption: {id: '1', name: 'Studio'} //This sets the default value of the select in the ui
+    };
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
     if(res.length > 0){
@@ -57,28 +79,43 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata,valid){
-   
-    var condoinfo = {
-      mobile_no : condodata.mobile_no,
-      bedroom : condodata.bedroom,
-      condo_name:condodata.condo_name,
-      attachmentfile : $scope.imagefiles
-    }
-    console.log(condoinfo);
+
     if(valid){
-        condoinfo.name = "Harold french";
-        $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
-            //console.log("res:",res);
-            $scope.condosuccessmsg = 'Condo Successfully Added.';
-            $scope.showcondosuccessmsg = true;
-            $timeout(function() {
+        if ($scope.imagefiles.length > 4) {
+              console.log("image length is exceed");
+              $scope.imagelimitmsg = 'Image limit Upto 4 Images';
+              $scope.showimagelimitmsg = true;
               $timeout(function() {
-              $scope.showcondosuccessmsg = false;
-              }, 3000);
-          
+                $timeout(function() {
+                $scope.showimagelimitmsg = false;
+                }, 3000);
+            
             }, 2000);
-            document.getElementById("condofrm").reset();
-        });
+
+        }else{
+
+            var condoinfo = {
+            mobile_no : condodata.mobile_no,
+            bedroom : $scope.bedroomdata.selectedOption.name,
+            condo_name:condodata.condo_name,
+            attachmentfile : $scope.imagefiles
+          }
+          condoinfo.name = "Harold french";
+          console.log("condoinfo:",condoinfo);
+         /* $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
+              //console.log("res:",res);
+              $scope.condosuccessmsg = 'Condo Successfully Added.';
+              $scope.showcondosuccessmsg = true;
+              $timeout(function() {
+                $timeout(function() {
+                $scope.showcondosuccessmsg = false;
+                }, 3000);
+            
+              }, 2000);
+              document.getElementById("condofrm").reset();
+          });*/
+        }
+        
     }
   }
 
@@ -95,21 +132,35 @@ angular.module('popetyfbapp')
     
       var fileDisplayArea = document.getElementById('fileDisplayArea');
       var newfile = file;
-      var imageType = "image";
+      var imageType = ".jpeg";
 
       if (newfile.type.match(imageType)) {
           var oFReader = new FileReader();
           oFReader.onload = function (oFREvent) {
             $scope.imagefiles.push(oFReader.result);
             console.log($scope.imagefiles);
+
+            $scope.$apply();
           };
            oFReader.readAsDataURL( newfile );
       } else {
-          fileDisplayArea.innerHTML = "File not supported!"
-          alert("file notsupported");
+          //fileDisplayArea.innerHTML = "File not supported!"
+          $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
+          $scope.showfilenotsupportmsg = true;
+          $timeout(function() {
+            $timeout(function() {
+            $scope.showfilenotsupportmsg = false;
+            }, 3000);
+          }, 2000);
       }
+
     });
   };
+
+  $scope.removeimage = function (img){
+    var index=$scope.imagefiles.indexOf(img)
+      $scope.imagefiles.splice(index,1);  
+  }
 
   /**
    @function nextprevcondolist
