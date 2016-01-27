@@ -42,6 +42,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/api', express.static(__dirname + '/api'));
 
 var submit = require('./api/submitApi.js');
+var gallery = require('./api/galleryApi.js')
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -51,8 +52,9 @@ app.use(function(req, res, next) {
 
 app.get('/api/condoList', submit.condoList);
 app.post('/api/condosubmit', submit.condosubmit);
-app.get('/api/getallcondolist',submit.getallcondolist);
-app.post('/api/nextprevcondolist',submit.nextprevcondolist);
-app.post('/api/getcondoimages',submit.getcondoimages);
+
+app.get('/api/getallcondolist',gallery.getallcondolist);
+app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
+app.post('/api/getcondoimages',gallery.getcondoimages);
 
 module.exports = app;

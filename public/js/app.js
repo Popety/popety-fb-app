@@ -1,4 +1,4 @@
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkuri.gallery'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkuri.gallery', 'ngFacebook'])
 
 .directive('checkRequired', function(){
   return {
@@ -14,7 +14,9 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkur
   }; 
 })    
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider,$facebookProvider) {
+
+  $facebookProvider.setAppId('1623102964620661')
 
   $stateProvider
 
@@ -60,6 +62,11 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkur
     url: "/winners",
     templateUrl: "templates/winners.html",
     // controller: 'winnersController'
+  })
+
+  .state('fblogin', {
+    url: "/fblogin",
+    templateUrl: "templates/fblogin.html",
   });
 
   $urlRouterProvider.otherwise('/home');
