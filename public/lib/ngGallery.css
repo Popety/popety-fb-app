@@ -29,8 +29,9 @@ img.ng-thumb {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 10000;
+  z-index: 999999;
   text-align: center;
+  background: rgba(8, 8, 8, 0.73);
 }
 
 .ng-gallery-content > a.close-popup {
@@ -46,7 +47,7 @@ img.ng-thumb {
 }
 
 .ng-gallery-content > a.nav-left, .ng-gallery-content > a.nav-right {
-  color: #fff;
+  color: #F9C100;
   text-decoration: none;
   font-size: 60px;
   cursor: pointer;
@@ -69,8 +70,7 @@ img.ng-thumb {
 
 .ng-gallery-content > img {
   height: auto;
-  max-height: calc(100% - 150px);
-  max-width: calc(100% - 100px);
+  width: 550px;
   position: relative;
   display: block;
   margin: 0 auto 0 auto;
@@ -88,9 +88,11 @@ img.ng-thumb {
     from { opacity: 0.3; }
       to { opacity: 1; }
 }
-
+.ng-gallery-content a:hover{
+  color: #DCAB04 !important;
+}
 .ng-gallery-content > span.info-text {
-  color: #fff;
+  color: #F9C100;
   display: inline-block;
   width: 100%;
   height: 20px;
@@ -104,7 +106,7 @@ img.ng-thumb {
 
 .ng-gallery-content > .ng-thumbnails-wrapper {
   width: 400px;
-  height: 70px;
+  height: 100px;
   text-align: center;
   position: fixed;
   bottom: 20px;
