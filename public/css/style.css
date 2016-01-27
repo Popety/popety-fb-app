@@ -1806,9 +1806,9 @@ a.btn{
 }
 .submit_form_box{
     border: 1px solid;
-    height: 550px;
     border-radius: 10px;
     border-color: #E8E8E8;
+    padding-bottom: 0px;
 }
 .left_submit{
     width: 100%;
@@ -1847,9 +1847,11 @@ a.btn{
     width: 100%;
     border-radius: 4px;
     border: 1px solid #F9C100;
+    height: 116px;
 }
 .img_close{
     width: 24px;
+    height: auto;
     position: absolute;
     top: 4px;
     right: 14px;
