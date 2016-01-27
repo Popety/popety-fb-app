@@ -1519,6 +1519,7 @@ table caption {
 .thumbnail img{
     width: 100%;
     height: 240px;
+    border: 1px solid #E8E8E8;
 }
 .thumbnail{
   padding: 15px;
@@ -2373,6 +2374,18 @@ footer{
     text-align: center;
     margin-top: 50px;
 }
+
 .new_homepage ul .active{
   background: green;
+
+.vote_date{
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    right: 18px;
+    top: 45px;
+    font-family: 'latoregular';
+    font-size: 15px;
+    font-weight: bold;
+    color: #F9C100;
 }
