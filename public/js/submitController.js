@@ -16,13 +16,15 @@ angular.module('popetyfbapp')
     
     $scope.bedroomdata = {
      availableOptions: [
-       {id: '1', name: 'Studio'},
-       {id: '2', name: '1-bedroom'},
-       {id: '3', name: '2-bedroom'},
-       {id: '4', name: '3-bedroom'},
-       {id: '5', name: '4-bedroom'}
+     
+       {id: '1', name: 'Number Of Bedrooms'},
+       {id: '2', name: 'Studio'},
+       {id: '3', name: '1-bedroom'},
+       {id: '4', name: '2-bedroom'},
+       {id: '5', name: '3-bedroom'},
+       {id: '6', name: '4-bedroom'}
      ],
-     selectedOption: {id: '1', name: 'Studio'} //This sets the default value of the select in the ui
+     selectedOption: {id: '1', name: 'Number Of Bedrooms'} //This sets the default value of the select in the ui
     };
 
   $http.get(baseurl + 'condoList').success(function (res, req) {
@@ -81,44 +83,53 @@ angular.module('popetyfbapp')
 
   $scope.condosubmit = function(condodata,valid){
 
-    if(valid){
-        if ($scope.imagefiles.length > 4) {
-              $scope.imagelimitmsg = 'Image limit Upto 4 Images';
-              $scope.showimagelimitmsg = true;
+    if(valid && $scope.imagefiles != ''){
+            if($scope.imagefiles.length < 4){
+               $scope.imagelimitmsg = 'select more than 4 images';
+                  $scope.showimagelimitmsg = true;
+                  $timeout(function() {
+                    $timeout(function() {
+                    $scope.showimagelimitmsg = false;
+                    }, 3000);
+                
+                }, 2000);
+            }else{
+               var condoinfo = {
+              name : "Harold french",
+              mobile_no : condodata.mobile_no,
+              bedroom : $scope.bedroomdata.selectedOption.name,
+              condo_name : condodata.condo_name,
+              attachmentfile : $scope.imagefiles
+            }
+           
+            //console.log("condoinfo:",condoinfo);
+            $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
+                $scope.condosuccessmsg = 'Condo Successfully Added.';
+                $scope.showcondosuccessmsg = true;
+                $timeout(function() {
+                  $timeout(function() {
+                  $scope.showcondosuccessmsg = false;
+                  }, 3000);
+                }, 2000);
+                document.getElementById("condofrm").reset();
+                 $scope.imagefiles = {};
+            });
+
+            }
+           
+        
+    }else{
+              $scope.imgcompulsorymsg = 'Images Compulsory';
+              $scope.showimgcompulsorymsg = true;
               $timeout(function() {
                 $timeout(function() {
-                $scope.showimagelimitmsg = false;
+                $scope.showimgcompulsorymsg = false;
                 }, 3000);
             
             }, 2000);
 
-        }else{
-
-            var condoinfo = {
-            name : "Harold french",
-            mobile_no : condodata.mobile_no,
-            bedroom : $scope.bedroomdata.selectedOption.name,
-            condo_name : condodata.condo_name,
-            attachmentfile : $scope.imagefiles
-          }
-          //condoinfo.name = "Harold french";
-          //console.log("condoinfo:",condoinfo);
-          $http.post(baseurl + 'condosubmit' , condoinfo).success(function(res, req){
-              $scope.condosuccessmsg = 'Condo Successfully Added.';
-              $scope.showcondosuccessmsg = true;
-              $timeout(function() {
-                $timeout(function() {
-                $scope.showcondosuccessmsg = false;
-                }, 3000);
-                //$state.go('tab.gallery');
-              }, 2000);
-              document.getElementById("condofrm").reset();
-               $scope.imagefiles = {};
-          });
-        }
-        
     }
-    //$state.go("tab.gallery");
+    
   }
 
   /**
@@ -139,8 +150,8 @@ angular.module('popetyfbapp')
       if (newfile.type.match(imageType)) {
           var oFReader = new FileReader();
           oFReader.onload = function (oFREvent) {
-            $scope.imagefiles.push(oFReader.result);
-            $scope.$apply();
+              $scope.imagefiles.push(oFReader.result);
+              $scope.$apply();
           };
            oFReader.readAsDataURL( newfile );
       } else {
