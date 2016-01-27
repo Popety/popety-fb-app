@@ -41,36 +41,56 @@
 	</div>
 
 	<!-- Modal -->
- <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
-  <div style="position:relative;"  class="fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <p>Some text in the modal.</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</div>
+<a id="open-popup" class="button" href="">
+  View my profile
+</a>
 
+<div class="popup" id="popup">
+  <div class="popup__inner">
+    <header class="popup__header">
+      <kbd>esc</kbd><a class="popup__close"></a>  
+    </header>
+    <div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
+			<span  class="share_icon">SHARE</span>
+			<span class="vote_icon">VOTE</span>
+			<a class="btn trigger" href="javascript:;">
+			    <span class="no-tablet no-mobile main_div">
+			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed"/>
+			    	<div class="padding">
+				    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
+				    	<h6>{{condo.name}} <span>VOTES</span></h6>
+			    	</div>
+			    </span>
+			    <span class="no-desktop show-tablet no-mobile">9</span>
+			    <span class="no-desktop no-tablet show-mobile">1-2</span>
+			</a>
+		</div>
+  </div><!-- /popup__inner -->
+</div><!-- /popup -->
 
-
-<!--<script type="text/javascript">
-	$( document ).ready(function() {
-  $('.trigger').click(function() {
-     $('.modal-wrapper').toggleClass('open');
-    $('.page-wrapper').toggleClass('blur');
-     return false;
+<script type="text/javascript">
+	$(document).ready(function () {
+  
+  var popup = $("#popup"),
+      doc = $(document),
+      popClass = "popped",
+      showPopup = function (event) {
+        popup.fadeIn(200);
+        event.preventDefault();
+      },
+      hidePopup = function (event) {
+        popup.hide();
+        event.preventDefault();
+      };
+  
+  doc.on("click", "#open-popup", showPopup);
+  doc.on("click", ".popup__close", hidePopup);
+  
+  doc.keypress(function (event) {
+    if (event.keyCode === 27) { // esc key
+      hidePopup();
+    }
   });
+  
 });
-</script>-->
+</script>

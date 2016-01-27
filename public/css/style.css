@@ -2220,3 +2220,133 @@ input[type=number]::-webkit-outer-spin-button {
   top: 24px;
   cursor: pointer;
 }
+.popup { 
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(50, 50, 50, 0.5);
+  display: none;
+}
+.popup__inner {
+  overflow-y: scroll;
+  max-height: 100%;
+  background-color: #f2f2f2;
+  width: 90%;
+  max-width: 30em;
+  margin: 3em auto 0;
+  padding-bottom: 1.5em;
+  border-radius: 2px;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+}
+
+.popup__header {
+  background-color: lightgray;
+  padding: 0.25em 0.75em;
+  margin-bottom: 2em;
+  text-align: right;
+}
+.popup__close {
+  display: inline-block;
+  width: 0.875em;
+  height: 0.875em;
+  background-color: tomato;
+  border-radius: 50%;
+  
+  &:hover {
+    background-color: darken(tomato, 8%);
+  }
+}
+kbd { 
+  display: inline-block; 
+  font-family: inherit; 
+  font-size: 0.875em; 
+  vertical-align: 0.125em; 
+  margin-right: 0.5em;
+  color: slategray;
+}
+
+.profile__image {
+  width: 8em;
+  margin: 0 auto 2em;
+  border: 0.125em solid black;
+  background-color: #000;
+  display: block;
+  
+  @media screen and (min-width: 30em) {
+    display: inline-block;
+    margin: 0 3em 0 2em;
+  }
+}
+
+.profile__details {
+  margin: 0 2em 0 0;
+  text-align: center;
+  
+  @media screen and (min-width: 30em) {
+    display: inline-block;
+    vertical-align: top;
+    text-align: left;
+  }
+}
+
+.profile__stats {
+  @extend %ui-list;
+  margin: 0 0 1rem 0;
+  
+  > li {
+    text-align: center;
+    border-right: 1px solid lightgray;
+    padding: 0 0.5em;
+    line-height: 1.1;
+    
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child { 
+      border-right: none;
+      padding-right: 0;
+    }
+  }
+}
+.profile_stat__heading {
+  font-weight: 300;
+  text-transform: capitalize;
+  font-size: 0.875em;
+  margin: 0 0 0.25em 0;
+  color: slategray;
+}
+.profile_stat__number {
+  font-size: 1.75em;
+  color: slategray;
+}
+.profile__name {
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.social {
+  @extend %ui-list;
+  margin-bottom: 0;
+  margin-left: 0;
+  
+  > li:not(:last-child) {
+    margin-right: 0.5em;
+  }
+  .location {
+    margin-left: 1em;
+    
+    &, .fa { color: darkgreen; }
+    span { 
+      font-size: 0.875em;
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 0.25em;
+    }
+  }
+  a {
+    display: block;
+    line-height: 1.1;
+  }
+}
