@@ -6,7 +6,7 @@ var async = require("async");
 
 
 exports.getallcondolist = function (req, res) {
-  var condo_list_query = "SELECT * FROM fb_condo_list,fb_condo_images WHERE fb_condo_list.condo_id = fb_condo_images.condo_id ORDER by fb_condo_list.condo_id desc LIMIT 6";
+  var condo_list_query = "SELECT * FROM fb_condo_list  ORDER by fb_condo_list.condo_id desc LIMIT 6 ";
   db.query(condo_list_query , function(err , rows){
     if(err){
       res.status(500);
@@ -18,7 +18,8 @@ exports.getallcondolist = function (req, res) {
       
         var data=[];
         async.each( rows , function(item, callback){
-          var condoimagedata="SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = "+item.condo_id+"";
+          var condoimagedata="SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = "+item.condo_id+" LIMIT 1";
+          console.log(condoimagedata);
           db.query( condoimagedata, function(err, condolist ) {
             if(!err){
               
