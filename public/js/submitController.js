@@ -5,13 +5,23 @@ angular.module('popetyfbapp')
   
   
     this.tab = 1;
-    
+    $scope.active1 = true;
+    $scope.active2 = false;
+    $scope.active3 = false;
     this.setTab = function (tabId) {
         this.tab = tabId;
     };
 
     this.isSet = function (tabId) {
-        return this.tab === tabId;
+        if(tabId==1)
+          $scope.active1 = true;
+      
+      if(tabId==2)
+          $scope.active2 = true;
+      
+      if(tabId==3)
+          $scope.active3 = true;
+       return this.tab === tabId; 
     };
     
     $scope.bedroomdata = {
