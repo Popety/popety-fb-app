@@ -2393,3 +2393,13 @@ footer{
     font-weight: bold;
     color: #F9C100;
 }
+.slider_indicator{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    color: #F9C100;
+    font-size: 16px;
+    background: rgba(41, 41, 41, 0.56);
+    margin-bottom: 0px;
+    padding: 5px;
+}
