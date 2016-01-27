@@ -2205,3 +2205,19 @@ article img {
 .slide-next, .slide-previous { -webkit-transition: opacity 0.35s ease-in-out; -moz-transition: opacity 0.35s ease-in-out; -ms-transition: opacity 0.35s ease-in-out; -o-transition: opacity 0.35s ease-in-out; transition: opacity 0.35s ease-in-out; }
 .slide-next { right: 5px; background-image: url('../images/next.png'); }
 .slide-previous { background-image: url('../images/prev.png'); left: 5px; }
+.activenext{
+  background: #acacac;
+  color: #fff !important;
+  margin: 2px;
+}
+.activeprev{
+  background: #acacac;
+  color: #fff !important;
+  margin: 2px;
+}
+.deactivenext{
+  cursor: not-allowed !important;
+}
+.deactiveprev{
+  cursor: not-allowed !important;
+}

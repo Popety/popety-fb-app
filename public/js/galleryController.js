@@ -48,7 +48,8 @@ angular.module('popetyfbapp')
    */
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
-      $scope.allcondolist = res; 
+      $scope.allcondolist = res;
+      console.log(res); 
       $scope.lastid = res[res.length - 1].condo_id;
     });
   }

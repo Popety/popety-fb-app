@@ -8,8 +8,10 @@
 	</div>
 	<div class="col col-11">
 		<ul class="list-unstyled">
-			<li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0">Prev</li>
-			<li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6">Next</li>
+			<li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
+			<li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
+			<li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
+			<li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
 		</ul>
 	</div>
 </div>
@@ -20,6 +22,10 @@
 			<a class="btn trigger" href="javascript:;">
 			    <span class="no-tablet no-mobile main_div">
 			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed"/>
+			    	<span  id="picgallery">
+						<ng-gallery images="images">
+						</ng-gallery>
+					</span>
 			    	<div class="padding">
 				    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
 				    	<h6>{{condo.name}} <span>VOTES</span></h6>
@@ -35,10 +41,7 @@
 			<img data-ng-src="{{condoimage.images}}" />
 		</div>
 	</div> -->
-	<div class="col col-4 tablet-col-4">
-		<ng-gallery images="images">
-		</ng-gallery>
-	</div>
+	
 </div>
 
 <!--<script type="text/javascript">
