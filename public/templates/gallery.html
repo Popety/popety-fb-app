@@ -19,7 +19,7 @@
 			<span class="vote_icon">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="no-tablet no-mobile main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed"/>
+			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed" id="open-popup"/>
 			    	<div class="padding">
 				    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
 				    	<h6>{{condo.name}} <span>VOTES</span></h6>
@@ -35,40 +35,35 @@
 			<img data-ng-src="{{condoimage.images}}" />
 		</div>
 	</div> -->
-	<div class="col col-4 tablet-col-4">
+
+	<!-- <div class="col col-4 tablet-col-4">
 		<ng-gallery images="images">
 		</ng-gallery>
-	</div>
+	</div> -->
 
 	<!-- Modal -->
-<a id="open-popup" class="button" href="">
+<!-- <a id="open-popup" class="button" href="">
   View my profile
-</a>
+</a> -->
 
 <div class="popup" id="popup">
   <div class="popup__inner">
     <header class="popup__header">
-      <kbd>esc</kbd><a class="popup__close"></a>  
+     <a class="popup__close"></a>  
     </header>
-    <div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
-			<span  class="share_icon">SHARE</span>
-			<span class="vote_icon">VOTE</span>
-			<a class="btn trigger" href="javascript:;">
-			    <span class="no-tablet no-mobile main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed"/>
-			    	<div class="padding">
-				    	<h4>{{condo.condo_name}} <span style="margin-right: 10px;">98</span></h4>
-				    	<h6>{{condo.name}} <span>VOTES</span></h6>
-			    	</div>
-			    </span>
-			    <span class="no-desktop show-tablet no-mobile">9</span>
-			    <span class="no-desktop no-tablet show-mobile">1-2</span>
-			</a>
+    <div>
+		
+		<div slide-source="condoimage in imagesobj" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
+			<h4>{{$index+1}}of {{imagesobj.length}}</h4>
+			<img data-ng-src="{{condoimage}}" />
+		</div>
+		
 		</div>
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
 
 <script type="text/javascript">
+
 	$(document).ready(function () {
   
   var popup = $("#popup"),

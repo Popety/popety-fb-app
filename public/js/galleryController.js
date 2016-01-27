@@ -66,15 +66,19 @@ angular.module('popetyfbapp')
 
   $scope.getcondoimages = function(condoinfo){
     $scope.images = [];
+    $scope.imagesobj =[];
     var condo_id = {
       condo_id : condoinfo.condo_id
     }
     $http.post(baseurl + 'getcondoimages',condo_id).success(function(res,req){
       $scope.condoimagelist = res;
+      console.log(res);
       for (var i = 0; i < $scope.condoimagelist.length; i++) {
-              $scope.images.push({thumb: $scope.condoimagelist[i].images, img: $scope.condoimagelist[i].images, description: 'Image 1'});
+              //$scope.images.push({thumb: $scope.condoimagelist[i].images, img: $scope.condoimagelist[i].images, description: 'Image 1'});
+        $scope.imagesobj.push( $scope.condoimagelist[i].images);
       }
-
+        console.log($scope.imagesobj);
+        $scope.slides = [{Title: "First"}, {Title: "Second"}, {Title: "Third"}];
       });
   }
 

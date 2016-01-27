@@ -1,7 +1,7 @@
 /*****************************************************/
 /* [BASELINE] Styles for the slide viewer and arrows */
 .slide-viewer * { margin: 0; }
-.slide-viewer { margin-top: 25px; height: 200px; text-align: center; width 100%; background: #DDD; position: relative;}
+.slide-viewer {height: 400px; text-align: center; width 100%; background: #DDD; position: relative;}
 .slide-viewer p { text-align: center; }
 .slide-viewer img { width: 100%; }
 
