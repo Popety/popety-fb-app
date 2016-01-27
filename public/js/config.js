@@ -1,4 +1,4 @@
-var instance = "local";
+var instance = "dev";
 
 if (instance == "dev"){
 	var baseurl = 'http://n2.transparent.sg:9999/api/';
