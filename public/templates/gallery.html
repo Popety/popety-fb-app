@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="submitController" ng-show="sub.isSet(2)">
+<div class="container" data-ng-controller="galleryController as ctrl" ng-show="sub.isSet(2)">
 
 <div class="row next_prev_row">
 		<div class="col col-1">
@@ -30,12 +30,15 @@
 			</a>
 		</div>
 	</div>
-	<div class="col col-4 tablet-col-4">
+	<!-- <div class="col col-4 tablet-col-4">
 		<div slide-source="condoimage in condoimagelist" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
 			<img data-ng-src="{{condoimage.images}}" />
 		</div>
+	</div> -->
+	<div class="col col-4 tablet-col-4">
+		<ng-gallery images="images">
+		</ng-gallery>
 	</div>
-
 </div>
 
 <!--<script type="text/javascript">

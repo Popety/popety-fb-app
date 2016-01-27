@@ -1,9 +1,11 @@
+      //      console.log("onlyimages:",$scope.onlyimages); 
 angular.module('popetyfbapp')
 
-.controller('submitController', function ($scope, $http, $timeout, $sce , $state) {
+.controller('submitController', function ($scope, $http, $timeout, $sce , $state,$document) {
+  
   
     this.tab = 1;
-
+    
     this.setTab = function (tabId) {
         this.tab = tabId;
     };
@@ -11,7 +13,7 @@ angular.module('popetyfbapp')
     this.isSet = function (tabId) {
         return this.tab === tabId;
     };
-
+    
     $scope.bedroomdata = {
      availableOptions: [
        {id: '1', name: 'Studio'},
@@ -116,6 +118,7 @@ angular.module('popetyfbapp')
         }
         
     }
+    //$state.go("tab.gallery");
   }
 
   /**
@@ -156,64 +159,6 @@ angular.module('popetyfbapp')
 
   $scope.removeimage = function (img){
       $scope.imagefiles.splice($scope.imagefiles.indexOf(img),1);
-  }
-
-  /**
-   @function nextprevcondolist
-   @returns retuns next or previous condolist
-   @author sameer vedpathak
-   @initialDate 
-   */
-    $scope.count = 0; 
-  $scope.nextprevcondolist = function(btn){
-    if(btn == 'next'){
-      $scope.count ++;
-      var nextprevid = { 
-        condo_last_id : $scope.lastid
-      }
-    }else{ 
-       $scope.count --;
-      var nextprevid = {
-        condo_prev_id : $scope.prev_id
-      }
-    }
-    $http.post(baseurl + 'nextprevcondolist',nextprevid).success(function(res, req){
-        $scope.allcondolist = res;
-        $scope.prev_id = res[0].condo_id;
-        $scope.lastid = res[res.length - 1].condo_id; 
-    });
-  } 
-
-  /**
-   @function getallcondolist
-   @returns load letest condolist
-   @author sameer vedpathak
-   @initialDate 
-   */
-  $scope.getallcondolist = function(){
-    $http.get(baseurl + 'getallcondolist').success(function(res, req){
-      $scope.allcondolist = res; 
-      $scope.lastid = res[res.length - 1].condo_id;
-    });
-  }
-
-
-
-  /**
-   @function getcondoimages
-   @returns list of images by condo_id
-   @author sameer vedpathak
-   @initialDate 
-   */
-  
-  $scope.getcondoimages = function(condoinfo){
-    var condo_id = {
-      condo_id : condoinfo.condo_id
-    }
-    $http.post(baseurl + 'getcondoimages',condo_id).success(function(res,req){
-      $scope.condoimagelist = res;
-       
-    });
   }
 
 });
