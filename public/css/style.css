@@ -1519,6 +1519,7 @@ table caption {
 .thumbnail img{
     width: 100%;
     height: 240px;
+    border: 1px solid #E8E8E8;
 }
 .thumbnail{
   padding: 15px;
@@ -2373,9 +2374,14 @@ footer{
     text-align: center;
     margin-top: 50px;
 }
-<ul class="list-unstyled">
-      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
-      <li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
-      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
-      <li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
-    </ul>
+.vote_date{
+    position: absolute;
+    width: 70px;
+    text-align: center;
+    right: 18px;
+    top: 45px;
+    font-family: 'latoregular';
+    font-size: 15px;
+    font-weight: bold;
+    color: #F9C100;
+}
