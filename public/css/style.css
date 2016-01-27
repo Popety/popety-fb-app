@@ -2373,4 +2373,9 @@ footer{
     text-align: center;
     margin-top: 50px;
 }
->>>>>>> d25350daa42aa1c9cfb0ab4a1e2b65ccf6677a71
+<ul class="list-unstyled">
+      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
+      <li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
+      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
+      <li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
+    </ul>
