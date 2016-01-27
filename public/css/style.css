@@ -45,6 +45,7 @@
     font-style: normal;
 
 }
+
 *,
 *:before,
 *:after {
@@ -1945,10 +1946,11 @@ input[type=file]::-webkit-file-upload-button {
   font-size: 17px;
   font-weight: lighter;
   color: #fff;
+  position: relative;
   margin-bottom: 10px;
 }
 .rules ul li:first-child{
-  list-style: none;
+    clear: both;
 }
 .simple_rules h3{
   font-size: 16px;
@@ -2211,4 +2213,10 @@ input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+.download_list{
+  position: absolute;
+  left: 11%;
+  top: 24px;
+  cursor: pointer;
 }
