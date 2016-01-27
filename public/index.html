@@ -29,6 +29,7 @@
     <script src="js/config.js"></script>
     <script src="js/submitController.js"></script>
     <script src="js/galleryController.js"></script>
+    <script src="js/fbloginController.js"></script>
 
     <!-- Mass-Auto Complete lib -->
     <script src="lib/massautocomplete.js"></script>
@@ -51,8 +52,27 @@
   <body data-ng-app="popetyfbapp" style="background:#fff;">
   <div ui-view>
   </div>
-	<!-- <footer>
+	
+    <!-- <footer>
 		<p class="terms">terms and conditions</p>
 	</footer> -->
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1623102964620661',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
   </body>
 </html>
