@@ -155,7 +155,7 @@ angular.module('popetyfbapp')
     
       var fileDisplayArea = document.getElementById('fileDisplayArea');
       var newfile = file;
-      var imageType = ".jpeg";
+      var imageType = "image";
 
       if (newfile.type.match(imageType)) {
           var oFReader = new FileReader();

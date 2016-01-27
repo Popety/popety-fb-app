@@ -47,17 +47,16 @@
 <!-- <a id="open-popup" class="button" href="">
   View my profile
 </a> -->
-
 <div class="popup" id="popup">
   <div class="popup__inner">
     <header class="popup__header">
-     <a class="popup__close"></a>  
+     <img src="images/add.svg" class="popup__close">
     </header>
     <div>
 		
 		<div slide-source="condoimage in imagesobj" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
-			<h4>{{$index+1}}of {{imagesobj.length}}</h4>
 			<img data-ng-src="{{condoimage}}" />
+			<h4 class="slider_indicator"> {{$index+1}} OF {{slides.length}}</h4>
 		</div>
 		
 		</div>
