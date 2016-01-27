@@ -1735,36 +1735,39 @@ a.btn{
 
 /*new*/
 .new_homepage ul li{
-  float: left;
-  outline: none;
-  font-family: 'syncopatebold';
-  list-style: none;
-  padding: 15px 50px 10px 80px;
-  position: relative;
-  border-right: 1px solid #E8E8E8;
-  margin-left: 50px;
+    float: left;
+    width: 33.33%;
+    outline: none;
+    font-family: 'syncopatebold';
+    list-style: none;
+    padding: 30px 50px 32px 17%;
+    position: relative;
+    background: #FBFBFB;
+    border: 1px solid #E8E8E8;
+    border-left: none;
+    margin-bottom: 25px;
 }
-.new_homepage ul li:last-child{
-  border: none;
-}
+
 .new_homepage ul li img{
   width: 70px;
   position: absolute;
-  left: 0px;
-  bottom: -8px;
+  left: 75px;
+  bottom: 12px;
 }
 .header_ul{
-  background: white;
-  height: 96px;
-  padding: 20px;
-  border: 1px solid #E8E8E8;
-  border-radius: 10px;
+  padding: 0px;
 }
-.active a{
-    color: #FFC500;
-    outline: none;
-    text-decoration: none;
-    text-shadow: 0px 1px 0px #6B6B6B;
+.new_homepage ul li .active{
+  background: blue;
+}
+.new_homepage ul li:first-child{
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  border-left: 1px solid #E8E8E8;
+}
+.new_homepage ul li:last-child{
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px;
 }
 .submit_form input{
     width: 100%;
