@@ -10,7 +10,7 @@
             </div>
             <div class="col col-12">
               <label for="name"><img src="images/mobile_number.png" class="input_icon">
-                <input name="mobileno" type="text" id="name" cols="100" placeholder="MOBILE NUMBER" data-ng-model="condodata.mobile_no" ng-minlength="8" ng-maxlength="10" required>
+                <input name="mobileno" type="number" id="name" cols="100" placeholder="MOBILE NUMBER" data-ng-model="condodata.mobile_no" ng-minlength="8" ng-maxlength="10" required>
                 <span class="notifications">Winners will be notified via text</span>
                 </label>
                 <div data-ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error" role="alert">
@@ -44,6 +44,8 @@
               <div class="col col-12" style="position:relative;">
                   <img src="images/add.svg" class="add_icon">
                   <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept=".jpeg" multiple/>
+                  <div data-ng-model="imgcompulsorymsg" ng-show="showimgcompulsorymsg" class="valid_msg">{{imgcompulsorymsg}}</div>
+                  <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg" class="valid_msg">{{imagelimitmsg}}</div>
               </div>
               <div ng-repeat="img in imagefiles" class="col col-6 img_preview">
                   <span class="img_close" ng-click="removeimage(img)"><img src="images/add.svg"></span>
@@ -65,8 +67,9 @@
             <div class="col col-12">
               <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button> 
               <div data-ng-model="condosuccessmsg" ng-show="showcondosuccessmsg">{{condosuccessmsg}}</div>
-              <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg">{{imagelimitmsg}}</div>
+             
               <div data-ng-model="filenotsupportmsg" ng-show="showfilenotsupportmsg">{{filenotsupportmsg}}</div>
+
             </div>
             <!-- Submit Button -->
 

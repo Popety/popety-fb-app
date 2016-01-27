@@ -2205,3 +2205,9 @@ article img {
 .slide-next, .slide-previous { -webkit-transition: opacity 0.35s ease-in-out; -moz-transition: opacity 0.35s ease-in-out; -ms-transition: opacity 0.35s ease-in-out; -o-transition: opacity 0.35s ease-in-out; transition: opacity 0.35s ease-in-out; }
 .slide-next { right: 5px; background-image: url('../images/next.png'); }
 .slide-previous { background-image: url('../images/prev.png'); left: 5px; }
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

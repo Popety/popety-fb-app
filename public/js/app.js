@@ -14,7 +14,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkur
   }; 
 }) 
 
-.run( function( $rootScope ) {
+/*.run( function( $rootScope ) {
   // Load the facebook SDK asynchronously
   (function(){
      // If we've already installed the SDK, we're done
@@ -33,7 +33,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','jkur
      // Insert the Facebook JS SDK into the DOM
      firstScriptElement.parentNode.insertBefore(facebookJS, firstScriptElement);
    }());
-})
+})*/
 
 
 .config(function($stateProvider, $urlRouterProvider,$facebookProvider) {

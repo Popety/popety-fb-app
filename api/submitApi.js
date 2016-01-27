@@ -24,7 +24,7 @@ exports.condoList = function (req, res) {
 
 
 exports.condosubmit = function (req, res) {
-  var query = "INSERT INTO fb_condo_list( name , mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('"+req.body.name+"',"+req.body.mobile_no+",'"+req.body.condo_name+"',"+req.body.bedroom+","+cfg.timestamp()+","+cfg.timestamp()+")";
+  var query = "INSERT INTO fb_condo_list( name , mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('"+req.body.name+"',"+req.body.mobile_no+",'"+req.body.condo_name+"','"+req.body.bedroom+"',"+cfg.timestamp()+","+cfg.timestamp()+")";
   db.query(query, function (err, rows) {
     if(err){
       //console.log("err:",err);      
