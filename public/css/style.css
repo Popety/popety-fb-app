@@ -1742,7 +1742,7 @@ a.btn{
     list-style: none;
     padding: 30px 50px 32px 17%;
     position: relative;
-    background: #FBFBFB;
+    background: #EFEFEF;
     border: 1px solid #E8E8E8;
     border-left: none;
     margin-bottom: 25px;
@@ -1757,8 +1757,11 @@ a.btn{
 .header_ul{
   padding: 0px;
 }
-.new_homepage ul li .active{
-  background: blue;
+.header_ul a:active{
+  color: #F7BF00;
+}
+.new_homepage ul li a{
+  color: #3C3C3C;
 }
 .new_homepage ul li:first-child{
   border-bottom-left-radius: 10px;
