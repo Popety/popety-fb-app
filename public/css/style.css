@@ -2421,3 +2421,10 @@ footer{
     margin-bottom: 0px;
     padding: 5px;
 }
+.close_icon{
+    position: absolute;
+    width: 18px;
+    right: 16%;
+    top: 22%;
+    transform: rotate(44deg);
+}
