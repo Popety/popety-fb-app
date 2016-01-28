@@ -1,4 +1,3 @@
-      //      console.log("onlyimages:",$scope.onlyimages); 
 angular.module('popetyfbapp')
 
 .controller('galleryController', function ($scope, $http, $timeout, $sce , $state,$document) {
