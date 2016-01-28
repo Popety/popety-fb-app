@@ -3,7 +3,11 @@ angular.module('popetyfbapp')
 
 .controller('galleryController', function ($scope, $http, $timeout, $sce , $state,$document) {
   
-  
+    $scope.init = function(){
+      $scope.getallcondolist();
+      this.tab = 2;
+    }
+
     this.tab = 2;
     
     this.setTab = function (tabId) {
@@ -49,11 +53,10 @@ angular.module('popetyfbapp')
   $scope.getallcondolist = function(){
     $http.get(baseurl + 'getallcondolist').success(function(res, req){
       $scope.allcondolist = res;
-      console.log(res); 
       $scope.lastid = res[res.length - 1].condo_id;
     });
   }
-
+  //$scope.getallcondolist();
 
 
   /**
@@ -73,12 +76,10 @@ angular.module('popetyfbapp')
     }
     $http.post(baseurl + 'getcondoimages',condo_id).success(function(res,req){
       $scope.condoimagelist = res;
-      console.log(res);
       for (var i = 0; i < $scope.condoimagelist.length; i++) {
               //$scope.images.push({thumb: $scope.condoimagelist[i].images, img: $scope.condoimagelist[i].images, description: 'Image 1'});
         $scope.imagesobj.push( $scope.condoimagelist[i].images);
       }
-        console.log($scope.imagesobj);
         $scope.slides = [{Title: "First"}, {Title: "Second"}, {Title: "Third"}];
       });
   }
