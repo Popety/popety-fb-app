@@ -6,21 +6,21 @@
 			<li class="active" ng-click="getallcondolist()">All</li>
 		</ul>
 	</div>
-	<div class="col col-11">	
+	<div class="col col-11">
 	    <ul data-ng-repeat="page in  paginationAlphabetical | orderBy:'-id'" class="list-unstyled" style="float:right;">
 	    	<li data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page)" > {{page.letter}}</li>
 	    </ul>
 	</div>
 	<div class="row">
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
-			<div class="expand">
+			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup">
 				<img src="images/expand.svg">
 			</div>
-			<span  class="share_icon">SHARE</span>
-			<span class="vote_icon">VOTE</span>
+			<span class="share_icon">SHARE</span>
+			<span class="vote_icon" data-ng-click="vote(condo)">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="no-tablet no-mobile main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo)" id="open-popup"/>
+			    	<img data-ng-src="{{condo.condolist.images}}"/>
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name}}</h4>
