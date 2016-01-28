@@ -11,8 +11,8 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAn
         return value && match === value;
       };
     }
-  }; 
-}) 
+  };
+})
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -41,7 +41,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAn
   .state('tab.winners', {
     url: "/winners",
     templateUrl: "templates/winners.html",
-  })
+  });
 
   $urlRouterProvider.otherwise('/home');
 
