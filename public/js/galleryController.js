@@ -116,4 +116,140 @@ angular.module('popetyfbapp')
     });
   }
 
+  $scope.paginationAlphabetical = [
+    {
+      letter:'0-9',
+      id:0,
+      status:true,
+    },
+    {
+      letter:'A',
+      id:1,
+      status:false,
+    },{
+      letter:'B',
+      id:2,
+      status:false,
+    },{
+      letter:'C',
+      id:3,
+      status:false,
+    },{
+      letter:'D',
+      id:4,
+      status:false,
+    },{
+      letter:'E',
+      id:5,
+      status:false,
+    },{
+      letter:'F',
+      id:6,
+      status:false,
+    },{
+      letter:'G',
+      id:7,
+      status:false,
+    },
+    {
+      letter:'H',
+      id:8,
+      status:false,
+    },{
+      letter:'I',
+      id:9,
+      status:false,
+    },{
+      letter:'J',
+      id:10,
+      status:false,
+    },{
+      letter:'K',
+      id:11,
+      status:false,
+    },{
+      letter:'L',
+      id:12,
+      status:false,
+    },{
+      letter:'M',
+      id:13,
+      status:false,
+    },{
+      letter:'N',
+      id:14,
+      status:false,
+    },{
+      letter:'O',
+      id:15,
+      status:false,
+    },{
+      letter:'P',
+      id:16,
+      status:false,
+    },{
+      letter:'Q',
+      id:17,
+      status:false,
+    },{
+      letter:'R',
+      id:18,
+      status:false,
+    },{
+      letter:'S',
+      id:19,
+      status:false,
+    },{
+      letter:'T',
+      id:20,
+      status:false,
+    },{
+      letter:'U',
+      id:21,
+      status:false,
+    },{
+      letter:'V',
+      id:22,
+      status:false,
+    },{
+      letter:'W',
+      id:23,
+      status:false,
+    },{
+      letter:'X',
+      id:24,
+      status:false,
+    },{
+      letter:'Y',
+      id:25,
+      status:false,
+    },{
+      letter:'Z',
+      id:26,
+      status:false,
+    }
+
+  ];
+  $scope.getCondoListAlphabetically = function (page) {
+    console.log(page);
+    page.status = true;
+    $http.post(baseurl + 'getAlphaNumericCondoList', page).success(function(res, req) {
+        if(status = 0){
+          $scope.condolist_err_msg = "Error To Get Condo List";
+          $scope.showcondolist_err_msg = true;
+          $timeout(function() {
+            $scope.showcondolist_err_msg = false;
+          }, 3000);
+        }else{
+          $scope.allcondolist = res;
+          $scope.lastid = res[res.length - 1].condo_id;
+        }
+        
+      }).error(function(err){
+          console.log("Connection Problem...")
+          
+      });
+    
+  }
+
 });

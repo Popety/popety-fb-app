@@ -55,6 +55,7 @@ app.post('/api/condosubmit', submit.condosubmit);
 
 app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
+app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
 
 module.exports = app;

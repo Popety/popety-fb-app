@@ -7,31 +7,8 @@
 		</ul>	
 	</div>
 	<div class="col col-11">	
-	    <ul class="list-unstyled" style="float:right;">
-	    	<li><</li>
-	    	<li class="active">A</li>
-	    	<li>B</li>
-	    	<li>C</li>
-	    	<li>D</li>
-	    	<li>E</li>
-	    	<li>F</li>
-	    	<li>G</li>
-	    	<li>H</li>
-	    	<li>I</li>
-	    	<li>J</li>
-	    	<li>K</li>
-	    	<li>L</li>
-	    	<li>M</li>
-	    	<li>N</li>
-	    	<li>O</li>
-	    	<li>P</li>
-	    	<li>Q</li>
-	    	<li>R</li>
-	    	<li>S</li>
-	    	<li>T</li>
-	    	<li>U</li>
-	    	<li>V</li>
-	    	<li>></li>
+	    <ul data-ng-repeat="page in  paginationAlphabetical | orderBy:'-id'" class="list-unstyled" style="float:right;">
+	    	<li data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page)" > {{page.letter}}</li>
 	    </ul>
 	</div>    
 	<div class="row">		
