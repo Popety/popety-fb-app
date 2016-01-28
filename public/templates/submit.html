@@ -58,10 +58,10 @@
             <div class="col col-12">
               <span class="checkbox">
                 <label for="checkbox-example">I accept the <u>Terms & Conditions</u></label>
-                <input name="terms" id="checkbox-example" type="checkbox" data-ng-model="condodata.Conditions" check-required >
-                  <div ng-messages="condosubmitform.$submitted && condosubmitform.terms.$error" class="valid_msg" style="left: 40px;top:24px;">
-                    <p ng-message="checkRequired" >You Have Not Accepted The Terms And Conditions</p>
-                  </div>
+                <input type="checkbox" name="terms" id="checkbox-example" ng-model="terms" required>
+                  <div data-ng-messages="condosubmitform.$submitted && condosubmitform.terms.$error" role="alert" class="valid_msg">
+                    <div data-ng-message="required">You Have Not Accepted The Terms And Conditions</div>
+                </div>
               </span>
             </div>
             <div class="col col-12">
