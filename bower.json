@@ -18,8 +18,6 @@
   "dependencies": {
     "angular-animate": "~1.4.9",
     "angular-messages": "~1.4.9",
-    "angular-touch": "~1.4.9",
-    "ngGallery": "*",
-    "ng-facebook": "~0.1.6"
+    "angular-touch": "~1.4.9"
   }
 }
