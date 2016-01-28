@@ -1,18 +1,12 @@
 <div class="container" data-ng-controller="galleryController as ctrl" ng-show="sub.isSet(2)" ng-init="init()">
 
 <div class="row next_prev_row">
-		<div class="col col-1">
+	<div class="col col-1">
 		<ul class="list-unstyled">
 			<li class="active" ng-click="getallcondolist()">All</li>
 		</ul>	
 	</div>
-	<div class="col col-11">
-		<ul class="list-unstyled">
-	      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
-	      <li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
-	      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
-	      <li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
-	    </ul>
+	<div class="col col-11">	
 	    <ul class="list-unstyled" style="float:right;">
 	    	<li><</li>
 	    	<li class="active">A</li>
@@ -39,9 +33,8 @@
 	    	<li>V</li>
 	    	<li>></li>
 	    </ul>
-	</div>
-</div>
-	<div class="row gallery_box submit_form_box" style="border-top: none;border-radius:0px;">		
+	</div>    
+	<div class="row">		
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
 			<div class="expand">
 				<img src="images/expand.svg">
@@ -63,7 +56,14 @@
 		<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg">{{nextprevcondolist_conn_msg}}</div>
 		<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg">{{condolist_err_msg}}</div>
 		<div data-ng-model="connectionmsg" ng-show="showconnectionmsg">{{connectionmsg}}</div>
+		<ul class="list-unstyled">
+	      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
+	      <li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
+	      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
+	      <li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
+	    </ul>		
 	</div>
+		<div class="clear-fix"></div>
 <div class="popup" id="popup">
   <div class="popup__inner">
     <header class="popup__header">

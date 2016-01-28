@@ -1450,9 +1450,7 @@ table caption {
     page-break-after: avoid;
   }
 }
-.gallery_box{
-      height: 596px !important;
-}
+
 .winner_profile{
     width: 75px !important;
     height: 75px !important;
@@ -2212,9 +2210,7 @@ article img {
 .next_prev_row{
     border: 1px solid;
     border-color: #E8E8E8;
-    border-bottom: none;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-radius: 10px;
 }
 .add_icon{
     position: absolute;
