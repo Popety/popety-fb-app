@@ -113,11 +113,8 @@ angular.module('popetyfbapp')
         $scope.imagelimitmsg = 'select more than 4 images';
         $scope.showimagelimitmsg = true;
         $timeout(function() {
-          $timeout(function() {
-            $scope.showimagelimitmsg = false;
-          }, 3000);
-
-        }, 2000);
+             $scope.showimagelimitmsg = false;
+        }, 3000);
       } else {
         var condoinfo = {
           name: "Harold french",
@@ -131,22 +128,18 @@ angular.module('popetyfbapp')
         $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
           $scope.condosuccessmsg = 'Condo Successfully Added.';
           $scope.showcondosuccessmsg = true;
-          $timeout(function() {
             $timeout(function() {
               $scope.showcondosuccessmsg = false;
             }, 3000);
-          }, 2000);
-          document.getElementById("condofrm").reset();
-          $scope.imagefiles = {};
+            document.getElementById("condofrm").reset();
+            $scope.imagefiles = {};
         }).error(function(err){
             console.log('Connection Problem..');
             $scope.submit_err_msg = "Connection Problem..";
             $scope.showsubmit_err_msg = true;
-            $timeout(function() {
               $timeout(function() {
                 $scope.showsubmit_err_msg = false;
               }, 3000);
-            }, 2000);
         });
 
       }
@@ -155,12 +148,9 @@ angular.module('popetyfbapp')
     } else {
       $scope.imgcompulsorymsg = 'Images Compulsory';
       $scope.showimgcompulsorymsg = true;
-      $timeout(function() {
         $timeout(function() {
           $scope.showimgcompulsorymsg = false;
         }, 3000);
-
-      }, 2000);
 
     }
 
@@ -192,11 +182,10 @@ angular.module('popetyfbapp')
         //fileDisplayArea.innerHTML = "File not supported!"
         $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
         $scope.showfilenotsupportmsg = true;
-        $timeout(function() {
           $timeout(function() {
             $scope.showfilenotsupportmsg = false;
           }, 3000);
-        }, 2000);
+       
       }
 
     });

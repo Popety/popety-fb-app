@@ -45,10 +45,8 @@ angular.module('popetyfbapp')
         $scope.nextprevcondolist_conn_msg = "Connection Problem..";
         $scope.shownextprevcondolist_conn_msg = true;
         $timeout(function() {
-        $timeout(function() {
           $scope.shownextprevcondolist_conn_msg = false;
         }, 3000);
-        }, 2000);
     });
   }
 
@@ -67,10 +65,8 @@ angular.module('popetyfbapp')
           $scope.condolist_conn_msg = "Connection Problem..";
           $scope.showcondolist_conn_msg = true;
           $timeout(function() {
-          $timeout(function() {
             $scope.showcondolist_conn_msg = false;
           }, 3000);
-          }, 2000);
       });
     }
     //$scope.getallcondolist();
@@ -108,11 +104,10 @@ angular.module('popetyfbapp')
         console.log('Connection Problem..');
         $scope.connectionmsg = "Connection Problem..";
         $scope.showconnectionmsg = true;
-        $timeout(function() {
           $timeout(function() {
             $scope.showconnectionmsg = false;
           }, 3000);
-        }, 2000);
+
     });
   }
 
