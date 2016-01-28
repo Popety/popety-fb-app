@@ -2,21 +2,6 @@ angular.module('popetyfbapp')
 
 .controller('galleryController', function($scope, $http, $timeout, $sce, $state, $document) {
 
-  $scope.init = function() {
-    $scope.getallcondolist();
-    this.tab = 2;
-  };
-
-  this.tab = 2;
-
-  this.setTab = function(tabId) {
-    this.tab = tabId;
-  };
-
-  this.isSet = function(tabId) {
-    return this.tab === tabId;
-  };
-
   /**
    @function nextprevcondolist
    @returns retuns next or previous condolist
@@ -68,10 +53,10 @@ angular.module('popetyfbapp')
           $scope.allcondolist = res;
           $scope.lastid = res[res.length - 1].condo_id;
         }
-        
+
       }).error(function(err){
           console.log("Connection Problem...")
-          
+
       });
     }
     //$scope.getallcondolist();
@@ -83,7 +68,7 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  
+
   $scope.images = [];
 
   $scope.getcondoimages = function(condoinfo) {

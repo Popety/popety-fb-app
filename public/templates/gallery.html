@@ -1,12 +1,12 @@
-<div class="container" data-ng-controller="galleryController as ctrl" ng-show="sub.isSet(2)" ng-init="init()">
+<div class="container" data-ng-controller="galleryController" ng-init="getallcondolist()">
 
 <div class="row next_prev_row">
 	<div class="col col-1">
 		<ul class="list-unstyled">
 			<li class="active" ng-click="getallcondolist()">All</li>
-		</ul>	
+		</ul>
 	</div>
-	<div class="col col-11">	
+	<div class="col col-11">
 	    <ul class="list-unstyled" style="float:right;">
 	    	<li><</li>
 	    	<li class="active">A</li>
@@ -33,17 +33,17 @@
 	    	<li>V</li>
 	    	<li>></li>
 	    </ul>
-	</div>    
-	<div class="row">		
+	</div>
+	<div class="row">
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
 			<div class="expand">
 				<img src="images/expand.svg">
-			</div>		
+			</div>
 			<span  class="share_icon">SHARE</span>
 			<span class="vote_icon">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="no-tablet no-mobile main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo);isCollapsed = !isCollapsed" id="open-popup"/>
+			    	<img data-ng-src="{{condo.condolist.images}}" data-ng-click="getcondoimages(condo)" id="open-popup"/>
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name}}</h4>
@@ -52,7 +52,7 @@
 				    	<div class="votes_box">
 					    	 <h4 class="gallery_vote_count">98</h4>
 					    	 <h6>VOTES</h6>
-				    	</div> 
+				    	</div>
 			    	</div>
 			    </span>
 			    <span class="no-desktop show-tablet no-mobile">9</span>
@@ -64,10 +64,10 @@
 		<div data-ng-model="connectionmsg" ng-show="showconnectionmsg">{{connectionmsg}}</div>
 		<ul class="list-unstyled">
 	      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
-	      <li data-ng-click="#" ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
+	      <li ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
 	      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
-	      <li data-ng-click="#" ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
-	    </ul>		
+	      <li ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
+	    </ul>
 	</div>
 		<div class="clear-fix"></div>
 <div class="popup" id="popup">
@@ -76,12 +76,12 @@
      <img src="images/add.svg" class="popup__close">
     </header>
     <div>
-		
+
 		<div slide-source="condoimage in imagesobj" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
 			<img data-ng-src="{{condoimage}}" />
 			<h4 class="slider_indicator"> {{$index+1}} OF {{imagesobj.length}}</h4>
 		</div>
-		
+
 		</div>
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
@@ -89,7 +89,7 @@
 <script type="text/javascript">
 
 	$(document).ready(function () {
-  
+
   var popup = $("#popup"),
       doc = $(document),
       popClass = "popped",
@@ -101,15 +101,15 @@
         popup.hide();
         event.preventDefault();
       };
-  
+
   doc.on("click", "#open-popup", showPopup);
   doc.on("click", ".popup__close", hidePopup);
-  
+
   doc.keypress(function (event) {
     if (event.keyCode === 27) { // esc key
       hidePopup();
     }
   });
-  
+
 });
 </script>

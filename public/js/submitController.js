@@ -2,27 +2,6 @@ angular.module('popetyfbapp')
 
 .controller('submitController', function($scope, $http, $timeout, $sce, $state, $document) {
 
-
-  this.tab = 1;
-  $scope.active1 = true;
-  $scope.active2 = false;
-  $scope.active3 = false;
-  this.setTab = function(tabId) {
-    this.tab = tabId;
-  };
-
-  this.isSet = function(tabId) {
-    if (tabId == 1)
-      $scope.active1 = true;
-
-    if (tabId == 2)
-      $scope.active2 = true;
-
-    if (tabId == 3)
-      $scope.active3 = true;
-    return this.tab === tabId;
-  };
-
   $scope.bedroomdata = {
     availableOptions: [
 
@@ -141,7 +120,7 @@ angular.module('popetyfbapp')
                 $scope.showsubmit_err_msg = false;
               }, 3000);
           }
-         
+
         }).error(function(err){
             console.log('Connection Problem..');
         });
@@ -189,7 +168,7 @@ angular.module('popetyfbapp')
           $timeout(function() {
             $scope.showfilenotsupportmsg = false;
           }, 3000);
-       
+
       }
 
     });
