@@ -138,6 +138,15 @@ angular.module('popetyfbapp')
           }, 2000);
           document.getElementById("condofrm").reset();
           $scope.imagefiles = {};
+        }).error(function(err){
+            console.log('Connection Problem..');
+            $scope.submit_err_msg = "Connection Problem..";
+            $scope.showsubmit_err_msg = true;
+            $timeout(function() {
+              $timeout(function() {
+                $scope.showsubmit_err_msg = false;
+              }, 3000);
+            }, 2000);
         });
 
       }

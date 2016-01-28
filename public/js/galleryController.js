@@ -40,6 +40,15 @@ angular.module('popetyfbapp')
       $scope.allcondolist = res;
       $scope.prev_id = res[0].condo_id;
       $scope.lastid = res[res.length - 1].condo_id;
+    }).error(function(err){
+       console.log('Connection Problem..');
+        $scope.nextprevcondolist_conn_msg = "Connection Problem..";
+        $scope.shownextprevcondolist_conn_msg = true;
+        $timeout(function() {
+        $timeout(function() {
+          $scope.shownextprevcondolist_conn_msg = false;
+        }, 3000);
+        }, 2000);
     });
   }
 
@@ -53,6 +62,15 @@ angular.module('popetyfbapp')
       $http.get(baseurl + 'getallcondolist').success(function(res, req) {
         $scope.allcondolist = res;
         $scope.lastid = res[res.length - 1].condo_id;
+      }).error(function(err){
+          console.log("Connection Problem...")
+          $scope.condolist_conn_msg = "Connection Problem..";
+          $scope.showcondolist_conn_msg = true;
+          $timeout(function() {
+          $timeout(function() {
+            $scope.showcondolist_conn_msg = false;
+          }, 3000);
+          }, 2000);
       });
     }
     //$scope.getallcondolist();
@@ -64,7 +82,7 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  // var self = this;
+  
   $scope.images = [];
 
   $scope.getcondoimages = function(condoinfo) {
@@ -86,6 +104,15 @@ angular.module('popetyfbapp')
       }, {
         Title: "Third"
       }];
+    }).error(function(err){
+        console.log('Connection Problem..');
+        $scope.connectionmsg = "Connection Problem..";
+        $scope.showconnectionmsg = true;
+        $timeout(function() {
+          $timeout(function() {
+            $scope.showconnectionmsg = false;
+          }, 3000);
+        }, 2000);
     });
   }
 
