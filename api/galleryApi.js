@@ -61,17 +61,13 @@ exports.getallcondolist = function (req, res) {
 exports.nextprevcondolist = function (req, res) {
   if(req.body.condo_last_id)
   {
-    //console.log("condo_last_id");
     var conditionpart = "condo_id < "+req.body.condo_last_id+" ORDER BY condo_id DESC";
   }else
   {
-    //console.log("condo_prev_id");
     var conditionpart = "condo_id > "+req.body.condo_prev_id+" ORDER BY condo_id ASC";
-
   }
 
   var condo_list_query = " SELECT * FROM fb_condo_list WHERE "+conditionpart+" LIMIT 6";
-  //console.log("query:",condo_list_query);
   db.query(condo_list_query , function(err , rows){
     if(err){
       res.status(500);
@@ -130,7 +126,6 @@ exports.getcondoimages = function(req,res){
             "message": "Internal Server Error"
           });
         }else{
-
             res.jsonp(rows);
         }
     });

@@ -126,20 +126,24 @@ angular.module('popetyfbapp')
 
         //console.log("condoinfo:",condoinfo);
         $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
-          $scope.condosuccessmsg = 'Condo Successfully Added.';
-          $scope.showcondosuccessmsg = true;
-            $timeout(function() {
-              $scope.showcondosuccessmsg = false;
-            }, 3000);
-            document.getElementById("condofrm").reset();
-            $scope.imagefiles = {};
-        }).error(function(err){
-            console.log('Connection Problem..');
-            $scope.submit_err_msg = "Connection Problem..";
-            $scope.showsubmit_err_msg = true;
+          if(status = 1){
+              $scope.condosuccessmsg = 'Condo Successfully Added.';
+              $scope.showcondosuccessmsg = true;
+              $timeout(function() {
+                $scope.showcondosuccessmsg = false;
+              }, 3000);
+                document.getElementById("condofrm").reset();
+                $scope.imagefiles = {};
+          }else{
+              $scope.submit_err_msg = "Condo Failed To Insert";
+              $scope.showsubmit_err_msg = true;
               $timeout(function() {
                 $scope.showsubmit_err_msg = false;
               }, 3000);
+          }
+         
+        }).error(function(err){
+            console.log('Connection Problem..');
         });
 
       }
