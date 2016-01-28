@@ -14,6 +14,7 @@
     <link rel="apple-touch-icon" sizes="114x114" href="/images/apple-touch-icon-114x114.png">
     <!-- <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/slideviewer.css">
 
     <!-- Modernizer and Jquery Lib -->
     <script src="lib/modernizr.js"></script>
@@ -43,7 +44,7 @@
     <script src="lib/angular-touch.min.js"></script>
     <script src="lib/slideviewer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="lib/slideviewer.css" />
+
 
   </head>
   <body data-ng-app="popetyfbapp" style="background:#fff;">
@@ -51,8 +52,103 @@
   </div>
 	<div class="clear-fix"></div>
     <footer>
-		<a href="#" class="terms">Terms & Conditions</a>
+		<a href="" id="open-popup" class="terms">Terms & Conditions</a>
+            <div class="popup" id="popup">
+                <div class="popup__inner" style="background-color: #fff;">
+                    <header class="popup__header">
+                        <img src="images/add.svg" class="popup__close">
+                    </header>
+                    <div>
+                        <div class="row submit_form_box" style="width: 746px;height: 500px;overflow-y: scroll;">
+                            <div class="col col-12" style="padding: 20px 60px 0;">
+                               <h2>TERMS & CONDITIONS</h2>
+                               <ul class="list-unordered" style="text-align: left;">
+                                  <li>All entries must be individual, group/corporate entries are not allowed.</li>
+                                  <li>Duplicated images will be removed from entries.</li>
+                                  <li>
+                                    Basic editing (brightness, contrast, filters, etc.) is allowed. Excessive digital manipulation that distorts the reality of the image is not allowed.
+                                  </li>
+                                  <li>
+                                    Judging criteria
+                                    <ul class="list-unordered: circle;">
+                                      <li>
+                                        The winner will be determined by the highest number of votes he/she receives for his/her album/entry
+                                      </li>
+                                      <li>Voting is only allowed ONCE per condominium.</li>
+                                      <li>There will be only 1 winner per condominium. </li>
+                                      <li>Participants can enter as many entries as they wish to.</li>
+                                      <li>After the 5th entry for that specific condominium has been submitted, participants have one week to gather as many votes as possible and the winner will be declared on every Friday throughout the duration of the contest.</li>
+                                      <li>If the Organiser suspects the votes for a participant has been tampered with, the Organiser reserves the right to disqualify the participant.</li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    Winners
+                                    <ul class="list-unordered: circle;">
+                                      <li>Each winner will get SGD$80 as a prize money</li>
+                                      <li>Winners will be announced within one week after the 5th entry for a condominium has been submitted.</li>
+                                      <li>Winners will be notified via text.</li>
+                                      <li>Only the first 200 winners will be eligible for the prize money.</li>
+                                      <li>Prize(s) are given in the form of cheque, unless otherwise stated.</li>
+                                      <li>All prizes shall be given out 2 weeks after each winner is selected. Where prizes are unclaimed, the Organiser reserves the right to select an alternative winner.</li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    Copyright
+                                    <ul class="list-unordered: circle;">
+                                      <li>By entering the competition, the participant acknowledges and warrants that the submitted entry is an original work solely by the entrant, that the entry does not infringe on the copyrights, trademarks, moral rights, rights of privacy / publicity or intellectual property rights of any person or entity, and that no other party has any right, title, claim or interest in the entry. </li>
+                                      <li>The participant grants the Organiser a royalty-free, transferable right to use, reproduce, edit or distribute any materials submitted for the competition in any media format and channels as deemed fit, for the purposes of promoting the competition or the causes that the Organiser stands for.</li>
+                                      <li>Entries that do not fulfill the above criteria will be deemed ineligible and will be disqualified.</li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                    Organiser’s Rights
+                                    <ul class="list-unordered: circle;">
+                                      <li>The Organiser reserve the right to use, reproduce, edit and distribute any materials submitted for this competition for the purpose of any announcement or promotional, marketing or publicity in any media format and channels without obtaining further prior permission and payment of any fees to the photographer. </li>
+                                      <li>The Organiser reserves the right to disqualify and withhold prizes for entrants violating any of these rules and regulations.</li>
+                                      <li>The Organiser reserves the right, as its sole discretion, to modify and/or cancel the competition. </li>
+                                      <li>TThe Organiser reserves the right to revise these Terms and Conditions at any time without prior notice being given.</li>
+                                    </ul>
+                                  </li>
+                                  <li>
+                                   Liability
+                                    <ul class="list-unordered: circle;">
+                                      <li>The entrant accepts all risks of personal injury or property damage of any nature whatsoever that may arise from his/her making or creation of the entry or participation in this competition and will not in any way hold the organizer responsible for any liability, loss, damage, expense and cost which he/she may sustain or incur as a result of his/her participation, except for liability which cannot be excluded by law.</li>
+                                      <li>The entrant hereby agrees to fully indemnify to the organizer and its officer, employees and agents for any potential violation of breech towards third party confidentiality, patent, copyright or any other intellectual property rights in the photographs submitted.</li>
+                                    </ul>
+                                  </li>
+                               </ul>
+                            </div>
+                            <div class="clear-fix"></div>
+                        </div>
+                    </div>
+                </div><!-- /popup__inner -->
+            </div><!-- /popup -->
 	</footer>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+          var popup = $("#popup"),
+              doc = $(document),
+              popClass = "popped",
+              showPopup = function (event) {
+                popup.fadeIn(200);
+                event.preventDefault();
+              },
+              hidePopup = function (event) {
+                popup.hide();
+                event.preventDefault();
+              };
+
+          doc.on("click", "#open-popup", showPopup);
+          doc.on("click", ".popup__close", hidePopup);
+
+          doc.keypress(function (event) {
+            if (event.keyCode === 27) { // esc key
+              hidePopup();
+            }
+          });
+
+        });
+    </script>
   </body>
 </html>

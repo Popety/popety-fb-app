@@ -238,12 +238,16 @@ angular.module('popetyfbapp')
           $scope.allcondolist = res;
           $scope.lastid = res[res.length - 1].condo_id;
         }
-        
+
       }).error(function(err){
           console.log("Connection Problem...")
-          
+
       });
-    
+
   }
+
+  $scope.vote = function (condo) {
+    console.log(condo);
+  };
 
 });
