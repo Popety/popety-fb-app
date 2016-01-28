@@ -1732,7 +1732,20 @@ a.btn{
     top: -86px;
     z-index: 99;
 }
-
+.expand{
+    position: absolute;
+    z-index: 99;
+    height: 188px;
+    width: 90%;
+    background: rgba(68, 68, 68, 0.38);
+    cursor: pointer;
+}
+.expand img{
+    position: absolute;
+    width: 25px;
+    top: -7%;
+    left: 48%;
+}
 /*new*/
 .new_homepage ul li{
     float: left;
@@ -1742,8 +1755,8 @@ a.btn{
     list-style: none;
     padding: 30px 50px 32px 17%;
     position: relative;
-    background: #EFEFEF;
-    border: 1px solid #E8E8E8;
+    background: #EFF3F5;
+    border: 1px solid #CECECE;
     border-left: none;
     margin-bottom: 25px;
 }
@@ -1766,7 +1779,7 @@ a.btn{
 .new_homepage ul li:first-child{
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
-  border-left: 1px solid #E8E8E8;
+  border-left: 1px solid #CECECE;
 }
 .new_homepage ul li:last-child{
   border-bottom-right-radius: 10px;
