@@ -2,6 +2,7 @@ angular.module('popetyfbapp')
 
 .controller('submitController', function($scope, $http, $timeout, $sce, $state, $document) {
 
+  $scope.imagefiles = [];
   $scope.bedroomdata = {
     availableOptions: [
 
@@ -87,7 +88,7 @@ angular.module('popetyfbapp')
 
   $scope.condosubmit = function(condodata, valid) {
 
-    if (valid && $scope.imagefiles != '') {
+    if (valid && $scope.imagefiles.length !== 0) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'select more than 4 images';
         $scope.showimagelimitmsg = true;
@@ -101,7 +102,7 @@ angular.module('popetyfbapp')
           bedroom: $scope.bedroomdata.selectedOption.name,
           condo_name: condodata.condo_name,
           attachmentfile: $scope.imagefiles
-        }
+        };
 
         //console.log("condoinfo:",condoinfo);
         $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
@@ -145,7 +146,6 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  $scope.imagefiles = [];
   $scope.updateattachment = function(file_browse) {
 
     angular.forEach(document.getElementById("file_browse1").files, function(file) {
@@ -175,7 +175,6 @@ angular.module('popetyfbapp')
   };
 
   $scope.removeimage = function(img) {
-    console.log($scope.imagefiles.indexOf(img));
     $scope.imagefiles.splice($scope.imagefiles.indexOf(img), 1);
   };
 
