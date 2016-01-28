@@ -10,14 +10,14 @@
             </div>
             <div class="col col-12">
               <label for="name"><img src="images/mobile_number.png" class="input_icon">
-                <input name="mobileno" type="number" id="name" cols="100" placeholder="MOBILE NUMBER" data-ng-model="condodata.mobile_no" ng-minlength="8" ng-maxlength="10" required>
+                <input name="mobileno" type="number" id="name" cols="100" placeholder="MOBILE NUMBER" data-ng-model="condodata.mobile_no" ng-minlength="8" ng-maxlength="8" required>
                 <span class="notifications">Winners will be notified via text</span>
                 </label>
                 <div data-ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error" role="alert">
                     <div data-ng-message="required" class="valid_msg">Please Enter Mobile Number</div>
                 </div>
                 <div ng-messages="condosubmitform.$submitted && condosubmitform.mobileno.$error " role="alert" class="valid_msg">
-                  <div ng-message="maxlength" class="help-block">Enter Mobile Number Upto 10 Digit</div>
+                  <div ng-message="maxlength" class="help-block">Enter Mobile Number Upto 8 Digit</div>
                   <div ng-message="minlength" class="help-block">Enter Mobile Number Min 8 Digit</div>
                 </div>
               </div>
