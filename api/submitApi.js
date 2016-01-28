@@ -1,6 +1,8 @@
 var http = require('http');
 
-var cfg = require('../config');
+var env = process.env.NODE_ENV || 'dev';
+var cfg = require('../config/config.'+env);
+
 var db = cfg.connection;
 var async = require("async");
 
@@ -27,31 +29,31 @@ exports.condosubmit = function (req, res) {
   var query = "INSERT INTO fb_condo_list( name , mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('"+req.body.name+"',"+req.body.mobile_no+",'"+req.body.condo_name+"','"+req.body.bedroom+"',"+cfg.timestamp()+","+cfg.timestamp()+")";
   db.query(query, function (err, rows) {
     if(err){
-      //console.log("err:",err);      
+      //console.log("err:",err);
       res.status(500);
       res.jsonp({
         "status": 500,
         "message": "Internal Server Error"
       });
     }else {
-       
+
         async.each( req.body.attachmentfile , function(item, callback){
           var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('"+rows.insertId+"','"+item+"',"+cfg.timestamp()+")";
           db.query( query1, function(err, images) {
             if(!err){
-            
+
               var response = {
                 status : 1,
                 message : 'Image Upload successfully.'
               }
-              
-              
+
+
             }else{
               var response = {
                 status : 0,
                 message : 'INTERNAL ERROR condo information.'
               }
-             
+
             }
             callback();
           });

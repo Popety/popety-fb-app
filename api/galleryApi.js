@@ -1,6 +1,8 @@
 var http = require('http');
 
-var cfg = require('../config');
+var env = process.env.NODE_ENV || 'dev';
+var cfg = require('../config/config.'+env);
+
 var db = cfg.connection;
 var async = require("async");
 
@@ -12,21 +14,21 @@ exports.getallcondolist = function (req, res) {
       res.status(500);
       res.jsonp({
         "status":500,
-        "message": "Internal Server Error"   
+        "message": "Internal Server Error"
       });
     }else{
-      
+
         var data=[];
         async.each( rows , function(item, callback){
           var condoimagedata="SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = "+item.condo_id+" LIMIT 1";
           console.log(condoimagedata);
           db.query( condoimagedata, function(err, condolist ) {
             if(!err){
-              
+
                 for (var i = 0; i < condolist.length; i++) {
                     item['condolist'] = condolist[i];
                 };
-              
+
               data.push(item);
               callback();
             }else{
@@ -34,7 +36,7 @@ exports.getallcondolist = function (req, res) {
                 status : 0,
                 message : 'INTERNAL ERROR condo information.'
               }
-             
+
             }
           });
         },
@@ -51,23 +53,23 @@ exports.getallcondolist = function (req, res) {
        });
 
     }
-    
+
   })
-  
+
 };
 
 exports.nextprevcondolist = function (req, res) {
   if(req.body.condo_last_id)
   {
     //console.log("condo_last_id");
-    var conditionpart = "condo_id < "+req.body.condo_last_id+" ORDER BY condo_id DESC";   
+    var conditionpart = "condo_id < "+req.body.condo_last_id+" ORDER BY condo_id DESC";
   }else
   {
     //console.log("condo_prev_id");
     var conditionpart = "condo_id > "+req.body.condo_prev_id+" ORDER BY condo_id ASC";
-  
+
   }
-  
+
   var condo_list_query = " SELECT * FROM fb_condo_list WHERE "+conditionpart+" LIMIT 6";
   //console.log("query:",condo_list_query);
   db.query(condo_list_query , function(err , rows){
@@ -75,20 +77,20 @@ exports.nextprevcondolist = function (req, res) {
       res.status(500);
       res.jsonp({
         "status":500,
-        "message": "Internal Server Error"   
+        "message": "Internal Server Error"
       });
     }else{
-      
+
         var data=[];
         async.each( rows , function(item, callback){
           var condoimagedata="SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = "+item.condo_id+"";
           db.query( condoimagedata, function(err, condolist ) {
             if(!err){
-              
+
                 for (var i = 0; i < condolist.length; i++) {
                     item['condolist'] = condolist[i];
                 };
-              
+
               data.push(item);
               callback();
             }else{
@@ -96,7 +98,7 @@ exports.nextprevcondolist = function (req, res) {
                 status : 0,
                 message : 'INTERNAL ERROR to get condo information.'
               }
-             
+
             }
           });
         },
@@ -113,7 +115,7 @@ exports.nextprevcondolist = function (req, res) {
        });
 
     }
-    
+
   })
 };
 
@@ -125,10 +127,10 @@ exports.getcondoimages = function(req,res){
           res.status(500);
           res.jsonp({
             "status":500,
-            "message": "Internal Server Error"   
+            "message": "Internal Server Error"
           });
         }else{
-        
+
             res.jsonp(rows);
         }
     });
