@@ -13,7 +13,7 @@
 	</div>
 	<div class="row">
 		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
-			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup">
+			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
 			<span class="share_icon">SHARE</span>
@@ -79,7 +79,7 @@
         event.preventDefault();
       };
 
-  doc.on("click", "#open-popup", showPopup);
+  doc.on("click", "#open-popup1", showPopup);
   doc.on("click", ".popup__close", hidePopup);
 
   doc.keypress(function (event) {
