@@ -1959,7 +1959,7 @@ input[type=file]::-webkit-file-upload-button {
   font-weight: lighter;
   color: #fff;
   position: relative;
-  margin-bottom: 10px;
+  margin-bottom: 19px;
 }
 .rules ul li:first-child{
     clear: both;
