@@ -41,6 +41,11 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAn
   .state('tab.winners', {
     url: "/winners",
     templateUrl: "templates/winners.html",
+  })
+
+  .state('termsandcondition', {
+    url: "/termsandcondition",
+    templateUrl: "templates/terms.html",
   });
 
   $urlRouterProvider.otherwise('/home');
