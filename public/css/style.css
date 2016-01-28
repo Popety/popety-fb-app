@@ -1960,6 +1960,7 @@ input[type=file]:before {
 input[type=file]::-webkit-file-upload-button {
   visibility: hidden;
 }
+
 .rules{
   position: absolute;
   top: 20px;
@@ -2406,6 +2407,20 @@ footer{
     font-size: 15px;
     font-weight: bold;
     color: #F9C100;
+}
+.votes_box{
+    position: absolute;
+    right: 5px;
+    top: 1px;
+}
+.gallery_vote_count {
+    font-family: 'syncopatebold';
+    color: #f9c100;
+    font-size: 22px !important;
+    display: inline-block;
+    margin-bottom: 0;
+    width: 50px;
+    text-align: center;
 }
 .slider_indicator{
     position: absolute;
