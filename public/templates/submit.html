@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="submitController" ng-show="sub.isSet(1)">
+<div class="container" data-ng-controller="submitController">
   <div class="row submit_form_box">
     <div class="col col-6 tablet-col-4 mobile-col-1-2" style="padding: 20px 60px 0;">
       <span class="no-tablet no-mobile">
@@ -49,7 +49,7 @@
               </div>
               <div ng-repeat="img in imagefiles" class="col col-6 img_preview">
                   <span class="img_close" ng-click="removeimage(img)"><img src="images/add.svg" style="height:auto;"></span>
-                  <img src="{{img}}"> 
+                  <img src="{{img}}">
               </div>
               <div class="col col-12">
                 <span class="checkbox">
@@ -65,9 +65,9 @@
               </span>
             </div>
             <div class="col col-12">
-              <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button> 
+              <button type="submit" value="SUBMIT" class="button" id="form_submit">Submit</button>
               <div data-ng-model="condosuccessmsg" ng-show="showcondosuccessmsg">{{condosuccessmsg}}</div>
-             
+
               <div data-ng-model="filenotsupportmsg" ng-show="showfilenotsupportmsg">{{filenotsupportmsg}}</div>
 
               <div data-ng-model="submit_err_msg" ng-show="showsubmit_err_msg">{{submit_err_msg}}</div>
