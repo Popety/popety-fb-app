@@ -58,15 +58,20 @@ angular.module('popetyfbapp')
    */
   $scope.getallcondolist = function() {
       $http.get(baseurl + 'getallcondolist').success(function(res, req) {
-        $scope.allcondolist = res;
-        $scope.lastid = res[res.length - 1].condo_id;
+        if(status = 0){
+          $scope.condolist_err_msg = "Error To Get Condo List";
+          $scope.showcondolist_err_msg = true;
+          $timeout(function() {
+            $scope.showcondolist_err_msg = false;
+          }, 3000);
+        }else{
+          $scope.allcondolist = res;
+          $scope.lastid = res[res.length - 1].condo_id;
+        }
+        
       }).error(function(err){
           console.log("Connection Problem...")
-          $scope.condolist_conn_msg = "Connection Problem..";
-          $scope.showcondolist_conn_msg = true;
-          $timeout(function() {
-            $scope.showcondolist_conn_msg = false;
-          }, 3000);
+          
       });
     }
     //$scope.getallcondolist();
