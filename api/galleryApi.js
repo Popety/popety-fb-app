@@ -59,6 +59,8 @@ exports.getallcondolist = function (req, res) {
 };
 
 exports.nextprevcondolist = function (req, res) {
+  console.log(req.body);
+
   if(req.body.condo_last_id)
   {
     var conditionpart = "condo_id < "+req.body.condo_last_id+" ORDER BY condo_id DESC";
@@ -132,7 +134,7 @@ exports.getcondoimages = function(req,res){
 }
 
 exports.getAlphaNumericCondoList = function (req, res) {
-  console.log(req.body);
+  //console.log(req.body);
   if(req.body.id==0){
     var where_part = "fb_condo_list.condo_name RLIKE '^[0-9]'";
   }
@@ -140,8 +142,8 @@ exports.getAlphaNumericCondoList = function (req, res) {
   {
     var where_part = "fb_condo_list.condo_name LIKE '"+req.body.letter+"%'";
   }
-  var condo_list_query = "SELECT * FROM fb_condo_list WHERE "+where_part+" ORDER BY fb_condo_list.condo_name desc LIMIT 6 ";
-  console.log(condo_list_query);
+  var condo_list_query = "SELECT * FROM fb_condo_list WHERE "+where_part+" ORDER BY fb_condo_list.condo_name desc ";
+  //console.log(condo_list_query);
   db.query(condo_list_query , function(err , rows){
     if(err){
       res.status(500);
@@ -150,11 +152,11 @@ exports.getAlphaNumericCondoList = function (req, res) {
         "message": "Internal Server Error"
       });
     }else{
-        console.log(rows);
+        //console.log(rows);
         var data=[];
         async.each( rows , function(item, callback){
           var condoimagedata="SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = "+item.condo_id+" LIMIT 1";
-          console.log(condoimagedata);
+          //console.log(condoimagedata);
           db.query( condoimagedata, function(err, condolist ) {
             if(!err){
 

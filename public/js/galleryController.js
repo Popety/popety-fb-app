@@ -9,16 +9,19 @@ angular.module('popetyfbapp')
    @initialDate
    */
   $scope.count = 0;
+  $scope.selectedLetter = null;
   $scope.nextprevcondolist = function(btn) {
     if (btn == 'next') {
       $scope.count++;
       var nextprevid = {
-        condo_last_id: $scope.lastid
+        condo_last_id: $scope.lastid,
+        condo_letter: $scope.selectedLetter
       }
     } else {
       $scope.count--;
       var nextprevid = {
-        condo_prev_id: $scope.prev_id
+        condo_prev_id: $scope.prev_id,
+        condo_letter: $scope.selectedLetter
       }
     }
     $http.post(baseurl + 'nextprevcondolist', nextprevid).success(function(res, req) {
@@ -35,6 +38,7 @@ angular.module('popetyfbapp')
     });
   }
 
+  
   /**
    @function getallcondolist
    @returns load letest condolist
@@ -43,7 +47,7 @@ angular.module('popetyfbapp')
    */
   $scope.getallcondolist = function() {
       $http.get(baseurl + 'getallcondolist').success(function(res, req) {
-        if(status = 0){
+        if(res.status == 0){
           $scope.condolist_err_msg = "Error To Get Condo List";
           $scope.showcondolist_err_msg = true;
           $timeout(function() {
@@ -217,15 +221,20 @@ angular.module('popetyfbapp')
   ];
   $scope.getCondoListAlphabetically = function (page) {
     console.log(page);
+    for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
+      $scope.paginationAlphabetical[i].status = false;
+    };
     page.status = true;
+    $scope.selectedLetter = page.letter;
     $http.post(baseurl + 'getAlphaNumericCondoList', page).success(function(res, req) {
-        if(status = 0){
+        if(res.status == 0){
           $scope.condolist_err_msg = "Error To Get Condo List";
           $scope.showcondolist_err_msg = true;
           $timeout(function() {
             $scope.showcondolist_err_msg = false;
           }, 3000);
         }else{
+          //$scope.alphaAllcondolist = res;
           $scope.allcondolist = res;
           $scope.lastid = res[res.length - 1].condo_id;
         }

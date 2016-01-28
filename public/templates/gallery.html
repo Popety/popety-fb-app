@@ -12,7 +12,7 @@
 	    </ul>
 	</div>
 	<div class="row">
-		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
+		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' |limitTo: 6">
 			<div class="expand">
 				<img src="images/expand.svg">
 			</div>
@@ -39,7 +39,7 @@
 		<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg">{{nextprevcondolist_conn_msg}}</div>
 		<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg">{{condolist_err_msg}}</div>
 		<div data-ng-model="connectionmsg" ng-show="showconnectionmsg">{{connectionmsg}}</div>
-		<ul class="list-unstyled">
+		<ul class="list-unstyled" data-ng-if="allcondolist.length > 6 ">
 	      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
 	      <li ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
 	      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
