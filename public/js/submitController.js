@@ -36,7 +36,8 @@ angular.module('popetyfbapp')
     if (res.length > 0) {
 
       var condos = res;
-
+      $scope.Allcondo = res;
+      console.log(res);
       function suggest_condos(term) {
         var q = term.toLowerCase().trim(),
           results = [];
@@ -65,6 +66,7 @@ angular.module('popetyfbapp')
           }
         }
         return results;
+
       }
 
       $scope.ac_options_condos = {
@@ -90,7 +92,7 @@ angular.module('popetyfbapp')
 
     if (valid && $scope.imagefiles.length !== 0) {
       if ($scope.imagefiles.length < 4) {
-        $scope.imagelimitmsg = 'select more than 4 images';
+        $scope.imagelimitmsg = 'Please upload 4 images';
         $scope.showimagelimitmsg = true;
         $timeout(function() {
              $scope.showimagelimitmsg = false;
@@ -104,8 +106,8 @@ angular.module('popetyfbapp')
           attachmentfile: $scope.imagefiles
         };
 
-        //console.log("condoinfo:",condoinfo);
-        $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
+        console.log("condoinfo:",condoinfo);
+        /*$http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
           if(res.status == 1){
               $scope.condosuccessmsg = 'Condo Successfully Added.';
               $scope.showcondosuccessmsg = true;
@@ -125,7 +127,7 @@ angular.module('popetyfbapp')
 
         }).error(function(err){
             console.log('Connection Problem..');
-        });
+        });*/
       }
 
 

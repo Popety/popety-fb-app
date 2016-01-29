@@ -1,4 +1,4 @@
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAnimate','SlideViewer'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAnimate','SlideViewer','ngSanitize','ngCsv'])
 .config(function($stateProvider, $urlRouterProvider) {
 
   $stateProvider
