@@ -3,6 +3,7 @@ angular.module('popetyfbapp')
 .controller('homeController', function ($scope, $http, ezfb) {
 
   $scope.login = function () {
+    console.log('hello');
     ezfb.login(function (res) {
        if(res.status === 'connected'){
          if (res.authResponse) {
