@@ -8,8 +8,9 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  $scope.count = 0;
-  $scope.selectedLetter = null;
+  $scope.count = 0; //for next prev count  
+  $scope.selectedLetter = null; // currently selected letter
+  $scope.letter_total_condos = 0;// for no. of total condos from letter 
   $scope.nextprevcondolist = function(btn) {
     if (btn == 'next') {
       $scope.count++;
@@ -110,120 +111,149 @@ angular.module('popetyfbapp')
       letter:'0-9',
       id:0,
       status:true,
+      pageno:0,
     },
     {
       letter:'A',
       id:1,
       status:false,
+      pageno:0,
     },{
       letter:'B',
       id:2,
       status:false,
+      pageno:0,
     },{
       letter:'C',
       id:3,
       status:false,
+      pageno:0,
     },{
       letter:'D',
       id:4,
       status:false,
+      pageno:0,
     },{
       letter:'E',
       id:5,
       status:false,
+      pageno:0,
     },{
       letter:'F',
       id:6,
       status:false,
+      pageno:0,
     },{
       letter:'G',
       id:7,
       status:false,
+      pageno:0,
     },
     {
       letter:'H',
       id:8,
       status:false,
+      pageno:0,
     },{
       letter:'I',
       id:9,
       status:false,
+      pageno:0,
     },{
       letter:'J',
       id:10,
       status:false,
+      pageno:0,
     },{
       letter:'K',
       id:11,
       status:false,
+      pageno:0,
     },{
       letter:'L',
       id:12,
       status:false,
+      pageno:0,
     },{
       letter:'M',
       id:13,
       status:false,
+      pageno:0,
     },{
       letter:'N',
       id:14,
       status:false,
+      pageno:0,
     },{
       letter:'O',
       id:15,
       status:false,
+      pageno:0,
     },{
       letter:'P',
       id:16,
       status:false,
+      pageno:0,
     },{
       letter:'Q',
       id:17,
       status:false,
+      pageno:0,
     },{
       letter:'R',
       id:18,
       status:false,
+      pageno:0,
     },{
       letter:'S',
       id:19,
       status:false,
+      pageno:0,
     },{
       letter:'T',
       id:20,
       status:false,
+      pageno:0,
     },{
       letter:'U',
       id:21,
       status:false,
+      pageno:0,
     },{
       letter:'V',
       id:22,
       status:false,
+      pageno:0,
     },{
       letter:'W',
       id:23,
       status:false,
+      pageno:0,
     },{
       letter:'X',
       id:24,
       status:false,
+      pageno:0,
     },{
       letter:'Y',
       id:25,
       status:false,
+      pageno:0,
     },{
       letter:'Z',
       id:26,
       status:false,
+      pageno:0,
     }
 
   ];
-  $scope.getCondoListAlphabetically = function (page) {
+  $scope.getCondoListAlphabetically = function (page,pageno) {
     console.log(page);
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
       $scope.paginationAlphabetical[i].status = false;
-    };
+      $scope.paginationAlphabetical[i].pageno = 0;
+    }
+    $scope.count = 0;
     page.status = true;
     $scope.selectedLetter = page.letter;
     $http.post(baseurl + 'getAlphaNumericCondoList', page).success(function(res, req) {
@@ -234,9 +264,13 @@ angular.module('popetyfbapp')
             $scope.showcondolist_err_msg = false;
           }, 3000);
         }else{
+          console.log(res);
           //$scope.alphaAllcondolist = res;
-          $scope.allcondolist = res;
-          $scope.lastid = res[res.length - 1].condo_id;
+          $scope.allcondolist = res.condolist;
+          if( res.condolist.length>0)
+            $scope.lastid = res.condolist[res.condolist.length - 1].condo_id;
+          console.log($scope.lastid);
+          $scope.letter_total_condos = res.letter_total_condos;
         }
 
       }).error(function(err){
@@ -244,6 +278,53 @@ angular.module('popetyfbapp')
 
       });
 
+  }
+
+  $scope.getCondoListAlphabeticallyNextPrev = function (btn) {
+    if($scope.count *6 >= $scope.letter_total_condos){
+      $scope.count = 0;
+    }
+    console.log($scope.selectedLetter);
+    console.log($scope.lastid);
+     if (btn == 'next') {
+      $scope.count++;
+      var nextprevid = {
+        pageno: $scope.count,
+        last_condo_id: $scope.lastid,
+        letter: $scope.selectedLetter,
+        status: true,
+      }
+    } else {
+      $scope.count--;
+      var nextprevid = {
+        pageno: $scope.count,
+        condo_prev_id: $scope.lastid,
+        status:true,
+        condo_letter: $scope.selectedLetter
+      }
+    }
+    console.log(nextprevid);
+    $http.post(baseurl + 'getAlphaNumericCondoList', nextprevid).success(function(res, req) {
+        if(res.status == 0){
+          $scope.condolist_err_msg = "Error To Get Condo List";
+          $scope.showcondolist_err_msg = true;
+          $timeout(function() {
+            $scope.showcondolist_err_msg = false;
+          }, 3000);
+        }else{
+          console.log(res);
+          //$scope.alphaAllcondolist = res;
+          $scope.allcondolist = res.condolist;
+          if( res.condolist.length>0)
+            $scope.lastid = res.condolist[res.condolist.length - 1].condo_id;
+          console.log($scope.lastid);
+          $scope.letter_total_condos = res.letter_total_condos;
+        }
+
+      }).error(function(err){
+          console.log("Connection Problem...")
+
+      });
   }
 
   $scope.vote = function (condo) {

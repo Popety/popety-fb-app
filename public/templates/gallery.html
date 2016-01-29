@@ -7,13 +7,13 @@
 		</ul>
 	</div>
 	<div class="col col-11">
-	    <ul data-ng-repeat="page in  paginationAlphabetical | orderBy:'-id'" class="list-unstyled" style="float:right;">
-	    	<li data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page)" > {{page.letter}}</li>
+	    <ul data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" class="list-unstyled" >
+	    	<li data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)" > {{page.letter}}</li>
 	    </ul>
 	</div>
 	<div class="row">
 
-		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id'">
+		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
@@ -25,6 +25,7 @@
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name}}</h4>
+				    		{{condo.condo_id}}
 				    		<h6>{{condo.name}}</h6>
 				    	</div>
 				    	<div class="votes_box">
@@ -40,10 +41,10 @@
 		<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg">{{nextprevcondolist_conn_msg}}</div>
 		<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg">{{condolist_err_msg}}</div>
 		<div data-ng-model="connectionmsg" ng-show="showconnectionmsg">{{connectionmsg}}</div>
-		<ul class="list-unstyled" data-ng-if="allcondolist.length > 6 ">
+		<ul class="list-unstyled" data-ng-if="letter_total_condos > 6 ">
 	      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
 	      <li ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
-	      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
+	      <li data-ng-click="getCondoListAlphabeticallyNextPrev('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
 	      <li ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
 	    </ul>
 	</div>
