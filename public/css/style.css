@@ -520,8 +520,8 @@ select {
     outline: none;
     border: none;
     border-bottom: 2px solid #FCC206;
-    margin-bottom: 50px;
-    margin-left: 42px;
+    margin-bottom: 50px !important;
+    margin-left: 42px !important;
     padding-bottom: 5px;
     font-family: 'syncopateregular';
     text-transform: uppercase;
@@ -1697,7 +1697,7 @@ a.btn{
     padding: 23px;
     margin-top: 30px;
     font-size: 18px;
-    margin-left: 0px;
+    margin-left: 0px !important;
     width: 113%;
 }
 .submit{
