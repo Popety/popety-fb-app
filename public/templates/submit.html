@@ -57,7 +57,7 @@
             </div>
             <div class="col col-12">
               <span class="checkbox">
-                <label for="checkbox-example">I accept the <u>Terms & Conditions</u></label>
+                <label for="checkbox-example">I accept the <u id="open-popup">Terms & Conditions</u></label>
                 <input type="checkbox" name="terms" id="checkbox-example" ng-model="terms" required>
                   <div data-ng-messages="condosubmitform.$submitted && condosubmitform.terms.$error" role="alert" class="valid_msg">
                     <div data-ng-message="required">You Have Not Accepted The Terms And Conditions</div>
@@ -88,8 +88,8 @@
         </div>
         <ul class="list-unordered" style="margin-top:100px;">
           <li>
-            You have to submit minimum
-            <b style="color: #F9C100;">2 interior and minimum 2 exterior</b>
+            You have to submit 
+            <b style="color: #F9C100;">minimum 2 interior and 2 exterior</b>
             photos
           </li>
           <li>
@@ -107,7 +107,7 @@
           <li>
             Images must not contain any people or animals.
           </li>
-          <li>Entries must be based on the list of condominium list given.<img src="images/download.svg" class="download_list"></li>
+          <li>Entries must be based on the list of condominium list given.<img src="images/download.svg" class="download_list" ng-csv="Allcondo" filename="Condolist.csv" csv-header="['Condo Name']" charset="utf-8"></li>
         </ul>
       </div>
     </div>

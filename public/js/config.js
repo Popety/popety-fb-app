@@ -1,4 +1,4 @@
-var instance = "dev";
+var instance = "local";
 
 if (instance == "prod"){
 	var baseurl = 'http://apps.popety.com:4444/api/';

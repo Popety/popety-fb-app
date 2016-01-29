@@ -37,9 +37,8 @@ if (app.get('env') === 'development') {
 }
 
 
-
-app.use('/', express.static(__dirname + '/public'));
 app.use('/api', express.static(__dirname + '/api'));
+app.use('/', express.static(__dirname + '/public'));
 
 var submit = require('./api/submitApi.js');
 var gallery = require('./api/galleryApi.js')
@@ -57,5 +56,9 @@ app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
 app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
+
+app.post('/*', function(request, response) {
+  response.redirect('/');
+});
 
 module.exports = app;
