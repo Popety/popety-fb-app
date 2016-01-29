@@ -37,9 +37,11 @@ if (app.get('env') === 'development') {
 }
 
 
-
-app.use('/', express.static(__dirname + '/public'));
 app.use('/api', express.static(__dirname + '/api'));
+// app.use('/', express.static(__dirname + '/public'));
+app.post('/*', function(request, response) {
+  response.redirect('/public');
+});
 
 var submit = require('./api/submitApi.js');
 var gallery = require('./api/galleryApi.js')
