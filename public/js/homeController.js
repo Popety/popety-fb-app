@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('homeController', function ($scope, $http, ezfb) {
+.controller('homeController', function ($scope, $http, ezfb, $q) {
 
   // $scope.login = function () {
   //   console.log('hello');
@@ -20,16 +20,27 @@ angular.module('popetyfbapp')
    * Update loginStatus result
    */
   function updateLoginStatus (more) {
-    $http.get("https://graph.facebook.com/v2.5/me/likes", {
-        params: {
-          access_token: more.accessToken,
-          format: "json"
-        }
-    }).then(function(result) {
-      console.log('26', result);
-    }, function(error) {
-        console.log("There was a problem getting your profile.  Check the logs for details.");
+    $q.all([
+      ezfb.api('/me'),
+      ezfb.api('/me/likes')
+    ])
+    .then(function (resList) {
+      console.log(resList);
+      // Runs after both api calls are done
+      // resList[0]: FB.api('/me') response
+      // resList[1]: FB.api('/me/likes') response
+      $scope.apiRes = resList;
     });
+    // $http.get("https://graph.facebook.com/v2.5/me/likes/1623378827912092", {
+    //     params: {
+    //       access_token: more.accessToken,
+    //       format: "json"
+    //     }
+    // }).then(function(result) {
+    //   console.log('26', result);
+    // }, function(error) {
+    //     console.log("There was a problem getting your profile.  Check the logs for details.");
+    // });
     // $http.get("https://graph.facebook.com/v2.5/me", {
     //     params: {
     //       access_token: more.accessToken,
