@@ -1733,9 +1733,7 @@ a.btn{
 .expand{
     position: absolute;
     z-index: 99;
-    height: 188px;
     width: 90%;
-    background: rgba(68, 68, 68, 0.38);
     cursor: pointer;
 }
 .expand img{
@@ -2293,6 +2291,15 @@ input[type=number]::-webkit-outer-spin-button {
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+.popup_close_pos {
+    height: 50px;
+    width: 40px !important;
+    position: absolute;
+    right: 0px;
+    padding: 8px;
+    cursor: pointer;
+    transform: rotate(45deg);
 }
 kbd { 
   display: inline-block; 

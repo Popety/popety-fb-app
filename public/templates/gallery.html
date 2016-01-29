@@ -51,16 +51,10 @@
 		<div class="clear-fix"></div>
 <div class="popup" id="popup">
   <div class="popup__inner">
-    <header class="popup__header">
-     <img src="images/add.svg" class="popup__close">
-    </header>
-    <div>
-
 		<div slide-source="condoimage in imagesobj" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
-			<img data-ng-src="{{condoimage}}" />
+		<img src="images/add.svg" class="popup_close_pos">
+		<img data-ng-src="{{condoimage}}" />
 			<h4 class="slider_indicator"> {{$index+1}} OF {{imagesobj.length}}</h4>
-		</div>
-
 		</div>
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
@@ -82,7 +76,7 @@
       };
 
   doc.on("click", "#open-popup1", showPopup);
-  doc.on("click", ".popup__close", hidePopup);
+  doc.on("click", ".popup_close_pos", hidePopup);
 
   doc.keypress(function (event) {
     if (event.keyCode === 27) { // esc key
