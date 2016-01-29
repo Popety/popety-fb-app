@@ -8,7 +8,7 @@ angular.module('popetyfbapp')
       * no manual $scope.$apply, I got that handled
       */
      if (res.authResponse) {
-       updateLoginStatus(authResponse);
+       updateLoginStatus(res.authResponse);
      }
    }, {scope: 'email,user_likes'});
 
