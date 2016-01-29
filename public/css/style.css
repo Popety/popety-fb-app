@@ -1849,8 +1849,8 @@ a.btn{
     padding: 0;
     text-align: center;
     position: absolute;
-    bottom: 81px;
-    right: 25%;
+    bottom: 64px;
+    left: 15%;
 }
 .img_preview{
   position:relative; 
