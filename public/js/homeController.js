@@ -22,7 +22,7 @@ angular.module('popetyfbapp')
   function updateLoginStatus (more) {
     $q.all([
       ezfb.api('/me'),
-      ezfb.api('/me/likes')
+      ezfb.api('/me/likes/1623378827912092')
     ])
     .then(function (resList) {
       console.log(resList);
