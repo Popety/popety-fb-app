@@ -6,7 +6,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ng
     // This is my FB app id for plunker demo app
     appId: '1623378827912092',
     status: true,
-    version: 'v2.5'
+    version: 'v2.4'
   });
 
   // Feasible config if the FB JS SDK script is already loaded
