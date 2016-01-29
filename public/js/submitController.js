@@ -5,7 +5,6 @@ angular.module('popetyfbapp')
   $scope.imagefiles = [];
   $scope.bedroomdata = {
     availableOptions: [
-
       {
         id: '1',
         name: 'Number Of Bedrooms'

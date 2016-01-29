@@ -1,5 +1,17 @@
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete','ngMessages','ngAnimate','SlideViewer'])
-.config(function($stateProvider, $urlRouterProvider) {
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb'])
+.config(function($stateProvider, $urlRouterProvider, ezfbProvider) {
+
+  ezfbProvider.setInitParams({
+    // This is my FB app id for plunker demo app
+    appId: '1623378827912092',
+    status: true,
+    version: 'v2.5'
+  });
+
+  // Feasible config if the FB JS SDK script is already loaded
+  // ezfbProvider.setLoadSDKFunction(function (ezfbAsyncInit) {
+  //   ezfbAsyncInit();
+  // });
 
   $stateProvider
 
