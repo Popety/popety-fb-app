@@ -36,7 +36,7 @@ angular.module('popetyfbapp')
 
       var condos = res;
       $scope.Allcondo = res;
-      
+
       function suggest_condos(term) {
         var q = term.toLowerCase().trim(),
           results = [];

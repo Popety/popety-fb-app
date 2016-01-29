@@ -2,15 +2,15 @@ angular.module('popetyfbapp')
 
 .controller('homeController', function ($scope, $http, ezfb) {
 
-  ezfb.login(function (res) {
-    console.log('5', res);
-     /**
-      * no manual $scope.$apply, I got that handled
-      */
-     if (res.authResponse) {
-       updateLoginStatus(res.authResponse);
-     }
-   }, {scope: 'email,user_likes'});
+  // ezfb.login(function (res) {
+  //    if(res.status === 'connected'){
+  //      if (res.authResponse) {
+  //        updateLoginStatus(res.authResponse);
+  //      }
+  //    }else {
+  //      console.log('login');
+  //    }
+  //  }, {scope: 'email'});
 
   /**
    * Update loginStatus result
