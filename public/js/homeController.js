@@ -27,6 +27,7 @@ angular.module('popetyfbapp')
   function updateApiMe () {
     ezfb.api('/me', function (res) {
       $scope.apiMe = res;
+      console.log('30',res);
     });
   }
 });
