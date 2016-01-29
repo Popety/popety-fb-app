@@ -606,23 +606,6 @@
   position: absolute;
   width: 1px; }
 
-.list-unstyled {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  .list-unstyled li {
-    margin: 0;
-    padding: 0; }
-
-.list-inline {
-  list-style: none;
-  margin: 0;
-  padding: 0; }
-  .list-inline li {
-    margin: 0;
-    padding: 0;
-    display: inline-block; }
-
 .img-responsive {
   max-width: 100%; }
 
