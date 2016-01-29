@@ -1,8 +1,8 @@
 @font-face {
-    font-family: 'DINCond-Bold'; 
+    font-family: 'DINCond-Bold';
     src: url('fonts/DINCond-Bold.eot'); /* IE9 Compatibility Modes */
     src: url('/fonts/DINCond-Bold.eot?') format('eot'),  /* IE6-IE8 */
-    url('../fonts/DINCond-Bold.otf') format('otf'), 
+    url('../fonts/DINCond-Bold.otf') format('otf'),
     url('../fonts/DINCond-Bold.ttf') format('truetype'); /* Safari, Android, iOS */
     src: url('fonts/DINCond-Bold.eot');
     src: url('fonts/DINCond-Bold-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/DiCnBd__.ttf') format('truetype'), url('fonts/DiCnBd__.svg') format('svg');
@@ -426,11 +426,11 @@ textarea {
 ::-webkit-scrollbar {
     width: 10px;
 }
- 
+
 ::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 }
- 
+
 ::-webkit-scrollbar-thumb {
   background-color: #f9c100;
   outline: 1px solid slategrey;
@@ -1684,7 +1684,7 @@ a.btn{
 .count{
   padding: 10px;
   background: #383838;
-      
+
 }
 .count h4{
   color: #f9c100;
@@ -1867,7 +1867,7 @@ a.btn{
     left: 15%;
 }
 .img_preview{
-  position:relative; 
+  position:relative;
 }
 .img_preview img{
     width: 115%;
@@ -2052,7 +2052,7 @@ article img {
 }
 #slides article {
     width: 20%;
-  
+
     float: left;
 }
 #controls {
@@ -2086,30 +2086,30 @@ article img {
 #controls label:hover {
     opacity: 0.8;
 }
-#slide1:checked ~ #controls label:nth-child(2), 
-#slide2:checked ~ #controls label:nth-child(3), 
-#slide3:checked ~ #controls label:nth-child(4), 
-#slide4:checked ~ #controls label:nth-child(5), 
+#slide1:checked ~ #controls label:nth-child(2),
+#slide2:checked ~ #controls label:nth-child(3),
+#slide3:checked ~ #controls label:nth-child(4),
+#slide4:checked ~ #controls label:nth-child(5),
 #slide5:checked ~ #controls label:nth-child(1) {
     background: url('http://upload.robinbrons.com/u/1366504016.png') no-repeat;
     float: right;
     margin: -20px -70px 0 0;
     display: block;
 }
-#slide1:checked ~ #controls label:nth-child(5), 
-#slide2:checked ~ #controls label:nth-child(1), 
-#slide3:checked ~ #controls label:nth-child(2), 
-#slide4:checked ~ #controls label:nth-child(3), 
+#slide1:checked ~ #controls label:nth-child(5),
+#slide2:checked ~ #controls label:nth-child(1),
+#slide3:checked ~ #controls label:nth-child(2),
+#slide4:checked ~ #controls label:nth-child(3),
 #slide5:checked ~ #controls label:nth-child(4) {
     background: url('http://upload.robinbrons.com/u/1366544716.png') no-repeat;
     float: left;
     margin: -20px 0 0 -70px;
     display: block;
 }
-#slide1:checked ~ #active label:nth-child(1), 
-#slide2:checked ~ #active label:nth-child(2), 
-#slide3:checked ~ #active label:nth-child(3), 
-#slide4:checked ~ #active label:nth-child(4), 
+#slide1:checked ~ #active label:nth-child(1),
+#slide2:checked ~ #active label:nth-child(2),
+#slide3:checked ~ #active label:nth-child(3),
+#slide4:checked ~ #active label:nth-child(4),
 #slide5:checked ~ #active label:nth-child(5) {
     background: #F9C100;
     background: #F9C100 !important;
@@ -2157,10 +2157,10 @@ article img {
     -webkit-transform: translateZ(0);
     transition: opacity 0.2s ease-out;
 }
-#slide1:checked ~ #slides article:nth-child(1) .info, 
-#slide2:checked ~ #slides article:nth-child(2) .info, 
-#slide3:checked ~ #slides article:nth-child(3) .info, 
-#slide4:checked ~ #slides article:nth-child(4) .info, 
+#slide1:checked ~ #slides article:nth-child(1) .info,
+#slide2:checked ~ #slides article:nth-child(2) .info,
+#slide3:checked ~ #slides article:nth-child(3) .info,
+#slide4:checked ~ #slides article:nth-child(4) .info,
 #slide5:checked ~ #slides article:nth-child(5) .info {
     opacity: 1;
     transition: all 1s ease-out 0.6s;
@@ -2263,17 +2263,17 @@ article img {
   cursor: not-allowed !important;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 .download_list{
   position: absolute;
   top: 24px;
   cursor: pointer;
 }
-.popup { 
+.popup {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -2316,11 +2316,11 @@ input[type=number]::-webkit-outer-spin-button {
     cursor: pointer;
     transform: rotate(45deg);
 }
-kbd { 
-  display: inline-block; 
-  font-family: inherit; 
-  font-size: 0.875em; 
-  vertical-align: 0.125em; 
+kbd {
+  display: inline-block;
+  font-family: inherit;
+  font-size: 0.875em;
+  vertical-align: 0.125em;
   margin-right: 0.5em;
   color: slategray;
 }
@@ -2331,7 +2331,7 @@ kbd {
   border: 0.125em solid black;
   background-color: #000;
   display: block;
-  
+
   @media screen and (min-width: 30em) {
     display: inline-block;
     margin: 0 3em 0 2em;
@@ -2341,7 +2341,7 @@ kbd {
 .profile__details {
   margin: 0 2em 0 0;
   text-align: center;
-  
+
   @media screen and (min-width: 30em) {
     display: inline-block;
     vertical-align: top;
@@ -2352,17 +2352,17 @@ kbd {
 .profile__stats {
   @extend %ui-list;
   margin: 0 0 1rem 0;
-  
+
   > li {
     text-align: center;
     border-right: 1px solid lightgray;
     padding: 0 0.5em;
     line-height: 1.1;
-    
+
     &:first-child {
       padding-left: 0;
     }
-    &:last-child { 
+    &:last-child {
       border-right: none;
       padding-right: 0;
     }
@@ -2388,15 +2388,15 @@ kbd {
   @extend %ui-list;
   margin-bottom: 0;
   margin-left: 0;
-  
+
   > li:not(:last-child) {
     margin-right: 0.5em;
   }
   .location {
     margin-left: 1em;
-    
+
     &, .fa { color: darkgreen; }
-    span { 
+    span {
       font-size: 0.875em;
       display: inline-block;
       vertical-align: middle;
@@ -2461,7 +2461,7 @@ footer{
     top: 22%;
     transform: rotate(44deg);
 }
-#like-wrapper{ position: absolute; bottom: 10%; left: 10%; overflow: hidden;   
+#like-wrapper{ position: absolute; bottom: 10%; left: 10%; overflow: hidden;
   width: 200px;
     height: 50px;}
 
@@ -2489,6 +2489,7 @@ footer{
   height: 100px !important;
 }
 #mycustombutton{
+    position: absolute;
     background: white;
     padding: 18px 50px;
     border-radius: 4px;
