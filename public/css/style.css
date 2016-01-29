@@ -423,6 +423,18 @@ textarea {
   vertical-align: baseline;
   *vertical-align: middle;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+ 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: #f9c100;
+  outline: 1px solid slategrey;
+}
 input[type=text],
 input[type=password],
 input[type=email],
@@ -1749,7 +1761,7 @@ a.btn{
     outline: none;
     font-family: 'syncopatebold';
     list-style: none;
-    padding: 30px 50px 32px 17%;
+    padding: 30px 50px 32px 100px;
     position: relative;
     background: #EFF3F5;
     border: 1px solid #CECECE;
@@ -1760,11 +1772,12 @@ a.btn{
 .new_homepage ul li img{
   width: 70px;
   position: absolute;
-  left: 75px;
+  left: 25px;
   bottom: 12px;
 }
 .header_ul{
   padding: 0px;
+  margin: 15px -15px;
 }
 .header_ul a:active{
   color: #F7BF00;

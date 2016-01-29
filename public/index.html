@@ -69,12 +69,10 @@
     <footer>
       <a href="" id="open-popup" class="terms">Terms & Conditions</a>
       <div class="popup" id="popup">
-        <div class="popup__inner" style="background-color: #fff;">
-          <header class="popup__header">
-            <img src="images/add.svg" class="popup__close">
-          </header>
+        <div class="popup__inner" style="background-color: #fff;position: relative;">
+            <img src="images/add.svg" class="popup_close" style="right:24px;">
           <div>
-            <div class="row submit_form_box" style="width: 746px;height: 500px;overflow-y: scroll;">
+            <div class="submit_form_box" style="width: 746px;height: 600px;overflow-y: scroll;">
               <div class="col col-12" style="padding: 20px 60px 0;">
                 <h2>TERMS & CONDITIONS</h2>
                 <ul class="list-unordered" style="text-align: left;">
@@ -161,7 +159,7 @@
           };
 
         doc.on("click", "#open-popup", showPopup);
-        doc.on("click", ".popup__close", hidePopup);
+        doc.on("click", ".popup_close", hidePopup);
 
         doc.keypress(function(event) {
           if (event.keyCode === 27) { // esc key

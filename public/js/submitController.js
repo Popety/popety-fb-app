@@ -91,7 +91,7 @@ angular.module('popetyfbapp')
 
     if (valid && $scope.imagefiles.length !== 0) {
       if ($scope.imagefiles.length < 4) {
-        $scope.imagelimitmsg = 'Please upload 4 images';
+        $scope.imagelimitmsg = 'Please Upload 4 Images';
         $scope.showimagelimitmsg = true;
         $timeout(function() {
              $scope.showimagelimitmsg = false;
@@ -131,7 +131,7 @@ angular.module('popetyfbapp')
 
 
     } else {
-      $scope.imgcompulsorymsg = 'Images Compulsory';
+      $scope.imgcompulsorymsg = 'Please Upload 4 Images';
       $scope.showimgcompulsorymsg = true;
         $timeout(function() {
           $scope.showimgcompulsorymsg = false;
