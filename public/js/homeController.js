@@ -7,7 +7,7 @@ angular.module('popetyfbapp')
     ezfb.getLoginStatus(function (res) {
       $scope.loginStatus = res;
       console.log('9', res);
-      // (more || angular.noop)();
+      (more || angular.noop)();
     });
 
     /**
