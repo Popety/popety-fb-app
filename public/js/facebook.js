@@ -3,7 +3,7 @@ window.fbAsyncInit = function() {
     appId      : '1623378827912092',
     xfbml      : true,
     version    : 'v2.5',
-    status     : true
+    // status     : true
   });
 
   // ADD ADDITIONAL FACEBOOK CODE HERE
