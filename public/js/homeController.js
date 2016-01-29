@@ -2,9 +2,10 @@ angular.module('popetyfbapp')
 
 .controller('homeController', function ($scope, $http, ezfb) {
 
-  $scope.login = function () {
-    console.log('hello');
+  // $scope.login = function () {
+  //   console.log('hello');
     ezfb.login(function (res) {
+      console.log(res);
        if(res.status === 'connected'){
          if (res.authResponse) {
            updateLoginStatus(res.authResponse);
@@ -13,7 +14,7 @@ angular.module('popetyfbapp')
          console.log('login');
        }
      }, {scope: 'email, user_likes'});
-  };
+  // };
 
   /**
    * Update loginStatus result
