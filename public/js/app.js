@@ -1,5 +1,5 @@
 
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb'])
+angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb','ngCsv'])
 .config(function($stateProvider, $urlRouterProvider, ezfbProvider) {
 
   ezfbProvider.setInitParams({
