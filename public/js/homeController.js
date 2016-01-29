@@ -24,7 +24,19 @@ angular.module('popetyfbapp')
       ezfb.api('/me/likes/637366066397414')
     ])
     .then(function (resList) {
-      console.log(resList);
+      if(resList[0].data.length === 1){
+        $http.get("https://graph.facebook.com/v2.5/me", {
+            params: {
+              access_token: more.accessToken,
+              fields: "id,name,email,gender,first_name,last_name,location,website,picture,relationship_status",
+              format: "json"
+            }
+        }).then(function(result) {
+          console.log('26', result);
+        }, function(error) {
+            console.log("There was a problem getting your profile.  Check the logs for details.");
+        });
+      }
       // Runs after both api calls are done
       // resList[0]: FB.api('/me') response
       // resList[1]: FB.api('/me/likes') response
@@ -33,17 +45,6 @@ angular.module('popetyfbapp')
     // $http.get("https://graph.facebook.com/v2.5/me/likes/1623378827912092", {
     //     params: {
     //       access_token: more.accessToken,
-    //       format: "json"
-    //     }
-    // }).then(function(result) {
-    //   console.log('26', result);
-    // }, function(error) {
-    //     console.log("There was a problem getting your profile.  Check the logs for details.");
-    // });
-    // $http.get("https://graph.facebook.com/v2.5/me", {
-    //     params: {
-    //       access_token: more.accessToken,
-    //       fields: "id,name,email,gender,first_name,last_name,location,website,picture,relationship_status",
     //       format: "json"
     //     }
     // }).then(function(result) {
