@@ -1,3 +1,4 @@
+
 angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb'])
 .config(function($stateProvider, $urlRouterProvider, ezfbProvider) {
 
