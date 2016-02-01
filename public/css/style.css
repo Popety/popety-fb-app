@@ -1829,6 +1829,9 @@ a.btn{
   left: 0;
   top: -4px;
 }
+.padding_bottom{
+  padding-bottom: 80px;
+}
 .submit_form_box{
     border: 1px solid;
     border-radius: 10px;

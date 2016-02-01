@@ -13,19 +13,19 @@
 	</div>
 	<div class="row">
 
-		<div class="col col-4 tablet-col-4 mobile-col-1-2 thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
+		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
 			<span class="share_icon">SHARE</span>
 			<span class="vote_icon" data-ng-click="vote(condo)">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
-			    <span class="no-tablet no-mobile main_div">
+			    <span class="main_div">
 			    	<img data-ng-src="{{condo.condolist.images}}"/>
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name}}</h4>
-				    		{{condo.condo_id}}
+				    		<!-- {{condo.condo_id}} -->
 				    		<h6>{{condo.name}}</h6>
 				    	</div>
 				    	<div class="votes_box">
@@ -34,8 +34,6 @@
 				    	</div>
 			    	</div>
 			    </span>
-			    <span class="no-desktop show-tablet no-mobile">9</span>
-			    <span class="no-desktop no-tablet show-mobile">1-2</span>
 			</a>
 		</div>
 		<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg">{{nextprevcondolist_conn_msg}}</div>
@@ -48,7 +46,7 @@
 	      <li ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
 	    </ul>
 	</div>
-		<div class="clear-fix"></div>
+<div class="clear-fix"></div>
 <div class="popup" id="popup">
   <div class="popup__inner">
 		<div slide-source="condoimage in imagesobj" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
