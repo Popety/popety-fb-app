@@ -231,14 +231,14 @@ exports.createImage = function (req, res) {
     if(err){
       response = {
         status: 0,
-        message: 'INTERNAL SERVER ERROR'
+        message: 'INTERNAL SERVER ERROR 234'
       };
       res.jsonp(response);
     }else {
       decodeBase64Image(rows[0].images, function (result) {
         var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
-        // fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
-        fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+        fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
+        // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
           if(error){
             response = {
               status: 0,
