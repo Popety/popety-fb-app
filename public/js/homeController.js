@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('homeController', function ($scope, $http, ezfb, $q, AuthService) {
+.controller('homeController', function ($scope, $http, ezfb, $q) {
 
   $scope.like_1 = function () {
     ezfb.login(function (res) {
