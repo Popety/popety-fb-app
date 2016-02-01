@@ -352,6 +352,7 @@ angular.module('popetyfbapp')
     };
     $http.post( baseurl + 'createImage', condoData).success(function (res, req) {
       if(res.status === 1){
+        console.log(imageurl + '' + res.filename);
         FB.ui({
              method: 'share',
              name: 'This is the content of the "name" field.',
