@@ -85,6 +85,8 @@ angular.module('popetyfbapp')
       for (var i = 0; i < $scope.condoimagelist.length; i++) {
         $scope.imagesobj.push($scope.condoimagelist[i].images);
       }
+      var popup = $("#popup");
+      popup.fadeIn(200);
     }).error(function(err) {
       console.log('Connection Problem..');
       $scope.connectionmsg = "Connection Problem..";
@@ -235,6 +237,7 @@ angular.module('popetyfbapp')
 
   ];
   $scope.getCondoListAlphabetically = function(page, pageno) {
+    console.log('hello');
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
       $scope.paginationAlphabetical[i].status = false;
       $scope.paginationAlphabetical[i].pageno = 0;
@@ -250,12 +253,10 @@ angular.module('popetyfbapp')
           $scope.showcondolist_err_msg = false;
         }, 3000);
       } else {
-        console.log(res);
         //$scope.alphaAllcondolist = res;
         $scope.allcondolist = res.condolist;
         if (res.condolist.length > 0)
           $scope.lastid = res.condolist[res.condolist.length - 1].condo_id;
-        console.log($scope.lastid);
         $scope.letter_total_condos = res.letter_total_condos;
       }
 

@@ -8,10 +8,10 @@
 	</div>
 	<div class="col col-11">
 	    <ul class="list-unstyled" >
-	    	<li data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)" > {{page.letter}}</li>
+	    	<li data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)">{{page.letter}}</li>
 	    </ul>
 	</div>
-	<div class="row">
+	<div class="row" style="margin-top: 60px;">
 
 		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
@@ -99,7 +99,6 @@
 				event.preventDefault();
 			};
 
-  doc.on("click", "#open-popup1", showPopup);
   doc.on("click", ".popup_close_pos", hidePopup);
 	doc.on("click", "#close-popup-2", hidePopup_1);
 	doc.on("click", "#close-popup-3", hidePopup_3);
