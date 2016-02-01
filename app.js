@@ -40,8 +40,9 @@ if (app.get('env') === 'development') {
 app.use('/api', express.static(__dirname + '/api'));
 app.use('/', express.static(__dirname + '/public'));
 
-var submit = require('./api/submitApi.js');
-var gallery = require('./api/galleryApi.js')
+var submit = require('./api/submitApi');
+var gallery = require('./api/galleryApi');
+var user = require('./api/user');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -56,6 +57,8 @@ app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
 app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
+
+app.post('/api/register', user.register);
 
 app.post('/*', function(request, response) {
   response.redirect('/');

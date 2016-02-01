@@ -1,5 +1,5 @@
 
-angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb','ngCsv'])
+angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete', 'ngMessages', 'ngAnimate', 'SlideViewer', 'ezfb', 'ngCsv'])
 .config(function($stateProvider, $urlRouterProvider, ezfbProvider) {
 
   ezfbProvider.setInitParams({
@@ -52,28 +52,10 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ng
 
   $urlRouterProvider.otherwise('/home');
 
-});
+})
 
-// .service('AuthService', function($q, ezfb){
-//   ezfb.login(function (res) {
-//     console.log(res);
-//      if(res.status === 'connected'){
-//        if (res.authResponse) {
-//          updateLoginStatus(res.authResponse);
-//        }
-//      }else {
-//        console.log('login');
-//      }
-//    }, {scope: 'email, user_likes'});
-//
-//    function updateLoginStatus (more) {
-//      $q.all([
-//        ezfb.api('/me/likes/637366066397414')
-//      ])
-//      .then(function (resList) {
-//        console.log(resList);
-//      });
-//    }
-//     this.isAuthenticated = window.localStorage.getItem('propertylogin');
-//     console.log( 'propertylogin meas us user logged in =' + this.isAuthenticated );
-// });
+.service('AuthService', function(store){
+    this.isAuthenticated = store.get('login');
+    console.log(store.get('login'));
+    console.log( 'propertylogin meas us user logged in =' + this.isAuthenticated );
+});

@@ -4,7 +4,7 @@ var config = module.exports = {};
 
 config.port = 9999;
 
-config.connection = mysql.createConnection({
+config.connection = mysql.createPool({
     host: 'n2.transparent.sg',
     user: 'transparent',
     password: '10gXWOqeaf',
