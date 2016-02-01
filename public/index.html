@@ -27,11 +27,19 @@
     <script src="lib/angular-messages.min.js"></script>
 
     <script src = "//connect.facebook.net/en_US/sdk.js"></script>
+    <script>
+    FB.init({
+      appId      : '1623378827912092',
+      xfbml      : true,
+      version    : 'v2.4',
+      status     : true
+    });
+    </script>
     <!-- Angular Storage -->
     <script src="lib/angular-storage.min.js"></script>
 
     <!-- Angular Easy-Facebook -->
-    <script src="lib/angular-easyfb.js"></script>
+    <!-- <script src="lib/angular-easyfb.js"></script> -->
 
     <!-- Controllers -->
     <script src="js/app.js"></script>
@@ -55,7 +63,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script>
 
     <!-- CSV lib-->
-     <script src="lib/ng-csv.min.js"></script>
+    <script src="lib/ng-csv.min.js"></script>
 
   </head>
   <body data-ng-app="popetyfbapp" style="background:#fff;">
