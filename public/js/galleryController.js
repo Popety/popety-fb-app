@@ -235,7 +235,6 @@ angular.module('popetyfbapp')
 
   ];
   $scope.getCondoListAlphabetically = function(page, pageno) {
-    console.log(page);
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
       $scope.paginationAlphabetical[i].status = false;
       $scope.paginationAlphabetical[i].pageno = 0;
@@ -328,21 +327,25 @@ angular.module('popetyfbapp')
     });
     return false;
   };
-
+  
   $scope.vote = function(condo) {
-    var vote = {
-      'condo_id': condo.condo_id,
-      'user_id': store.get('user_id')
-    };
-    $http.post(baseurl + 'vote', vote).success(function(res, req) {
-      if (res.status === 2) {
-        console.log('voted');
-      } else if (res.status === 1) {
-        console.log('already voted');
-      }
-    }).error(function(err) {
-      console.log(err);
-    });
+    // var vote = {
+    //   'condo_id': condo.condo_id,
+    //   'user_id': store.get('user_id')
+    // };
+    // $http.post(baseurl + 'vote', vote).success(function(res, req) {
+    //   if (res.status === 2) {
+    //     for(var i = 0; i < $scope.allcondolist.length; i++){
+    //       if($scope.allcondolist[i].condo_id === condo.condo_id){
+    //         $scope.allcondolist[i].votes = $scope.allcondolist[i].votes + 1;
+    //       }
+    //     }
+    //   } else if (res.status === 1) {
+    //     console.log('already voted');
+    //   }
+    // }).error(function(err) {
+    //   console.log(err);
+    // });
   };
 
 });

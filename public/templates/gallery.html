@@ -7,8 +7,8 @@
 		</ul>
 	</div>
 	<div class="col col-11">
-	    <ul data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" class="list-unstyled" >
-	    	<li data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)" > {{page.letter}}</li>
+	    <ul class="list-unstyled" >
+	    	<li data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)" > {{page.letter}}</li>
 	    </ul>
 	</div>
 	<div class="row">
@@ -17,7 +17,7 @@
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
-			<span class="share_icon" >SHARE</span>
+			<span class="share_icon" id="open-popup-2">SHARE</span>
 			<span class="vote_icon" data-ng-click="vote(condo)">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="main_div">
@@ -25,11 +25,10 @@
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name}}</h4>
-				    		<!-- {{condo.condo_id}} -->
-				    		<h6>{{condo.name}}</h6>
+				    		<h6>{{condo.user_name}}</h6>
 				    	</div>
 				    	<div class="votes_box">
-					    	 <h4 class="gallery_vote_count">98</h4>
+					    	 <h4 class="gallery_vote_count">{{condo.votes}}</h4>
 					    	 <h6>VOTES</h6>
 				    	</div>
 			    	</div>
@@ -57,49 +56,14 @@
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
 
-<!-- Another popup-->
-<button data-js="open">Open Pop-up</button>
-<div class="popup1">
-	<h2>This Is My Pop-up</h2>
-	<button name="close">Close Pop-up</button>
-</div>
+<div class="popup" id="popup-1">
+  <div class="popup__inner">
+		<div>
+			<h4 >Hello</h4>
+		</div>
+  </div><!-- /popup__inner -->
+</div><!-- /popup -->
 
-<script type="text/javascript">
-	function popupOpenClose(popup1) {
-	
-	/* Add div inside popup for layout if one doesn't exist */
-	if ($(".wrapper").length == 0){
-		$(popup1).wrapInner("<div class='wrapper'></div>");
-	}
-	
-	/* Open popup */
-	$(popup1).show();
-
-	/* Close popup if user clicks on background */
-	$(popup1).click(function(e) {
-		if ( e.target == this ) {
-			if ($(popup1).is(':visible')) {
-				$(popup1).hide();
-			}
-		}
-	});
-
-	/* Close popup and remove errors if user clicks on cancel or close buttons */
-	$(popup1).find("button[name=close]").on("click", function() {
-		if ($(".formElementError").is(':visible')) {
-			$(".formElementError").remove();
-		}
-		$(popup1).hide();
-	});
-}
-
-$(document).ready(function () {
-	$("[data-js=open]").on("click", function() {
-		popupOpenClose($(".popup1"));
-	});
-});
-
-</script>
 
 <script type="text/javascript">
 
@@ -117,14 +81,33 @@ $(document).ready(function () {
         event.preventDefault();
       };
 
+	var popup_1 = $("#popup-1"),
+      doc_1 = $(document),
+      popClass = "popped",
+      showPopup_1 = function (event) {
+        popup_1.fadeIn(200);
+        event.preventDefault();
+      },
+      hidePopup_1 = function (event) {
+        popup_1.hide();
+        event.preventDefault();
+      };
+
   doc.on("click", "#open-popup1", showPopup);
   doc.on("click", ".popup_close_pos", hidePopup);
+	doc_1.on("click", "#open-popup-2", showPopup_1);
 
   doc.keypress(function (event) {
     if (event.keyCode === 27) { // esc key
       hidePopup();
     }
   });
+
+	doc_1.keypress(function (event) {
+		if (event.keyCode === 27) { // esc key
+			hidePopup();
+		}
+	});
 
 });
 </script>
