@@ -16,6 +16,7 @@ angular.module('popetyfbapp')
            store.set('login', true);
            store.set('user_id', res.user_id);
            store.set('user_email', response.email);
+           store.set('user_name', response.first_name + ' ' + response.last_name);
            $state.go('tab.submit');
          }
        }).error(function (err) {

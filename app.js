@@ -42,7 +42,8 @@ app.use('/', express.static(__dirname + '/public'));
 
 var submit = require('./api/submitApi');
 var gallery = require('./api/galleryApi');
-var user = require('./api/user');
+var user = require('./api/userApi');
+var vote = require('./api/voteApi');
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -50,15 +51,22 @@ app.use(function(req, res, next) {
   next();
 });
 
+//Submit Api
 app.get('/api/condoList', submit.condoList);
 app.post('/api/condosubmit', submit.condosubmit);
 
+//Gallery Api
 app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
 app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
 
+//User Api
 app.post('/api/register', user.register);
+
+//Vote Api
+app.post('/api/vote', vote.vote);
+app.post('/api/checkVote', vote.checkVote);
 
 app.post('/*', function(request, response) {
   response.redirect('/');

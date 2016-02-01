@@ -1,30 +1,31 @@
 angular.module('popetyfbapp')
 
-.controller('submitController', function($scope, $http, $timeout, $sce, $state, $document) {
+.controller('submitController', function($scope, $http, $timeout, $sce, $state, store) {
 
   $scope.imagefiles = [];
+
+  $scope.userName = store.get('user_name');
+
   $scope.bedroomdata = {
-    availableOptions: [
-      {
-        id: '1',
-        name: 'Number Of Bedrooms'
-      }, {
-        id: '2',
-        name: 'Studio'
-      }, {
-        id: '3',
-        name: '1-bedroom'
-      }, {
-        id: '4',
-        name: '2-bedroom'
-      }, {
-        id: '5',
-        name: '3-bedroom'
-      }, {
-        id: '6',
-        name: '4-bedroom'
-      }
-    ],
+    availableOptions: [{
+      id: '1',
+      name: 'Number Of Bedrooms'
+    }, {
+      id: '2',
+      name: 'Studio'
+    }, {
+      id: '3',
+      name: '1-bedroom'
+    }, {
+      id: '4',
+      name: '2-bedroom'
+    }, {
+      id: '5',
+      name: '3-bedroom'
+    }, {
+      id: '6',
+      name: '4-bedroom'
+    }],
     selectedOption: {
       id: '1',
       name: 'Number Of Bedrooms'
@@ -94,49 +95,46 @@ angular.module('popetyfbapp')
         $scope.imagelimitmsg = 'Please Upload 4 Images';
         $scope.showimagelimitmsg = true;
         $timeout(function() {
-             $scope.showimagelimitmsg = false;
+          $scope.showimagelimitmsg = false;
         }, 3000);
       } else {
         var condoinfo = {
-          name: "Harold french",
+          user_id: store.get('user_id'),
           mobile_no: condodata.mobile_no,
           bedroom: $scope.bedroomdata.selectedOption.name,
           condo_name: condodata.condo_name,
           attachmentfile: $scope.imagefiles
         };
 
-        console.log("condoinfo:",condoinfo);
-        /*$http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
-          if(res.status == 1){
-              $scope.condosuccessmsg = 'Condo Successfully Added.';
-              $scope.showcondosuccessmsg = true;
-              $timeout(function() {
-                $scope.showcondosuccessmsg = false;
-              }, 3000);
-                document.getElementById("condofrm").reset();
-                $scope.imagefiles = {};
-                $state.go('tab.gallery');
-          }else{
-              $scope.submit_err_msg = "Condo Failed To Insert";
-              $scope.showsubmit_err_msg = true;
-              $timeout(function() {
-                $scope.showsubmit_err_msg = false;
-              }, 3000);
+        $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
+          if (res.status == 1) {
+            $scope.condosuccessmsg = 'Condo Successfully Added.';
+            $scope.showcondosuccessmsg = true;
+            $timeout(function() {
+              $scope.showcondosuccessmsg = false;
+            }, 3000);
+            document.getElementById("condofrm").reset();
+            $scope.imagefiles = {};
+            $state.go('tab.gallery');
+          } else {
+            $scope.submit_err_msg = "Condo Failed To Insert";
+            $scope.showsubmit_err_msg = true;
+            $timeout(function() {
+              $scope.showsubmit_err_msg = false;
+            }, 3000);
           }
-
-        }).error(function(err){
-            console.log('Connection Problem..');
-        });*/
+        }).error(function(err) {
+          console.log('Connection Problem..');
+        });
       }
 
 
     } else {
       $scope.imgcompulsorymsg = 'Please Upload 4 Images';
       $scope.showimgcompulsorymsg = true;
-        $timeout(function() {
-          $scope.showimgcompulsorymsg = false;
-        }, 3000);
-
+      $timeout(function() {
+        $scope.showimgcompulsorymsg = false;
+      }, 3000);
     }
 
   };
@@ -166,9 +164,9 @@ angular.module('popetyfbapp')
         //fileDisplayArea.innerHTML = "File not supported!"
         $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
         $scope.showfilenotsupportmsg = true;
-          $timeout(function() {
-            $scope.showfilenotsupportmsg = false;
-          }, 3000);
+        $timeout(function() {
+          $scope.showfilenotsupportmsg = false;
+        }, 3000);
 
       }
 
