@@ -346,18 +346,35 @@ angular.module('popetyfbapp')
     });
   };
 
-  $scope.share = function () {
+  $scope.share = function (condo) {
+    console.log(condo.condolist.images);
     FB.ui({
-        method: 'share',
-        href: 'https://www.facebook.com/popetyworld/app/1623378827912092',
-    },function(response) {
-        console.log(response);
-        if (response && !response.error_message) {
-          alert('Posting completed.');
-        } else {
-          alert('Error while posting.');
-        }
-    });
+         method: 'share',
+         name: 'This is the content of the "name" field.',
+         href: 'https://www.facebook.com/popetyworld/app/1623378827912092',
+         picture: 'picture.html?' + condo.condolist.images,
+         caption: 'Caption like which appear as title of the dialog box',
+         description: 'Small description of the post',
+         message: 'Test Feed'
+     },function(response) {
+         console.log(response);
+        //  if (response && !response.error_message) {
+        //    alert('Posting completed.');
+        //  } else {
+        //    alert('Error while posting.');
+        //  }
+     });
+    // FB.ui({
+    //     method: 'share',
+    //     href: 'https://www.facebook.com/popetyworld/app/1623378827912092',
+    // },function(response) {
+    //     console.log(response);
+    //     if (response && !response.error_message) {
+    //       alert('Posting completed.');
+    //     } else {
+    //       alert('Error while posting.');
+    //     }
+    // });
   };
 
 });
