@@ -27,7 +27,7 @@
     <script src="lib/angular-messages.min.js"></script>
 
     <!-- FB -->
-    <script src = "//connect.facebook.net/pl_PL/all.js"></script>
+    <script src="//connect.facebook.net/pl_PL/all.js"></script>
     <script src="js/facebook.js"></script>
 
     <!-- Angular Storage -->
@@ -60,20 +60,31 @@
   </head>
   <body data-ng-app="popetyfbapp" style="background:#fff;">
     <div id="fb-root"></div>
-     <script>(function(d, s, id) {
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) return;
-       js = d.createElement(s); js.id = id;
-       js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=575891605899725";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));</script>
+
+    <script>
+      (function(d, s, id) {
+        var js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id))
+          return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=575891605899725";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="popup" id="loader-div">
+      <img src="images/loader.svg"/>
+    </div>
     <div ui-view></div>
+
     <div class="clear-fix"></div>
+
     <footer>
       <a href="" id="open-popup" class="terms">Terms & Conditions</a>
       <div class="popup" id="popup">
         <div class="popup__inner" style="background-color: #fff;position: relative;">
-            <img src="images/add.svg" class="popup_close" style="right:24px;">
+          <img src="images/add.svg" class="popup_close" style="right:24px;">
           <div>
             <div class="submit_form_box" style="width: 746px;height: 600px;overflow-y: scroll;">
               <div class="col col-12" style="padding: 20px 60px 0;">

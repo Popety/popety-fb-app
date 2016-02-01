@@ -2,6 +2,7 @@ angular.module('popetyfbapp')
 
 .controller('galleryController', function($scope, $http, $timeout, store) {
 
+  var loader = $("#loader-div");
   /**
    @function nextprevcondolist
    @returns retuns next or previous condolist
@@ -75,12 +76,14 @@ angular.module('popetyfbapp')
   $scope.images = [];
 
   $scope.getcondoimages = function(condoinfo) {
+    loader.fadeIn(200);
     $scope.images = [];
     $scope.imagesobj = [];
     var condo_id = {
       condo_id: condoinfo.condo_id
     };
     $http.post(baseurl + 'getcondoimages', condo_id).success(function(res, req) {
+      loader.hide();
       $scope.condoimagelist = res;
       for (var i = 0; i < $scope.condoimagelist.length; i++) {
         $scope.imagesobj.push($scope.condoimagelist[i].images);
@@ -94,7 +97,7 @@ angular.module('popetyfbapp')
       $timeout(function() {
         $scope.showconnectionmsg = false;
       }, 3000);
-
+      loader.hide();
     });
   };
 
@@ -237,7 +240,7 @@ angular.module('popetyfbapp')
 
   ];
   $scope.getCondoListAlphabetically = function(page, pageno) {
-    console.log('hello');
+    loader.fadeIn(200);
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
       $scope.paginationAlphabetical[i].status = false;
       $scope.paginationAlphabetical[i].pageno = 0;
@@ -252,21 +255,25 @@ angular.module('popetyfbapp')
         $timeout(function() {
           $scope.showcondolist_err_msg = false;
         }, 3000);
+        loader.hide();
       } else {
         //$scope.alphaAllcondolist = res;
         $scope.allcondolist = res.condolist;
         if (res.condolist.length > 0)
           $scope.lastid = res.condolist[res.condolist.length - 1].condo_id;
         $scope.letter_total_condos = res.letter_total_condos;
+        loader.hide();
       }
 
     }).error(function(err) {
       console.log("Connection Problem...");
+      loader.hide();
     });
 
   };
 
   $scope.getCondoListAlphabeticallyNextPrev = function(btn) {
+    loader.fadeIn(200);
     if ($scope.count * 6 >= $scope.letter_total_condos) {
       $scope.count = 0;
     }
@@ -288,7 +295,7 @@ angular.module('popetyfbapp')
         condo_letter: $scope.selectedLetter
       };
     }
-    console.log(nextprevid);
+
     $http.post(baseurl + 'getAlphaNumericCondoList', nextprevid).success(function(res, req) {
       if (res.status === 0) {
         $scope.condolist_err_msg = "Error To Get Condo List";
@@ -296,23 +303,24 @@ angular.module('popetyfbapp')
         $timeout(function() {
           $scope.showcondolist_err_msg = false;
         }, 3000);
+        loader.hide();
       } else {
-        console.log(res);
-        //$scope.alphaAllcondolist = res;
         $scope.allcondolist = res.condolist;
         if (res.condolist.length > 0)
           $scope.lastid = res.condolist[res.condolist.length - 1].condo_id;
-        console.log($scope.lastid);
         $scope.letter_total_condos = res.letter_total_condos;
+        loader.hide();
       }
 
     }).error(function(err) {
       console.log("Connection Problem...");
+      loader.hide();
     });
   };
 
 
   $scope.vote = function(condo) {
+    loader.fadeIn(200);
     var vote = {
       'condo_id': condo.condo_id,
       'user_id': store.get('user_id')
@@ -326,11 +334,14 @@ angular.module('popetyfbapp')
             $scope.allcondolist[i].votes = $scope.allcondolist[i].votes + 1;
           }
         }
+        loader.hide();
       } else if (res.status === 1) {
+        loader.hide();
         var popup_3 = $("#popup-3");
         popup_3.fadeIn(200);
       }
     }).error(function(err) {
+      loader.hide();
       console.log(err);
     });
   };

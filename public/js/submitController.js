@@ -3,7 +3,7 @@ angular.module('popetyfbapp')
 .controller('submitController', function($scope, $http, $timeout, $sce, $state, store) {
 
   $scope.imagefiles = [];
-
+  var loader = $("#loader-div");
   $scope.userName = store.get('user_name');
 
   $scope.bedroomdata = {
@@ -89,7 +89,7 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata, valid) {
-
+    loader.fadeIn(200);
     if (valid && $scope.imagefiles.length !== 0) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'Please Upload 4 Images';
@@ -116,6 +116,7 @@ angular.module('popetyfbapp')
             }, 3000);
             document.getElementById("condofrm").reset();
             $scope.imagefiles = {};
+            loader.hide();
             $state.go('tab.gallery');
           } else {
             $scope.submit_err_msg = "Condo Failed To Insert";
@@ -123,8 +124,10 @@ angular.module('popetyfbapp')
             $timeout(function() {
               $scope.showsubmit_err_msg = false;
             }, 3000);
+            loader.hide();
           }
         }).error(function(err) {
+          loader.hide();
           console.log('Connection Problem..');
         });
       }
