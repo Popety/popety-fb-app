@@ -52,28 +52,28 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ng
 
   $urlRouterProvider.otherwise('/home');
 
-})
-
-.service('AuthService', function($q, ezfb){
-  ezfb.login(function (res) {
-    console.log(res);
-     if(res.status === 'connected'){
-       if (res.authResponse) {
-         updateLoginStatus(res.authResponse);
-       }
-     }else {
-       console.log('login');
-     }
-   }, {scope: 'email, user_likes'});
-
-   function updateLoginStatus (more) {
-     $q.all([
-       ezfb.api('/me/likes/637366066397414')
-     ])
-     .then(function (resList) {
-       console.log(resList);
-     });
-   }
-    this.isAuthenticated = window.localStorage.getItem('propertylogin');
-    console.log( 'propertylogin meas us user logged in =' + this.isAuthenticated );
 });
+
+// .service('AuthService', function($q, ezfb){
+//   ezfb.login(function (res) {
+//     console.log(res);
+//      if(res.status === 'connected'){
+//        if (res.authResponse) {
+//          updateLoginStatus(res.authResponse);
+//        }
+//      }else {
+//        console.log('login');
+//      }
+//    }, {scope: 'email, user_likes'});
+//
+//    function updateLoginStatus (more) {
+//      $q.all([
+//        ezfb.api('/me/likes/637366066397414')
+//      ])
+//      .then(function (resList) {
+//        console.log(resList);
+//      });
+//    }
+//     this.isAuthenticated = window.localStorage.getItem('propertylogin');
+//     console.log( 'propertylogin meas us user logged in =' + this.isAuthenticated );
+// });

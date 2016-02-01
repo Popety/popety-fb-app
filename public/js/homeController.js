@@ -3,18 +3,16 @@ angular.module('popetyfbapp')
 .controller('homeController', function ($scope, $http, ezfb, $q, AuthService) {
 
   $scope.like_1 = function () {
-    console.log('hello');
-  };
-  ezfb.login(function (res) {
-    console.log(res);
-     if(res.status === 'connected'){
-       if (res.authResponse) {
-         updateLoginStatus(res.authResponse);
+    ezfb.login(function (res) {
+       if(res.status === 'connected'){
+         if (res.authResponse) {
+           updateLoginStatus(res.authResponse);
+         }
+       }else {
+         console.log('login');
        }
-     }else {
-       console.log('login');
-     }
-   }, {scope: 'email, user_likes'});
+     }, {scope: 'email, user_likes'});
+  };
 
   /**
    * Update loginStatus result
