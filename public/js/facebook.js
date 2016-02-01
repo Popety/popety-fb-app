@@ -1,4 +1,4 @@
-window.fbAsyncInit = function() {
+// window.fbAsyncInit = function() {
   FB.init({
     appId      : '1623378827912092',
     xfbml      : true,
@@ -7,7 +7,7 @@ window.fbAsyncInit = function() {
   });
 
   // ADD ADDITIONAL FACEBOOK CODE HERE
-};
+// };
 
 (function(d, s, id){
    var js, fjs = d.getElementsByTagName(s)[0];

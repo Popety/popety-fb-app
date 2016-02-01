@@ -99,6 +99,7 @@ angular.module('popetyfbapp')
         }, 3000);
       } else {
         var condoinfo = {
+          user_name: store.get('user_name'),
           user_id: store.get('user_id'),
           mobile_no: condodata.mobile_no,
           bedroom: $scope.bedroomdata.selectedOption.name,
