@@ -1541,7 +1541,7 @@ table caption {
     top: 27px;
     cursor: pointer;
     left: 15px;
-    z-index: 99999;
+    z-index: 1;
     background: rgba(42, 42, 41, 0.69);
     padding: 5px 10px 5px 9px;
     border-bottom-right-radius: 15px;
@@ -1645,7 +1645,7 @@ a.btn{
     top: 26px;
     cursor: pointer;
     right: 15px;
-    z-index: 99999;
+    z-index: 1;
     background: rgba(42, 42, 41, 0.69);
     padding: 5px 10px 5px 9px;
     border-bottom-left-radius: 15px;
@@ -2470,7 +2470,7 @@ footer{
     top: 22%;
     transform: rotate(44deg);
 }
-#like-wrapper{ 
+#like-wrapper{
     position: absolute;
     bottom: 84px;
     left: 9%;
