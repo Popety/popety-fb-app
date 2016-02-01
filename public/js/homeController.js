@@ -2,6 +2,7 @@ angular.module('popetyfbapp')
 
 .controller('homeController', function ($state, $scope, $http, $q, store, facebookService) {
   facebookService.checklikes().then(function(resList) {
+    console.log(resList);
        if(resList.data.length === 1){
          getUserData();
        }else {
