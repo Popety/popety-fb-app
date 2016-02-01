@@ -66,7 +66,6 @@ app.post('/api/register', user.register);
 
 //Vote Api
 app.post('/api/vote', vote.vote);
-app.post('/api/checkVote', vote.checkVote);
 
 app.post('/*', function(request, response) {
   response.redirect('/');

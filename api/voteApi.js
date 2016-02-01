@@ -43,7 +43,7 @@ exports.vote = function(req, res) {
               };
               res.jsonp(response);
             } else {
-              var count = rows[0].votes++;
+              var count = rows[0].votes + 1;
               condoCrud.update({
                 'condo_id': voteData.condo_id
               }, {
@@ -73,34 +73,6 @@ exports.vote = function(req, res) {
           res.jsonp(response);
         }
       });
-    }
-  });
-};
-
-exports.checkVote = function(req, res) {
-  var voteData = req.body;
-  voteCrud.load({
-    'user_id': voteData.user_id,
-    'condo_id': voteData.condo_id
-  }, function(error, vals) {
-    if (error) {
-      response = {
-        'status': 0,
-        'error': 'Internal Server Error'
-      };
-      res.jsonp(response);
-    } else if (vals.length === 1) {
-      response = {
-        'status': false,
-        'message': 'ALready Voted'
-      };
-      res.jsonp(response);
-    } else if (vals.length === 0) {
-      response = {
-        'status': true,
-        'message': 'ALready Voted'
-      };
-      res.jsonp(response);
     }
   });
 };

@@ -58,8 +58,15 @@
 
 <div class="popup" id="popup-1">
   <div class="popup__inner ok-popup">
-  		<img src="images/add.svg" class="popup_close_pos ng-scope" style="top:0px;">
-		<h4>Thank you for share</h4>
+  		<img src="images/add.svg" id="close-popup-2" class="popup_close_pos ng-scope" style="top:0px;">
+		<h4>Thank you for voting.</h4>
+  </div><!-- /popup__inner -->
+</div><!-- /popup -->
+
+<div class="popup" id="popup-3">
+  <div class="popup__inner ok-popup">
+  		<img src="images/add.svg" id="close-popup-3" class="popup_close_pos ng-scope" style="top:0px;">
+		<h4>You have already voted for this property.</h4>
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
 
@@ -80,20 +87,22 @@
       };
 
 	var popup_1 = $("#popup-1"),
+			popup_3 = $("#popup-3"),
       doc_1 = $(document),
       popClass = "popped",
-      showPopup_1 = function (event) {
-        popup_1.fadeIn(200);
-        event.preventDefault();
-      },
       hidePopup_1 = function (event) {
         popup_1.hide();
         event.preventDefault();
-      };
+      },
+			hidePopup_3 = function (event) {
+				popup_3.hide();
+				event.preventDefault();
+			};
 
   doc.on("click", "#open-popup1", showPopup);
   doc.on("click", ".popup_close_pos", hidePopup);
-	doc_1.on("click", "#open-popup-2", showPopup_1);
+	doc.on("click", "#close-popup-2", hidePopup_1);
+	doc.on("click", "#close-popup-3", hidePopup_3);
 
   doc.keypress(function (event) {
     if (event.keyCode === 27) { // esc key
@@ -103,7 +112,7 @@
 
 	doc_1.keypress(function (event) {
 		if (event.keyCode === 27) { // esc key
-			hidePopup();
+			hidePopup_1();
 		}
 	});
 
