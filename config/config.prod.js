@@ -4,7 +4,7 @@ var config = module.exports = {};
 
 config.port = 4444;
 
-config.connection = mysql.createConnection({
+config.connection = mysql.createPool({
   host: 'apps.popety.com',
   user: 'photocontest',
   password: '101gXWOqeaf',
