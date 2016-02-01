@@ -2,7 +2,7 @@ angular.module('popetyfbapp')
 
 .controller('homeController', function ($scope, $http, ezfb, $q, AuthService) {
 
-  $scope.like = function () {
+  $scope.like_1 = function () {
     console.log('hello');
   };
   ezfb.login(function (res) {
