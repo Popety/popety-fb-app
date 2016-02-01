@@ -25,7 +25,6 @@ angular.module('popetyfbapp')
     ])
     .then(function (resList) {
       if(resList[0].data.length === 1){
-        window.localStorage.setItem('login') = true;
         $http.get("https://graph.facebook.com/v2.5/me", {
             params: {
               access_token: more.accessToken,
@@ -39,6 +38,6 @@ angular.module('popetyfbapp')
         });
       }
     });
-  };
+  }
 
 });
