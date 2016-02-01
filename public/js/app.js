@@ -54,7 +54,7 @@ angular.module('popetyfbapp',['ui.router', 'MassAutoComplete', 'ngMessages', 'ng
 
 })
 
-.service('AuthService', function(ezfb){
+.service('AuthService', function($q, ezfb){
   ezfb.login(function (res) {
     console.log(res);
      if(res.status === 'connected'){
