@@ -59,8 +59,8 @@ exports.register = function (req, res) {
           'user_first_name': userData.first_name,
           'user_last_name': userData.last_name,
           'facebook_id': userData.id,
-          'gender': userData.gender
         }, function (error, vals) {
+          console.log(error);
           if(vals.affectedRows === 1){
             // getUserVotes(vals.insertId, function (result) {
             //   if(result.status === 0){
