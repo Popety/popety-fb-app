@@ -5,7 +5,24 @@ var cfg = require('../config/config.' + env);
 
 var db = cfg.connection;
 var async = require("async");
+var fs = require('fs-extra');
 
+var CRUD = require('mysql-crud');
+
+var galleryCrud = CRUD(db, 'fb_condo_images');
+
+var response;
+
+function decodeBase64Image (dataString, callback) {
+  var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+  response = {};
+  if (matches.length !== 3) {
+    return new Error('Invalid input string');
+  }
+  response.type = matches[1];
+  response.data = new Buffer(matches[2], 'base64');
+  callback(response);
+}
 
 exports.getallcondolist = function(req, res) {
   var condo_list_query = "SELECT * FROM fb_condo_list ORDER by fb_condo_list.condo_id desc LIMIT 6 ";
@@ -32,7 +49,7 @@ exports.getallcondolist = function(req, res) {
               data.push(item);
               callback();
             } else {
-              var response = {
+              response = {
                 status: 0,
                 message: 'INTERNAL ERROR condo information.'
               };
@@ -44,7 +61,7 @@ exports.getallcondolist = function(req, res) {
           if (!err) {
             res.jsonp(data);
           } else {
-            var response = {
+            response = {
               status: 0,
               message: 'INTERNAL ERROR condo information.'
             };
@@ -90,10 +107,10 @@ exports.nextprevcondolist = function(req, res) {
               data.push(item);
               callback();
             } else {
-              var response = {
+              response = {
                 status: 0,
                 message: 'INTERNAL ERROR to get condo information.'
-              }
+              };
 
             }
           });
@@ -102,10 +119,10 @@ exports.nextprevcondolist = function(req, res) {
           if (!err) {
             res.jsonp(data);
           } else {
-            var response = {
+            response = {
               status: 0,
               message: 'INTERNAL ERROR to get condo information.'
-            }
+            };
             res.jsonp(response);
           }
         });
@@ -129,7 +146,7 @@ exports.getcondoimages = function(req, res) {
       res.jsonp(rows);
     }
   });
-}
+};
 
 exports.getAlphaNumericCondoList = function(req, res) {
   //console.log(req.body);
@@ -173,35 +190,73 @@ exports.getAlphaNumericCondoList = function(req, res) {
                 data.push(item);
                 callback();
               } else {
-                var response = {
+                response = {
                   status: 0,
                   message: 'INTERNAL ERROR condo information.'
-                }
+                };
 
               }
             });
           },
           function(err) {
             if (!err) {
-              var response = {
+              response = {
                 status: 1,
                 message: 'Success.',
                 condolist: data,
                 letter_total_condos: countrow[0].all_letter_condos,
-              }
+              };
               res.jsonp(response);
             } else {
-              var response = {
+              response = {
                 status: 0,
                 message: 'INTERNAL ERROR condo information.'
-              }
+              };
               res.jsonp(response);
             }
           });
 
       }
 
-    })
-  })
+    });
+  });
 
+};
+
+exports.createImage = function (req, res) {
+  var condoData = req.body;
+  galleryCrud.load({
+    'condo_id': condoData.condo_id
+  }, function (err, rows) {
+    if(err){
+      response = {
+        status: 0,
+        message: 'INTERNAL SERVER ERROR'
+      };
+      res.jsonp(response);
+    }else {
+      decodeBase64Image(rows[0].images, function (result) {
+        var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
+        // fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
+        fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+          if(error){
+            response = {
+              status: 0,
+              message: 'INTERNAL SERVER ERROR'
+            };
+            res.jsonp(response);
+          }else {
+            response = {
+              status: 1,
+              filename: filename,
+              message: 'Image Created'
+            };
+            res.jsonp(response);
+          }
+        });
+      });
+    }
+  },{
+    'limit' : 1
+  });
 };

@@ -39,6 +39,7 @@ if (app.get('env') === 'development') {
 
 app.use('/api', express.static(__dirname + '/api'));
 app.use('/', express.static(__dirname + '/public'));
+app.use('/temp_images', express.static(__dirname + '/temp'));
 
 var submit = require('./api/submitApi');
 var gallery = require('./api/galleryApi');
@@ -60,6 +61,7 @@ app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
 app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
+app.post('/api/createImage',gallery.createImage);
 
 //User Api
 app.post('/api/register', user.register);
