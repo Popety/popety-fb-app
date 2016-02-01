@@ -17,7 +17,7 @@
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
-			<span class="share_icon">SHARE</span>
+			<span class="share_icon" >SHARE</span>
 			<span class="vote_icon" data-ng-click="vote(condo)">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="main_div">
@@ -56,6 +56,50 @@
 		</div>
   </div><!-- /popup__inner -->
 </div><!-- /popup -->
+
+<!-- Another popup-->
+<button data-js="open">Open Pop-up</button>
+<div class="popup1">
+	<h2>This Is My Pop-up</h2>
+	<button name="close">Close Pop-up</button>
+</div>
+
+<script type="text/javascript">
+	function popupOpenClose(popup1) {
+	
+	/* Add div inside popup for layout if one doesn't exist */
+	if ($(".wrapper").length == 0){
+		$(popup1).wrapInner("<div class='wrapper'></div>");
+	}
+	
+	/* Open popup */
+	$(popup1).show();
+
+	/* Close popup if user clicks on background */
+	$(popup1).click(function(e) {
+		if ( e.target == this ) {
+			if ($(popup1).is(':visible')) {
+				$(popup1).hide();
+			}
+		}
+	});
+
+	/* Close popup and remove errors if user clicks on cancel or close buttons */
+	$(popup1).find("button[name=close]").on("click", function() {
+		if ($(".formElementError").is(':visible')) {
+			$(".formElementError").remove();
+		}
+		$(popup1).hide();
+	});
+}
+
+$(document).ready(function () {
+	$("[data-js=open]").on("click", function() {
+		popupOpenClose($(".popup1"));
+	});
+});
+
+</script>
 
 <script type="text/javascript">
 
