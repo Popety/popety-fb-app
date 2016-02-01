@@ -348,14 +348,15 @@ angular.module('popetyfbapp')
 
   $scope.share = function () {
     FB.ui({
-      method: 'share_open_graph',
-      action_type: 'og.likes',
-      action_properties: JSON.stringify({
-        object:'https://www.facebook.com/popetyworld/app/1623378827912092',
-      })
-    }, function(response){
-      // Debug response (optional)
-      console.log(response);
+        method: 'share',
+        href: 'https://www.facebook.com/popetyworld/app/1623378827912092',
+    },function(response) {
+        console.log(response);
+        if (response && !response.error_message) {
+          alert('Posting completed.');
+        } else {
+          alert('Error while posting.');
+        }
     });
   };
 
