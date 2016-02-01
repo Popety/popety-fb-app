@@ -27,14 +27,7 @@
     <script src="lib/angular-messages.min.js"></script>
 
     <script src = "//connect.facebook.net/en_US/sdk.js"></script>
-    <script>
-    FB.init({
-      appId      : '1623378827912092',
-      xfbml      : true,
-      version    : 'v2.4',
-      status     : true
-    });
-    </script>
+    <script src="js/facebook.js"></script>
     <!-- Angular Storage -->
     <script src="lib/angular-storage.min.js"></script>
 
@@ -75,7 +68,6 @@
        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=575891605899725";
        fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));</script>
-    <!-- <script src="js/facebook.js"></script> -->
     <div ui-view></div>
     <div class="clear-fix"></div>
     <footer>

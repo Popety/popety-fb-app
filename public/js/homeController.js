@@ -1,22 +1,9 @@
 angular.module('popetyfbapp')
 
 .controller('homeController', function ($state, $scope, $http, $q, store, facebookService) {
-// ezfb
-  FB.login(function(response) {
-      if (response.authResponse) {
-       console.log('Welcome!  Fetching your information.... ');
-       FB.api('/me', {
-           fields: 'id,name,email,gender,first_name,last_name,'
-       }, function(response) {
-           console.log(response);
-       });
-      } else {
-       console.log('User cancelled login or did not fully authorize.');
-      }
-  });
-  // facebookService.getUserData().then(function(response) {
-  //      console.log(response);
-  //  });
+  facebookService.checklikes().then(function(response) {
+       console.log(response);
+   });
   $scope.fb_submit = function () {
     console.log('hello');
     // ezfb.login(function (res) {
