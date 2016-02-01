@@ -60,8 +60,8 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
     return {
         getUserData: function() {
             var deferred = $q.defer();
-            FB.login(function(response) {
-                if (response.authResponse) {
+            // FB.login(function(response) {
+            //     if (response.authResponse) {
                  FB.api('/me', {
                      fields: 'id,email,gender,first_name,last_name'
                  }, function(response) {
@@ -70,12 +70,11 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
                      } else {
                          deferred.resolve(response);
                      }
-                     console.log(response);
                  });
-                } else {
-                 console.log('User cancelled login or did not fully authorize.');
-                }
-            });
+            //     } else {
+            //      console.log('User cancelled login or did not fully authorize.');
+            //     }
+            // });
             return deferred.promise;
         },
         checklikes: function () {
@@ -88,7 +87,6 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
                    } else {
                        deferred.resolve(response);
                    }
-                   console.log(response);
                });
               } else {
                console.log('User cancelled login or did not fully authorize.');
