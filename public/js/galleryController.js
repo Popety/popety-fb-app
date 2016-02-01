@@ -354,9 +354,9 @@ angular.module('popetyfbapp')
       if(res.status === 1){
         console.log(imageurl + '' + res.filename);
         FB.ui({
-             method: 'share',
+             method: 'feed',
              name: 'This is the content of the "name" field.',
-             href: 'https://www.facebook.com/popetyworld/app/1623378827912092',
+             link: 'https://www.facebook.com/popetyworld/app/1623378827912092',
              picture: imageurl + '' + res.filename,
              caption: 'Caption like which appear as title of the dialog box',
              description: 'Small description of the post',
