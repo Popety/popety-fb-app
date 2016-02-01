@@ -8,7 +8,9 @@
 	</div>
 	<div class="col col-11">
 	    <ul class="list-unstyled" >
-	    	<li data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)">{{page.letter}}</li>
+				<li data-ng-show="nextIndex > 5" data-ng-click="nextIndex = nextIndex - 4; prevIndex = prevIndex - 4;"><</li>
+	    	<li data-ng-show="$index < nextIndex && $index >= prevIndex" data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)">{{page.letter}}</li>
+				<li data-ng-show="nextIndex < 28" data-ng-click="nextIndex = nextIndex + 5; prevIndex = prevIndex + 5;">></li>
 	    </ul>
 	</div>
 	<div class="row" style="margin-top: 60px;">

@@ -89,7 +89,6 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata, valid) {
-    loader.fadeIn(200);
     if (valid && $scope.imagefiles.length !== 0) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'Please Upload 4 Images';
@@ -98,6 +97,7 @@ angular.module('popetyfbapp')
           $scope.showimagelimitmsg = false;
         }, 3000);
       } else {
+        loader.fadeIn(200);
         var condoinfo = {
           user_name: store.get('user_name'),
           user_id: store.get('user_id'),
@@ -131,14 +131,6 @@ angular.module('popetyfbapp')
           console.log('Connection Problem..');
         });
       }
-
-
-    } else {
-      $scope.imgcompulsorymsg = 'Please Upload 4 Images';
-      $scope.showimgcompulsorymsg = true;
-      $timeout(function() {
-        $scope.showimgcompulsorymsg = false;
-      }, 3000);
     }
 
   };

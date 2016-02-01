@@ -3,6 +3,9 @@ angular.module('popetyfbapp')
 .controller('galleryController', function($scope, $http, $timeout, store) {
 
   var loader = $("#loader-div");
+  $scope.nextIndex = 5;
+  $scope.prevIndex = 0;
+
   /**
    @function nextprevcondolist
    @returns retuns next or previous condolist
