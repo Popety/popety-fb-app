@@ -147,6 +147,7 @@ exports.condosubmit = function(req, res) {
             'thumb_images': result.thumb,
             'created_on': cfg.timestamp()
           }, function (error, vals) {
+            console.log(error);
             if(vals.affectedRows === 1){
               response = {
                 status: 1,
