@@ -3,6 +3,9 @@ var http = require('http');
 var exec = require('child_process').exec;
 var fs = require('fs-extra');
 
+var util = require('util');
+var mime = require('mime');
+
 var env = process.env.NODE_ENV || 'dev';
 var cfg = require('../config/config.' + env);
 
@@ -24,7 +27,7 @@ function decodeBase64Image (dataString, callback) {
 
 function watermark(image, callback){
     decodeBase64Image(image, function (result) {
-        var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
+        var filename = Math.floor((Math.random()*999999999999)+1)+'.png';
         fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
         // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
           if(error){
@@ -55,7 +58,7 @@ function watermark(image, callback){
                 callback(response);
               }else {
                 var data = fs.readFileSync(newFile).toString("base64");
-                var base64 = util.format("data:%s;base64,%s", mime.lookup(src), data);
+                var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
                 callback(base64);
               }
             });
@@ -94,23 +97,24 @@ exports.condosubmit = function(req, res) {
     } else {
 
       async.each(req.body.attachmentfile, function(item, callback) {
-          var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + item + "'," + cfg.timestamp() + ")";
-          db.query(query1, function(err, images) {
-            if (!err) {
-              response = {
-                status: 1,
-                message: 'Image Upload successfully.'
-              };
-            } else {
-              response = {
-                status: 0,
-                message: 'INTERNAL ERROR condo information.'
-              };
-            }
-            callback();
+          watermark(item, function (result) {
+            var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + result + "'," + cfg.timestamp() + ")";
+            db.query(query1, function(err, images) {
+              if (!err) {
+                response = {
+                  status: 1,
+                  message: 'Image Upload successfully.'
+                };
+              } else {
+                response = {
+                  status: 0,
+                  message: 'INTERNAL ERROR condo information.'
+                };
+              }
+              callback();
+            });
           });
-        },
-        function(err) {
+        },function(err) {
           if (!err) {
             response = {
               status: 1,
