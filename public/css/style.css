@@ -1676,9 +1676,9 @@ a.btn{
     padding-bottom: 41px;
 }
 .thumbnail .padding h4{
-    font-family: 'syncopatebold';
     color: #f9c100;
     font-size: 16px;
+    font-weight: bold;
     text-transform: uppercase;
 }
 .count{
