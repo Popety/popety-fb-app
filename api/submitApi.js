@@ -56,7 +56,7 @@ function watermark(image, callback){
               }else {
                 var data = fs.readFileSync(newFile).toString("base64");
                 var base64 = util.format("data:%s;base64,%s", mime.lookup(src), data);
-                callback(base64);
+                callback('success');
               }
             });
           }
@@ -94,6 +94,9 @@ exports.condosubmit = function(req, res) {
     } else {
 
       async.each(req.body.attachmentfile, function(item, callback) {
+          watermark(item, function (result) {
+            console.log(result);
+          });
           var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + item + "'," + cfg.timestamp() + ")";
           db.query(query1, function(err, images) {
             if (!err) {
