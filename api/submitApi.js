@@ -1,4 +1,7 @@
 var http = require('http');
+// Require our module dependencies
+var exec = require('child_process').exec;
+var fs = require('fs-extra');
 
 var env = process.env.NODE_ENV || 'dev';
 var cfg = require('../config/config.' + env);
@@ -8,6 +11,58 @@ var async = require("async");
 
 var response;
 
+function decodeBase64Image (dataString, callback) {
+  var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+  response = {};
+  if (matches.length !== 3) {
+    return new Error('Invalid input string');
+  }
+  response.type = matches[1];
+  response.data = new Buffer(matches[2], 'base64');
+  callback(response);
+}
+
+function watermark(image, callback){
+    decodeBase64Image(image, function (result) {
+        var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
+        fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
+        // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+          if(error){
+            response = {
+              status: 0,
+              message: 'INTERNAL SERVER ERROR'
+            };
+            res.jsonp(response);
+          }else {
+            var newFile = '/home/apps/popety-fb-app/temp/new_'+Math.floor((Math.random()*9999)+1)+filename;
+            console.log(newFile);
+            var command = [
+                'composite',
+                '-dissolve', '90%',
+                '-gravity', 'center',
+                '-quality', 100,
+                '/home/apps/popety-fb-app/temp/watermark.png',
+                '/home/apps/popety-fb-app/temp/'+ filename,
+                newFile
+            ];
+            // Join command array by a space character and then execute command
+            exec(command.join(' '), function(err, stdout, stderr) {
+              if(err){
+                response = {
+                  status: 0,
+                  message: 'INTERNAL SERVER ERROR'
+                };
+                callback(response);
+              }else {
+                var data = fs.readFileSync(newFile).toString("base64");
+                var base64 = util.format("data:%s;base64,%s", mime.lookup(src), data);
+                callback(base64);
+              }
+            });
+          }
+        });
+    });
+}
 
 exports.condoList = function(req, res) {
   var query = "select unit_name from srx_condo_details";
