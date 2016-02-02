@@ -152,7 +152,9 @@ angular.module('popetyfbapp')
         if (newfile.type.match(imageType)) {
           var oFReader = new FileReader();
           oFReader.onload = function(oFREvent) {
-            $scope.imagefiles.push(oFReader.result);
+            $scope.imagefiles.push({
+              'image': oFReader.result
+            });
             $scope.$apply();
           };
           oFReader.readAsDataURL(newfile);

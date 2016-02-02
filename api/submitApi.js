@@ -1,7 +1,7 @@
 var http = require('http');
 // Require our module dependencies
 var exec = require('child_process').exec;
-var imagemagick = require('imagemagick-native');
+var im = require('imagemagick');
 var fs = require('fs-extra');
 
 var util = require('util');
@@ -14,6 +14,7 @@ var db = cfg.connection;
 var async = require("async");
 
 var response;
+var filePath = '/home/apps/popety-fb-app/temp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -26,10 +27,10 @@ function decodeBase64Image(dataString, callback) {
   callback(response);
 }
 
-function watermark(image, callback) {
-  decodeBase64Image(image, function(result) {
+function watermark(imageData, callback) {
+  decodeBase64Image(imageData.image, function(result) {
     var filename = Math.floor((Math.random() * 999999999999) + 1) + '.png';
-    fs.writeFile("/home/apps/popety-fb-app/temp/" + filename, result.data, function(error) {
+    fs.writeFile(filePath + "" + filename, result.data, function(error) {
       // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
       if (error) {
         response = {
@@ -38,15 +39,15 @@ function watermark(image, callback) {
         };
         res.jsonp(response);
       } else {
-        var newFile = '/home/apps/popety-fb-app/temp/new_' + Math.floor((Math.random() * 9999) + 1) + filename;
+        var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 9999) + 1) + filename;
         console.log(newFile);
         var command = [
           'composite',
           '-dissolve', '90%',
           '-gravity', 'center',
           '-quality', 100,
-          '/home/apps/popety-fb-app/temp/watermark.png',
-          '/home/apps/popety-fb-app/temp/' + filename,
+          filePath + 'watermark.png',
+          filePath + "" + filename,
           newFile
         ];
         // Join command array by a space character and then execute command
@@ -58,9 +59,17 @@ function watermark(image, callback) {
             };
             callback(response);
           } else {
-            var data = fs.readFileSync(newFile).toString("base64");
-            var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
-            callback(base64);
+            im.resize({
+              srcPath: newFile,
+              dstPath: 'kittens-small.jpg',
+              width:   256
+            }, function(err, stdout, stderr){
+              if (err) throw err;
+              console.log('resized kittens.jpg to fit within 256x256px');
+            });
+            // var data = fs.readFileSync(newFile).toString("base64");
+            // var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
+            // callback(base64);
           }
         });
       }
