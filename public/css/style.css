@@ -2318,12 +2318,25 @@ input[type=number]::-webkit-outer-spin-button {
   height: 40px;
   padding: 8px;
   cursor: pointer;
+  z-index: 99999;
+  -ms-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.popup_close{
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  z-index: 99999;
+  cursor: pointer;
   -ms-transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 .popup_close_pos {
-    height: 50px;
+    height: 50px !important;
     width: 40px !important;
     position: absolute;
     right: 0px;
@@ -2477,11 +2490,12 @@ footer{
 }
 #like-wrapper{
     position: absolute;
-    top: 228px;
-    right: 34%;
+    top: 205px;
+    right: 29%;
     overflow: hidden;
-    width: 265px;
+    width: 235px;
     height: 78px;
+
    }
 
 #like-wrapper iframe{border: none;
