@@ -364,12 +364,9 @@ angular.module('popetyfbapp')
     //     console.log(imageurl + '' + res.filename);
         FB.ui({
              method: 'share',
-             name: 'This is the content of the "name" field.',
-             href: 'https://apps.popety.com/#/home/true',
+             href: 'https://apps.popety.com/redirect.html',
              picture: 'https://apps.popety.com/images/share_image.jpg',
-             caption: 'Caption like which appear as title of the dialog box',
-             description: 'Small description of the post',
-             message: 'Test Feed'
+             description: condo.condo_name,
          },function(response) {
              console.log(response);
             //  if (response && !response.error_message) {
