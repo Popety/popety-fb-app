@@ -99,7 +99,7 @@ function watermark(imageData, callback) {
                     var base64Thumb = util.format("data:image/png;base64,", newThumbData);
                     callback({
                       'original': base64File,
-                      'thumb': base64Thumb.trim()
+                      'thumb': base64Thumb
                     });
                   }
                 });
