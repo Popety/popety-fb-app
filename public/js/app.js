@@ -6,7 +6,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
   $stateProvider
 
   .state('home', {
-    url: "/home/:redirect",
+    url: "/home",
     templateUrl: "templates/home.html",
   })
 
@@ -39,7 +39,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
     templateUrl: "templates/terms.html",
   });
 
-  $urlRouterProvider.otherwise('/home/false');
+  $urlRouterProvider.otherwise('/home');
 
 })
 

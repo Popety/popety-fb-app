@@ -1,10 +1,7 @@
 angular.module('popetyfbapp')
 
 .controller('homeController', function ($state, $stateParams, $scope, $http, $q, store, facebookService) {
-  console.log($stateParams);
-  if($stateParams.redirect === "true" || $stateParams.redirect === true){
-    window.location = "https://www.facebook.com/popetyworld/app/1623378827912092/";
-  }else if($stateParams.redirect === "false" || $stateParams.redirect === false){
+
     $scope.getUserData = function () {
       facebookService.getUserData().then(function(response){
         $http.post( baseurl + 'register', response).success(function (res, req) {
@@ -20,7 +17,6 @@ angular.module('popetyfbapp')
         });
       });
     };
-  }
   // facebookService.checklikes().then(function(resList) {
   //   console.log(resList);
   //      if(resList.data.length === 1){
