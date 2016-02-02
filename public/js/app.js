@@ -6,7 +6,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
   $stateProvider
 
   .state('home', {
-    url: "/home",
+    url: "/home/:redirect",
     templateUrl: "templates/home.html",
   })
 

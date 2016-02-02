@@ -365,7 +365,7 @@ angular.module('popetyfbapp')
         FB.ui({
              method: 'share',
              name: 'This is the content of the "name" field.',
-             href: 'https://apps.popety.com',
+             href: 'https://apps.popety.com/#/redirect',
              picture: 'https://apps.popety.com/images/share_image.jpg',
              caption: 'Caption like which appear as title of the dialog box',
              description: 'Small description of the post',
