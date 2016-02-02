@@ -95,11 +95,12 @@ function watermark(imageData, callback) {
                   }else {
                     var newFileData = fs.readFileSync(newFile).toString("base64");
                     var newThumbData = fs.readFileSync(newThumb).toString("base64");
-                    var base64File = util.format("data:%s;base64,%s", mime.lookup(newFile), newFileData);
-                    var base64Thumb = util.format("data:image/png;base64,", newThumbData);
+                    // var base64File = util.format("data:%s;base64,%s", mime.lookup(newFile), newFileData);
+                    // var base64Thumb = util.format("data:image/png;base64,", newThumbData);
+                    // console.log(newThumbData);
                     callback({
-                      'original': base64File,
-                      'thumb': base64Thumb
+                      'original': newFileData,
+                      'thumb': newThumbData
                     });
                   }
                 });
