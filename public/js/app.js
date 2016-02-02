@@ -39,7 +39,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
     templateUrl: "templates/terms.html",
   });
 
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/home/false');
 
 })
 
