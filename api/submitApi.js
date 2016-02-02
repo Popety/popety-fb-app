@@ -24,7 +24,7 @@ function decodeBase64Image (dataString, callback) {
 
 function watermark(image, callback){
     decodeBase64Image(image, function (result) {
-        var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
+        var filename = Math.floor((Math.random()*999999999999)+1)+'.png';
         fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
         // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
           if(error){
