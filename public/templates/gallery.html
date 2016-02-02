@@ -26,7 +26,7 @@
 			    	<img data-ng-src="{{condo.condolist.images}}"/>
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
-				    		<h4>{{condo.condo_name}}</h4>
+				    		<h4>{{condo.condo_name | limitTo: 15}}</h4>
 				    		<h6>{{condo.user_name}}</h6>
 				    	</div>
 				    	<div class="votes_box">
