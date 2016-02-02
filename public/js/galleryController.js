@@ -364,6 +364,7 @@ angular.module('popetyfbapp')
     //     console.log(imageurl + '' + res.filename);
         FB.ui({
              method: 'feed',
+             app_id: 1623378827912092,
              name: 'This is the content of the "name" field.',
              link: 'https://www.facebook.com/popetyworld/app/1623378827912092',
              picture: 'https://apps.popety.com/images/share_image.jpg',
