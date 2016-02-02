@@ -60,12 +60,11 @@ angular.module('popetyfbapp')
         $timeout(function() {
           $scope.showcondolist_err_msg = false;
         }, 3000);
-        loader.hide();
       } else if (res.length !== 0){
         $scope.allcondolist = res;
         $scope.lastid = res[res.length - 1].condo_id;
-        loader.hide();
       }
+      loader.hide();
     }).error(function(err) {
       console.log("Connection Problem...");
     });
