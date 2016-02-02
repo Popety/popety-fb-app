@@ -58,7 +58,7 @@ function watermark(image, callback){
                 callback(response);
               }else {
                 var data = fs.readFileSync(newFile).toString("base64");
-                var base64 = util.format("data:%s;base64,%s", mime.lookup(src), data);
+                var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
                 callback('success');
               }
             });
