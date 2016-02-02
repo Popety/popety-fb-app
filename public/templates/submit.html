@@ -41,7 +41,7 @@
               </div>
               <div class="col col-12" style="position:relative;">
                   <img src="images/add.svg" class="add_icon">
-                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple/>
+                  <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple ng-disabled="imagefiles.length >= 10"/>
                   <div data-ng-model="imgcompulsorymsg" ng-show="showimgcompulsorymsg" class="valid_msg" style="margin-top: 10px;">{{imgcompulsorymsg}}</div>
                   <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg" class="valid_msg" style="margin-top: 10px;">{{imagelimitmsg}}</div>
               </div>
@@ -106,3 +106,10 @@
     </div>
     <div class="clear-fix"></div>
   </div>
+  <div class="popup" id="file-popup">
+    <div class="popup__inner ok-popup">
+    		<img src="images/add.svg" class="popup_close_pos ng-scope" style="top:0px;" data-ng-click="closePopup()">
+  		<h4>You can only upload 10 images.</h4>
+    </div><!-- /popup__inner -->
+  </div><!-- /popup -->
+</div>

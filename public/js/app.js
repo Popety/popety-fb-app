@@ -83,11 +83,5 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
           return deferred.promise;
         }
 
-    }
-})
-
-.service('AuthService', function(store){
-    this.isAuthenticated = store.get('login');
-    console.log(store.get('login'));
-    console.log( 'propertylogin meas us user logged in =' + this.isAuthenticated );
+    };
 });

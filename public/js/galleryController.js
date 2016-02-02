@@ -350,34 +350,35 @@ angular.module('popetyfbapp')
   };
 
   $scope.share = function (condo) {
-    FB.ui({
-      method: 'share',
-      href: 'https://www.facebook.com/popetyworld/app/1623378827912092/',
-    }, function(response){
-      console.log(response);
-    });
+    // FB.ui({
+    //   method: 'share',
+    //   href: 'https://www.facebook.com/popetyworld/app/1623378827912092/',
+    // }, function(response){
+    //   console.log(response);
+    // });
     // var condoData = {
     //   'condo_id': condo.condo_id
     // };
     // $http.post( baseurl + 'createImage', condoData).success(function (res, req) {
     //   if(res.status === 1){
     //     console.log(imageurl + '' + res.filename);
-        // FB.ui({
-        //      method: 'feed',
-        //      name: 'This is the content of the "name" field.',
-        //      link: 'https://www.facebook.com/popetyworld/app/1623378827912092',
-        //      picture: imageurl + '' + res.filename,
-        //      caption: 'Caption like which appear as title of the dialog box',
-        //      description: 'Small description of the post',
-        //      message: 'Test Feed'
-        //  },function(response) {
-        //      console.log(response);
-        //     //  if (response && !response.error_message) {
-        //     //    alert('Posting completed.');
-        //     //  } else {
-        //     //    alert('Error while posting.');
-        //     //  }
-        //  });
+        FB.ui({
+             method: 'feed',
+             app_id: 1623378827912092,
+             name: 'This is the content of the "name" field.',
+             link: 'https://www.facebook.com/popetyworld/app/1623378827912092',
+             picture: 'https://apps.popety.com/images/share_image.jpg',
+             caption: 'Caption like which appear as title of the dialog box',
+             description: 'Small description of the post',
+             message: 'Test Feed'
+         },function(response) {
+             console.log(response);
+            //  if (response && !response.error_message) {
+            //    alert('Posting completed.');
+            //  } else {
+            //    alert('Error while posting.');
+            //  }
+         });
     //   }
     //   console.log(res);
     // }).error(function (err) {

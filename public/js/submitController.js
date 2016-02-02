@@ -4,6 +4,7 @@ angular.module('popetyfbapp')
 
   $scope.imagefiles = [];
   var loader = $("#loader-div");
+  var filePopup = $("#file-popup");
   $scope.userName = store.get('user_name');
 
   $scope.bedroomdata = {
@@ -142,37 +143,40 @@ angular.module('popetyfbapp')
    @initialDate
    */
   $scope.updateattachment = function(file_browse) {
+    if(document.getElementById("file_browse1").files.length <= 10){
+      angular.forEach(document.getElementById("file_browse1").files, function(file) {
+        var fileDisplayArea = document.getElementById('fileDisplayArea');
+        var newfile = file;
+        var imageType = "image";
 
-    angular.forEach(document.getElementById("file_browse1").files, function(file) {
+        if (newfile.type.match(imageType)) {
+          var oFReader = new FileReader();
+          oFReader.onload = function(oFREvent) {
+            $scope.imagefiles.push(oFReader.result);
+            $scope.$apply();
+          };
+          oFReader.readAsDataURL(newfile);
+        } else {
+          //fileDisplayArea.innerHTML = "File not supported!"
+          $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
+          $scope.showfilenotsupportmsg = true;
+          $timeout(function() {
+            $scope.showfilenotsupportmsg = false;
+          }, 3000);
 
-      var fileDisplayArea = document.getElementById('fileDisplayArea');
-      var newfile = file;
-      var imageType = "image";
-
-      if (newfile.type.match(imageType)) {
-        var oFReader = new FileReader();
-        oFReader.onload = function(oFREvent) {
-          console.log(oFReader.result);
-          $scope.imagefiles.push(oFReader.result);
-          // console.log($scope.imagefiles);
-          $scope.$apply();
-        };
-        oFReader.readAsDataURL(newfile);
-      } else {
-        //fileDisplayArea.innerHTML = "File not supported!"
-        $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
-        $scope.showfilenotsupportmsg = true;
-        $timeout(function() {
-          $scope.showfilenotsupportmsg = false;
-        }, 3000);
-
-      }
-
-    });
+        }
+      });
+    }else {
+      filePopup.fadeIn(200);
+    }
   };
 
   $scope.removeimage = function(img) {
     $scope.imagefiles.splice($scope.imagefiles.indexOf(img), 1);
+  };
+
+  $scope.closePopup = function () {
+    filePopup.hide();
   };
 
 });
