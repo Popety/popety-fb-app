@@ -2,6 +2,7 @@ var http = require('http');
 // Require our module dependencies
 var exec = require('child_process').exec;
 var fs = require('fs-extra');
+var util = require('util');
 
 var env = process.env.NODE_ENV || 'dev';
 var cfg = require('../config/config.' + env);
