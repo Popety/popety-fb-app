@@ -223,40 +223,40 @@ exports.getAlphaNumericCondoList = function(req, res) {
 
 };
 
-exports.createImage = function (req, res) {
-  var condoData = req.body;
-  galleryCrud.load({
-    'condo_id': condoData.condo_id
-  }, function (err, rows) {
-    if(err){
-      response = {
-        status: 0,
-        message: 'INTERNAL SERVER ERROR 234'
-      };
-      res.jsonp(response);
-    }else {
-      decodeBase64Image(rows[0].images, function (result) {
-        var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
-        fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
-        // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
-          if(error){
-            response = {
-              status: 0,
-              message: 'INTERNAL SERVER ERROR'
-            };
-            res.jsonp(response);
-          }else {
-            response = {
-              status: 1,
-              filename: filename,
-              message: 'Image Created'
-            };
-            res.jsonp(response);
-          }
-        });
-      });
-    }
-  },{
-    'limit' : 1
-  });
-};
+// exports.createImage = function (req, res) {
+//   var condoData = req.body;
+//   galleryCrud.load({
+//     'condo_id': condoData.condo_id
+//   }, function (err, rows) {
+//     if(err){
+//       response = {
+//         status: 0,
+//         message: 'INTERNAL SERVER ERROR 234'
+//       };
+//       res.jsonp(response);
+//     }else {
+//       decodeBase64Image(rows[0].images, function (result) {
+//         var filename = Math.floor((Math.random()*999999999)+1)+condoData.condo_id+'.png';
+//         fs.writeFile("/home/apps/popety-fb-app/temp/"+filename, result.data, function(error) {
+//         // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+//           if(error){
+//             response = {
+//               status: 0,
+//               message: 'INTERNAL SERVER ERROR'
+//             };
+//             res.jsonp(response);
+//           }else {
+//             response = {
+//               status: 1,
+//               filename: filename,
+//               message: 'Image Created'
+//             };
+//             res.jsonp(response);
+//           }
+//         });
+//       });
+//     }
+//   },{
+//     'limit' : 1
+//   });
+// };
