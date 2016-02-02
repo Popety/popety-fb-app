@@ -1,8 +1,8 @@
 var instance = "prod";
 
 if (instance == "prod"){
-	// var baseurl = 'api/';
-	var baseurl = 'http://apps.popety.com:4444/api/';
+	var baseurl = 'api/';
+	// var baseurl = 'http://apps.popety.com:4444/api/';
 }else if (instance == "dev"){
 	var baseurl = 'http://n2.transparent.sg:9999/api/';
 }else if(instance == "local"){
