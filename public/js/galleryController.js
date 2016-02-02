@@ -52,6 +52,7 @@ angular.module('popetyfbapp')
    @initialDate
    */
   $scope.getallcondolist = function() {
+    loader.fadeIn(200);
     $http.get(baseurl + 'getallcondolist').success(function(res, req) {
       if (res.status === 0) {
         $scope.condolist_err_msg = "Error To Get Condo List";
@@ -59,9 +60,11 @@ angular.module('popetyfbapp')
         $timeout(function() {
           $scope.showcondolist_err_msg = false;
         }, 3000);
+        loader.hide();
       } else if (res.length !== 0){
         $scope.allcondolist = res;
         $scope.lastid = res[res.length - 1].condo_id;
+        loader.hide();
       }
     }).error(function(err) {
       console.log("Connection Problem...");
@@ -364,12 +367,10 @@ angular.module('popetyfbapp')
     //     console.log(imageurl + '' + res.filename);
         FB.ui({
              method: 'share',
-             name: 'This is the content of the "name" field.',
-             href: 'https://apps.popety.com',
+             name: condo.condo_name,
+             href: 'https://apps.popety.com/redirect.html',
              picture: 'https://apps.popety.com/images/share_image.jpg',
-             caption: 'Caption like which appear as title of the dialog box',
-             description: 'Small description of the post',
-             message: 'Test Feed'
+             description: condo.condo_name,
          },function(response) {
              console.log(response);
             //  if (response && !response.error_message) {

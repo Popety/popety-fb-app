@@ -1,6 +1,7 @@
 var http = require('http');
 // Require our module dependencies
 var exec = require('child_process').exec;
+var imagemagick = require('imagemagick-native');
 var fs = require('fs-extra');
 
 var util = require('util');
