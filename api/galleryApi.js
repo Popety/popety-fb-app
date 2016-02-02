@@ -37,7 +37,7 @@ exports.getallcondolist = function(req, res) {
 
       var data = [];
       async.each(rows, function(item, callback) {
-          var condoimagedata = "SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
+          var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
           console.log(condoimagedata);
           db.query(condoimagedata, function(err, condolist) {
             if (!err) {
@@ -96,7 +96,7 @@ exports.nextprevcondolist = function(req, res) {
 
       var data = [];
       async.each(rows, function(item, callback) {
-          var condoimagedata = "SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + "";
+          var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + "";
           db.query(condoimagedata, function(err, condolist) {
             if (!err) {
 
@@ -134,7 +134,7 @@ exports.nextprevcondolist = function(req, res) {
 
 exports.getcondoimages = function(req, res) {
   //console.log("req body:",req.body);
-  var condo_images_query = " SELECT * FROM fb_condo_images where condo_id = " + req.body.condo_id + "";
+  var condo_images_query = " SELECT thumb_images, condo_id FROM fb_condo_images where condo_id = " + req.body.condo_id + "";
   db.query(condo_images_query, function(error, rows) {
     if (error) {
       res.status(500);
@@ -151,7 +151,7 @@ exports.getcondoimages = function(req, res) {
 exports.getAlphaNumericCondoList = function(req, res) {
   //console.log(req.body);
 
-  if (req.body.id == 0) {
+  if (req.body.id === 0) {
     var where_part = "fb_condo_list.condo_name RLIKE '^[0-9]'";
   } else {
     var where_part = "fb_condo_list.condo_name LIKE '" + req.body.letter + "%'";

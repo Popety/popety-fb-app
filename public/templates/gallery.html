@@ -17,7 +17,7 @@
 	<div class="clear-fix"></div>
 	<div class="row" style="margin: 0px;padding: 0px;">
 
-		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6"> 
+		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
@@ -25,7 +25,7 @@
 			<span class="vote_icon" data-ng-click="vote(condo)">VOTE</span>
 			<a class="btn trigger" href="javascript:;">
 			    <span class="main_div">
-			    	<img data-ng-src="{{condo.condolist.images}}"/>
+			    	<img data-ng-src="{{condo.condolist.thumb_images}}"/>
 			    	<div class="padding">
 				    	<div style="margin-right: 45px;">
 				    		<h4>{{condo.condo_name | limitTo: 13}}</h4>

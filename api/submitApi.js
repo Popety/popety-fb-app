@@ -13,8 +13,13 @@ var cfg = require('../config/config.' + env);
 var db = cfg.connection;
 var async = require("async");
 
+var CRUD = require('mysql-crud');
+
+var galleryCrud = CRUD(db, 'fb_condo_images');
+
 var response;
 var filePath = '/home/apps/popety-fb-app/temp/';
+// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -37,7 +42,7 @@ function watermark(imageData, callback) {
           status: 0,
           message: 'INTERNAL SERVER ERROR'
         };
-        res.jsonp(response);
+        callback(response);
       } else {
         var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 9999) + 1) + filename;
         console.log(newFile);
@@ -59,17 +64,47 @@ function watermark(imageData, callback) {
             };
             callback(response);
           } else {
-            im.resize({
-              srcPath: newFile,
-              dstPath: 'kittens-small.jpg',
-              width:   256
-            }, function(err, stdout, stderr){
-              if (err) throw err;
-              console.log('resized kittens.jpg to fit within 256x256px');
+            im.identify(newFile, function(err, features){
+              if (err) {
+                response = {
+                  status: 0,
+                  message: 'INTERNAL SERVER ERROR'
+                };
+                callback(response);
+              }else {
+                var height = features.height;
+                var width = features.width;
+                var type, diffwidth, diffheight;
+                var newThumb = filePath +'thumb_'+Math.floor((Math.random() * 9999999999) + 1);
+
+                diffwidth = width / 360;
+                diffheight = height / diffwidth;
+
+                im.resize({
+                  srcPath: newFile,
+                  dstPath: newThumb,
+                  width: 360,
+                  height: diffheight
+                }, function(err, stdout, stderr){
+                  if (err){
+                    response = {
+                      status: 0,
+                      message: 'INTERNAL SERVER ERROR'
+                    };
+                    callback(response);
+                  }else {
+                    var newFileData = fs.readFileSync(newFile).toString("base64");
+                    var newThumbData = fs.readFileSync(newThumb).toString("base64");
+                    var base64File = util.format("data:%s;base64,%s", mime.lookup(newFile), newFileData);
+                    var base64Thumb = util.format("data:image/png;base64,", newThumbData);
+                    callback({
+                      'original': base64File,
+                      'thumb': base64Thumb.trim()
+                    });
+                  }
+                });
+              }
             });
-            // var data = fs.readFileSync(newFile).toString("base64");
-            // var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
-            // callback(base64);
           }
         });
       }
@@ -106,18 +141,24 @@ exports.condosubmit = function(req, res) {
     } else {
       async.each(req.body.attachmentfile, function(item, callback) {
         watermark(item, function(result) {
-          var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + result + "'," + cfg.timestamp() + ")";
-          db.query(query1, function(err, images) {
-            if (!err) {
+          galleryCrud.create({
+            'condo_id': rows.insertId,
+            'images': result.original,
+            'thumb_images': result.thumb,
+            'created_on': cfg.timestamp()
+          }, function (error, vals) {
+            if(vals.affectedRows === 1){
               response = {
                 status: 1,
                 message: 'Image Upload successfully.'
               };
-            } else {
+              console.log(response);
+            }else {
               response = {
                 status: 0,
                 message: 'INTERNAL ERROR condo information.'
               };
+              console.log(response);
             }
             callback();
           });
@@ -137,7 +178,6 @@ exports.condosubmit = function(req, res) {
           res.jsonp(response);
         }
       });
-
     }
   });
 };

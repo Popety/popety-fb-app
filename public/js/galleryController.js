@@ -92,7 +92,7 @@ angular.module('popetyfbapp')
       loader.hide();
       $scope.condoimagelist = res;
       for (var i = 0; i < $scope.condoimagelist.length; i++) {
-        $scope.imagesobj.push($scope.condoimagelist[i].images);
+        $scope.imagesobj.push($scope.condoimagelist[i].thumb_images);
       }
       var popup = $("#popup");
       popup.fadeIn(200);
