@@ -2447,7 +2447,7 @@ footer{
 .votes_box{
     position: absolute;
     right: 5px;
-    top: 1px;
+    top: 5px;
 }
 .gallery_vote_count {
     font-family: 'syncopatebold';
