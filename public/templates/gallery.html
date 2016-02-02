@@ -15,9 +15,9 @@
 	    <p style="margin:5px;">Filter list by condo name</p>
 	</div>
 	<div class="clear-fix"></div>
-	<div class="row">
+	<div class="row" style="margin: 0px;padding: 0px;">
 
-		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
+		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6"> 
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
 				<img src="images/expand.svg">
 			</div>
