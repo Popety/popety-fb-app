@@ -12,9 +12,10 @@
 	    	<li data-ng-show="$index < nextIndex && $index >= prevIndex" data-ng-repeat="page in  paginationAlphabetical | orderBy:'id'" data-ng-class="{active:page.status}" data-ng-click="getCondoListAlphabetically(page,0)">{{page.letter}}</li>
 				<li data-ng-show="nextIndex < 28" data-ng-click="nextIndex = nextIndex + 5; prevIndex = prevIndex + 5;">></li>
 	    </ul>
-	    <p style="margin-top:5px;">Filter list by condo name</p>
+	    <p style="margin:5px;">Filter list by condo name</p>
 	</div>
-	<div class="row" style="margin-top: 35px;">
+	<div class="clear-fix"></div>
+	<div class="row">
 
 		<div class="col col-4-desktop col-4-tablet thumbnail" data-ng-repeat="condo in allcondolist | orderBy:'-image_id' | limitTo: 6">
 			<div class="expand" data-ng-click="getcondoimages(condo)" id="open-popup1">
