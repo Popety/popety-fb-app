@@ -59,7 +59,7 @@ function watermark(image, callback){
               }else {
                 var data = fs.readFileSync(newFile).toString("base64");
                 var base64 = util.format("data:%s;base64,%s", mime.lookup(newFile), data);
-                callback('success');
+                callback(base64);
               }
             });
           }
@@ -98,25 +98,23 @@ exports.condosubmit = function(req, res) {
 
       async.each(req.body.attachmentfile, function(item, callback) {
           watermark(item, function (result) {
-            console.log(result);
+            var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + result + "'," + cfg.timestamp() + ")";
+            db.query(query1, function(err, images) {
+              if (!err) {
+                response = {
+                  status: 1,
+                  message: 'Image Upload successfully.'
+                };
+              } else {
+                response = {
+                  status: 0,
+                  message: 'INTERNAL ERROR condo information.'
+                };
+              }
+              callback();
+            });
           });
-          var query1 = "INSERT INTO fb_condo_images ( condo_id,images, created_on) VALUES ('" + rows.insertId + "','" + item + "'," + cfg.timestamp() + ")";
-          db.query(query1, function(err, images) {
-            if (!err) {
-              response = {
-                status: 1,
-                message: 'Image Upload successfully.'
-              };
-            } else {
-              response = {
-                status: 0,
-                message: 'INTERNAL ERROR condo information.'
-              };
-            }
-            callback();
-          });
-        },
-        function(err) {
+        },function(err) {
           if (!err) {
             response = {
               status: 1,
