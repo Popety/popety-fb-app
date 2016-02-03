@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var router = express.Router();
-
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
 
 var app = express();
 
@@ -55,13 +56,13 @@ app.use(function(req, res, next) {
 //Submit Api
 app.get('/api/condoList', submit.condoList);
 app.post('/api/condosubmit', submit.condosubmit);
+app.post('/api/uploadFile', multipartMiddleware, submit.uploadFile);
 
 //Gallery Api
 app.get('/api/getallcondolist',gallery.getallcondolist);
 app.post('/api/nextprevcondolist',gallery.nextprevcondolist);
 app.post('/api/getAlphaNumericCondoList',gallery.getAlphaNumericCondoList);
 app.post('/api/getcondoimages',gallery.getcondoimages);
-// app.post('/api/createImage',gallery.createImage);
 
 //User Api
 app.post('/api/register', user.register);

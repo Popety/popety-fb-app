@@ -2,10 +2,65 @@ angular.module('popetyfbapp')
 
 .controller('submitController', function($scope, $http, $timeout, $sce, $state, store) {
 
-  $scope.imagefiles = [];
   var loader = $("#loader-div");
   var filePopup = $("#file-popup");
+  $scope.filenames = [];
   $scope.userName = store.get('user_name');
+  $scope.user_id = store.get('user_id');
+  $scope.baseurl = baseurl + 'uploadFile';
+
+  $scope.upload_1 = function (flow) {
+    loader.fadeIn(200);
+  };
+
+  $scope.fileSuccess = function (flow, condodata) {
+    async.each(flow.files, function (file, callback) {
+      $scope.filenames.push({
+        'name': file.name
+      });
+      callback();
+    }, function (err) {
+      if(err){
+        console.log('error while adding the file name');
+      }else {
+          console.log($scope.filenames);
+          var condoinfo = {
+            user_name: store.get('user_name'),
+            user_id: store.get('user_id'),
+            mobile_no: condodata.mobile_no,
+            bedroom: $scope.bedroomdata.selectedOption.name,
+            condo_name: condodata.condo_name,
+            fileNames: $scope.filenames
+          };
+          console.log(condoinfo);
+
+          $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
+            console.log(res);
+            if (res.status == 1) {
+              $scope.condosuccessmsg = 'Condo Successfully Added.';
+              $scope.showcondosuccessmsg = true;
+              $timeout(function() {
+                $scope.showcondosuccessmsg = false;
+              }, 3000);
+              document.getElementById("condofrm").reset();
+              $scope.imagefiles = {};
+              loader.hide();
+              $state.go('tab.gallery');
+            } else {
+              $scope.submit_err_msg = "Condo Failed To Insert";
+              $scope.showsubmit_err_msg = true;
+              $timeout(function() {
+                $scope.showsubmit_err_msg = false;
+              }, 3000);
+              loader.hide();
+            }
+          }).error(function(err) {
+            loader.hide();
+            console.log('Connection Problem..');
+          });
+      }
+    });
+  };
 
   $scope.bedroomdata = {
     availableOptions: [{
@@ -90,7 +145,8 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata, valid) {
-    if (valid && $scope.imagefiles.length !== 0) {
+    console.log($scope.imagefiles);
+    if (valid) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'Please Upload 4 Images';
         $scope.showimagelimitmsg = true;
@@ -173,9 +229,9 @@ angular.module('popetyfbapp')
     }
   };
 
-  $scope.removeimage = function(img) {
-    $scope.imagefiles.splice($scope.imagefiles.indexOf(img), 1);
-  };
+  // $scope.removeimage = function(img) {
+  //   $scope.imagefiles.splice($scope.imagefiles.indexOf(img), 1);
+  // };
 
   $scope.closePopup = function () {
     filePopup.hide();
