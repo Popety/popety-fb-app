@@ -8,8 +8,6 @@ var fs = require('fs-extra');
 
 var flow = require('./flow-node.js')('tmp');
 var util = require('util');
-
-var neuron = require('neuron');
 var mime = require('mime');
 
 var env = process.env.NODE_ENV || 'dev';
@@ -22,89 +20,13 @@ var CRUD = require('mysql-crud');
 
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
-var manager = new neuron.JobManager();
 var response;
-
 var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
 var filePath = '/home/apps/popety-fb-app/temp/';
 var uploadPath = '/home/apps/popety-fb-app/tmp/';
 // var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
 // var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
 // var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
-
-/*
- * 1st Priority job before editing unit data
- * Removing the images
- */
-manager.addJob('add-watermark-thumb', {
-  work: function(imageData, done) {
-    console.log('in add image job');
-    var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
-    var command = [
-      'composite',
-      '-dissolve', '90%',
-      '-gravity', 'center',
-      '-quality', 100,
-      waterMarkFile + 'watermark.png',
-      imageData.src,
-      newFile
-    ];
-    // Join command array by a space character and then execute command
-    exec(command.join(' '), function(err, stdout, stderr) {
-      if (err) {
-        response = {
-          status: 0,
-          message: 'INTERNAL SERVER ERROR'
-        };
-        console.log(response);
-      } else {
-        im.resize({
-          srcPath: imageData.src,
-          dstPath: imageData.newThumb,
-          width: 360,
-          height: imageData.height
-        }, function(err, stdout, stderr){
-          if (err){
-            console.log(err);
-            response = {
-              status: 0,
-              message: 'INTERNAL SERVER ERROR 98'
-            };
-            console.log(response);
-          }else {
-            var newThumbData = fs.readFileSync(imageData.newThumb).toString("base64");
-            galleryCrud.update({
-              'image_id': imageData.image_id,
-            }, {
-              'thumb_images': 'data:image/png;base64,'+newThumbData
-            }, function (error, vals) {
-              console.log(error);
-              if(vals.affectedRows === 1){
-                result.jobData.image_id = vals.insertId;
-                response = {
-                  status: 1,
-                  message: 'Image Upload successfully.'
-                };
-                console.log(response);
-                manager.enqueue("add-watermark-thumb", result.jobData);
-              }else {
-                response = {
-                  status: 0,
-                  message: 'INTERNAL ERROR condo information.'
-                };
-                console.log(response);
-              }
-            });
-            // callback({
-            //   'original': 'data:image/png;base64,'+newFileData,
-            //   'thumb': 'data:image/png;base64,'+newThumbData
-            // });
-          }
-        });
-      }
-    });
-  }
-});
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -118,6 +40,36 @@ function decodeBase64Image(dataString, callback) {
 }
 
 function watermark(imageData, callback) {
+  // decodeBase64Image(imageData.image, function(result) {
+    // var filename = Math.floor((Math.random() * 999999999999) + 1) + '.png';
+    // fs.writeFile(filePath + "" + filename, result.data, function(error) {
+    //   // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+    //   if (error) {
+    //     response = {
+    //       status: 0,
+    //       message: 'INTERNAL SERVER ERROR'
+    //     };
+    //     callback(response);
+    //   } else {
+        // var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
+        // var command = [
+        //   'composite',
+        //   '-dissolve', '90%',
+        //   '-gravity', 'center',
+        //   '-quality', 100,
+        //   waterMarkFile + 'watermark.png',
+        //   uploadPath + imageData.name,
+        //   newFile
+        // ];
+        // Join command array by a space character and then execute command
+        // exec(command.join(' '), function(err, stdout, stderr) {
+        //   if (err) {
+        //     response = {
+        //       status: 0,
+        //       message: 'INTERNAL SERVER ERROR'
+        //     };
+        //     callback(response);
+        //   } else {
             im.identify(uploadPath + imageData.name, function(err, features){
               if (err) {
                 response = {
@@ -134,19 +86,35 @@ function watermark(imageData, callback) {
                 diffwidth = width / 360;
                 diffheight = height / diffwidth;
 
-                var resizeData = {
-                  'height': diffheight,
-                  'newThumb': filePath +'thumb_'+Math.floor((Math.random() * 9999999999) + 1)+'.png',
-                  'src': uploadPath + imageData.name
-                };
-
-                var newFileData = fs.readFileSync(uploadPath + imageData.name).toString("base64");
-                callback({
-                  'original': 'data:image/png;base64,'+newFileData,
-                  'jobData': resizeData
+                im.resize({
+                  srcPath: uploadPath + imageData.name,
+                  dstPath: newThumb,
+                  width: 360,
+                  height: diffheight
+                }, function(err, stdout, stderr){
+                  if (err){
+                    console.log(err);
+                    response = {
+                      status: 0,
+                      message: 'INTERNAL SERVER ERROR 98'
+                    };
+                    callback(response);
+                  }else {
+                    var newFileData = fs.readFileSync(uploadPath + imageData.name).toString("base64");
+                    var newThumbData = fs.readFileSync(newThumb).toString("base64");
+                    callback({
+                      'original': 'data:image/png;base64,'+newFileData,
+                      'thumb': 'data:image/png;base64,'+newThumbData
+                    });
+                  }
                 });
               }
             });
+        //   }
+        // });
+    //   }
+    // });
+  // });
 }
 
 exports.condoList = function(req, res) {
@@ -192,7 +160,6 @@ exports.condosubmit = function(req, res) {
     } else {
       async.each(req.body.fileNames, function(item, callback) {
         watermark(item, function(result) {
-          console.log(result);
           if(result.status === 0){
             response = {
               status: 0,
@@ -203,18 +170,16 @@ exports.condosubmit = function(req, res) {
             galleryCrud.create({
               'condo_id': rows.insertId,
               'images': result.original,
-              // 'thumb_images': result.thumb,
+              'thumb_images': result.thumb,
               'created_on': cfg.timestamp()
             }, function (error, vals) {
               console.log(error);
               if(vals.affectedRows === 1){
-                result.jobData.image_id = vals.insertId;
                 response = {
                   status: 1,
                   message: 'Image Upload successfully.'
                 };
                 console.log(response);
-                manager.enqueue("add-watermark-thumb", result.jobData);
               }else {
                 response = {
                   status: 0,
