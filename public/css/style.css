@@ -2314,7 +2314,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 #loader-div{
     position: absolute;
-    width: 27%;
+    width: 36%;
     height: 27%;
     top: 42%;
     left: 50%;
