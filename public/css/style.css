@@ -2289,7 +2289,7 @@ input[type=number]::-webkit-outer-spin-button {
 .popup__inner {
     background-color: #f2f2f2;
     width: 96%;
-    height: 76%;
+    height: 76% !important;
     max-width: 47em;
     margin: 3em auto 0;
     border-radius: 2px;
@@ -2304,6 +2304,7 @@ input[type=number]::-webkit-outer-spin-button {
 .ok-popup{
     padding: 6%;
     width: 50%;
+    height: 19% !important;
     text-align: center;
     margin-top: 23%;
     background: #fff;
