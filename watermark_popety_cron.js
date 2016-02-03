@@ -46,6 +46,8 @@ var fiveMinuteCron = cron.job('0 * * * * *', function(){
     galleryCrud.load({
       'status': 0,
     }, function (err, rows) {
+      console.log(rows.length);
+      console.log(err);
       if(err){
         response = {
           status: 0,
