@@ -25,12 +25,12 @@ var galleryCrud = CRUD(db, 'fb_condo_images');
 var manager = new neuron.JobManager();
 var response;
 
-// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
-// var filePath = '/home/apps/popety-fb-app/temp/';
-// var uploadPath = '/home/apps/popety-fb-app/tmp/';
-var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
-var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
-var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+var filePath = '/home/apps/popety-fb-app/temp/';
+var uploadPath = '/home/apps/popety-fb-app/tmp/';
+// var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
+// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+// var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
 /*
  * 1st Priority job before editing unit data
