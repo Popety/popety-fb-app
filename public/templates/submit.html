@@ -2,7 +2,7 @@
   <div class="row submit_form_box" style="min-height:540px;" flow-init="{target: baseurl, testMethod: 'POST', testChunks: false, query: {
     user_name: userName, user_id: user_id, mobile_no: condodata.mobile_no, bedroom: bedroomdata.selectedOption.name} }" flow-files-added="add( $files, $event, $flow )" flow-complete="fileSuccess($flow, condodata)">
     <div class="col col-6-desktop col-6-tablet">
-        <form name="condosubmitform" class="submit_form" ng-submit="isFile && condosubmitform.$valid && $flow.upload() && upload_1($flow)" id="condofrm" novalidate>
+        <form name="condosubmitform" class="submit_form" ng-submit="isFile && condosubmitform.$valid && $flow.upload();upload_1($flow)" id="condofrm" novalidate>
           <fieldset>
             <!-- Input[type=text] -->
             <div class="col col-12">

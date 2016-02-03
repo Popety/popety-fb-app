@@ -20,12 +20,13 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
-// var filePath = '/home/apps/popety-fb-app/temp/';
-// var uploadPath = '/home/apps/popety-fb-app/tmp/';
-var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
-var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
-var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+var filePath = '/home/apps/popety-fb-app/temp/';
+var uploadPath = '/home/apps/popety-fb-app/tmp/';
+// var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
+// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+// var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+
 var cron = require('cron');
 
 function decodeBase64Image(dataString, callback) {
@@ -41,6 +42,7 @@ function decodeBase64Image(dataString, callback) {
 
 // Five Minute Cron
 var fiveMinuteCron = cron.job('0 * * * * *', function(){
+  console.log('cron started');
     galleryCrud.load({
       'status': 0,
     }, function (err, rows) {
