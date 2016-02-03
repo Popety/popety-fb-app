@@ -7,16 +7,21 @@ angular.module('popetyfbapp')
 
   $scope.filenames = [];
   $scope.isFile = false;
+  console.log($scope.isFile);
   $scope.userName = store.get('user_name');
   $scope.user_id = store.get('user_id');
   $scope.baseurl = baseurl + 'uploadFile';
 
   $scope.add = function (files, events, flow) {
-    if(files.length > 4){
+    console.log(files);
+    console.log(files.length);
+    console.log(flow);
+    if(files.length > 3){
       $scope.isFile = true;
     }else {
       $scope.isFile = false;
     }
+    console.log($scope.isFile);
   };
 
   $scope.upload_1 = function (flow) {
