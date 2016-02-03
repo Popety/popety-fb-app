@@ -14,7 +14,7 @@ angular.module('popetyfbapp')
 
   $scope.add = function (files, events, flow) {
     console.log(files);
-    console.log(flow.files.length);
+    console.log('flow.files.length',flow.files.length);
     console.log(flow);
     if(flow.files.length > 3){
       $scope.isFile = true;
