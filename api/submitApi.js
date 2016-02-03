@@ -21,10 +21,12 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-var filePath = '/home/apps/popety-fb-app/temp/';
-var uploadPath = '/home/apps/popety-fb-app/tmp/';
-// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
-// var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+// var filePath = '/home/apps/popety-fb-app/temp/';
+// var uploadPath = '/home/apps/popety-fb-app/tmp/';
+var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
+var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -49,32 +51,30 @@ function watermark(imageData, callback) {
     //     };
     //     callback(response);
     //   } else {
-        var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
-        console.log(newFile);
-        console.log(uploadPath+imageData.name);
-        var command = [
-          'composite',
-          '-dissolve', '90%',
-          '-gravity', 'center',
-          '-quality', 100,
-          filePath + 'watermark.png',
-          uploadPath + imageData.name,
-          newFile
-        ];
+        // var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
+        // var command = [
+        //   'composite',
+        //   '-dissolve', '90%',
+        //   '-gravity', 'center',
+        //   '-quality', 100,
+        //   waterMarkFile + 'watermark.png',
+        //   uploadPath + imageData.name,
+        //   newFile
+        // ];
         // Join command array by a space character and then execute command
-        exec(command.join(' '), function(err, stdout, stderr) {
-          if (err) {
-            response = {
-              status: 0,
-              message: 'INTERNAL SERVER ERROR'
-            };
-            callback(response);
-          } else {
-            im.identify(newFile, function(err, features){
+        // exec(command.join(' '), function(err, stdout, stderr) {
+        //   if (err) {
+        //     response = {
+        //       status: 0,
+        //       message: 'INTERNAL SERVER ERROR'
+        //     };
+        //     callback(response);
+        //   } else {
+            im.identify(uploadPath + imageData.name, function(err, features){
               if (err) {
                 response = {
                   status: 0,
-                  message: 'INTERNAL SERVER ERROR'
+                  message: 'INTERNAL SERVER ERROR 77'
                 };
                 callback(response);
               }else {
@@ -87,23 +87,21 @@ function watermark(imageData, callback) {
                 diffheight = height / diffwidth;
 
                 im.resize({
-                  srcPath: newFile,
+                  srcPath: uploadPath + imageData.name,
                   dstPath: newThumb,
                   width: 360,
                   height: diffheight
                 }, function(err, stdout, stderr){
                   if (err){
+                    console.log(err);
                     response = {
                       status: 0,
-                      message: 'INTERNAL SERVER ERROR'
+                      message: 'INTERNAL SERVER ERROR 98'
                     };
                     callback(response);
                   }else {
-                    var newFileData = fs.readFileSync(newFile).toString("base64");
+                    var newFileData = fs.readFileSync(uploadPath + imageData.name).toString("base64");
                     var newThumbData = fs.readFileSync(newThumb).toString("base64");
-                    // var base64File = util.format("data:%s;base64,%s", mime.lookup(newFile), newFileData);
-                    // var base64Thumb = util.format("data:image/png;base64,", newThumbData);
-                    // console.log(newThumbData);
                     callback({
                       'original': 'data:image/png;base64,'+newFileData,
                       'thumb': 'data:image/png;base64,'+newThumbData
@@ -112,8 +110,8 @@ function watermark(imageData, callback) {
                 });
               }
             });
-          }
-        });
+        //   }
+        // });
     //   }
     // });
   // });
@@ -162,28 +160,37 @@ exports.condosubmit = function(req, res) {
     } else {
       async.each(req.body.fileNames, function(item, callback) {
         watermark(item, function(result) {
-          galleryCrud.create({
-            'condo_id': rows.insertId,
-            'images': result.original,
-            'thumb_images': result.thumb,
-            'created_on': cfg.timestamp()
-          }, function (error, vals) {
-            console.log(error);
-            if(vals.affectedRows === 1){
-              response = {
-                status: 1,
-                message: 'Image Upload successfully.'
-              };
-              console.log(response);
-            }else {
-              response = {
-                status: 0,
-                message: 'INTERNAL ERROR condo information.'
-              };
-              console.log(response);
-            }
-            callback();
-          });
+          console.log(result);
+          if(result.status === 0){
+            response = {
+              status: 0,
+              message: 'INTERNAL ERROR condo information.'
+            };
+            console.log(response);
+          }else {
+            galleryCrud.create({
+              'condo_id': rows.insertId,
+              'images': result.original,
+              'thumb_images': result.thumb,
+              'created_on': cfg.timestamp()
+            }, function (error, vals) {
+              console.log(error);
+              if(vals.affectedRows === 1){
+                response = {
+                  status: 1,
+                  message: 'Image Upload successfully.'
+                };
+                console.log(response);
+              }else {
+                response = {
+                  status: 0,
+                  message: 'INTERNAL ERROR condo information.'
+                };
+                console.log(response);
+              }
+            });
+          }
+          callback();
         });
       }, function(err) {
         if (!err) {
