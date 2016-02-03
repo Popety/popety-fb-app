@@ -18,6 +18,7 @@
     "morgan": "~1.6.1",
     "mysql": "^2.10.2",
     "mysql-crud": "^0.1.4",
+    "neuron": "^0.4.7",
     "serve-favicon": "~2.3.0",
     "util": "^0.10.3"
   },
