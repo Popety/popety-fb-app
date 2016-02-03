@@ -4,7 +4,9 @@ angular.module('popetyfbapp')
 
     $scope.getUserData = function () {
       facebookService.getUserData().then(function(response){
+        console.log('hello');
         $http.post( baseurl + 'register', response).success(function (res, req) {
+          console.log(res);
           if(res.status === 1 || res.status === 2){
             store.set('login', true);
             store.set('user_id', res.user_id);
