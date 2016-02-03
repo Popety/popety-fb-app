@@ -160,7 +160,6 @@ exports.condosubmit = function(req, res) {
     } else {
       async.each(req.body.fileNames, function(item, callback) {
         watermark(item, function(result) {
-          console.log(result);
           if(result.status === 0){
             response = {
               status: 0,
@@ -172,9 +171,9 @@ exports.condosubmit = function(req, res) {
               'condo_id': rows.insertId,
               'images': result.original,
               'thumb_images': result.thumb,
+              'status': 0,
               'created_on': cfg.timestamp()
             }, function (error, vals) {
-              console.log(error);
               if(vals.affectedRows === 1){
                 response = {
                   status: 1,
