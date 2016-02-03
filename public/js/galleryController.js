@@ -3,6 +3,8 @@ angular.module('popetyfbapp')
 .controller('galleryController', function($scope, $http, $timeout, store) {
 
   var loader = $("#loader-div");
+  var popup_2 = $("#popup-2");
+
   $scope.nextIndex = 5;
   $scope.prevIndex = 0;
 
@@ -88,13 +90,16 @@ angular.module('popetyfbapp')
       condo_id: condoinfo.condo_id
     };
     $http.post(baseurl + 'getcondoimages', condo_id).success(function(res, req) {
-      loader.hide();
       $scope.condoimagelist = res;
-      for (var i = 0; i < $scope.condoimagelist.length; i++) {
-        $scope.imagesobj.push($scope.condoimagelist[i].thumb_images);
-      }
-      var popup = $("#popup");
-      popup.fadeIn(200);
+      // $timeout(function () {
+        popup_2.fadeIn(200);
+        loader.hide();
+        // $scope.showPopup_1 = true;
+      // }, 300);
+      console.log($scope.condoimagelist);
+      // for (var i = 0; i < $scope.condoimagelist.length; i++) {
+      //   $scope.imagesobj.push($scope.condoimagelist[i].thumb_images);
+      // }
     }).error(function(err) {
       console.log('Connection Problem..');
       $scope.connectionmsg = "Connection Problem..";
@@ -383,6 +388,11 @@ angular.module('popetyfbapp')
     // }).error(function (err) {
     //   console.log(err);
     // });
+  };
+
+  $scope.closePopup = function () {
+    $scope.showPopup_1 = false;
+    popup_2.hide();
   };
 
 });
