@@ -1681,8 +1681,8 @@ a.btn{
 }
 .thumbnail .padding h4{
     color: #f9c100;
-    font-size: 14px;
-    height: 35px;
+    font-size: 13px;
+    line-height: 1.2;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -1825,6 +1825,12 @@ a.btn{
     display: inline-block;
     margin-bottom: 30px;
 }
+.user_name_1{
+  text-transform: uppercase;
+  display: block;
+  font-family: 'latoregular';
+  font-size: 10px;
+}
 .submit_form label{
   position: relative;
 }
@@ -1842,6 +1848,12 @@ a.btn{
     border-radius: 10px;
     border-color: #E8E8E8;
     padding-bottom: 0px;
+}
+.filter_name{
+    margin: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 13px;
 }
 .left_submit{
     width: 100%;
@@ -2464,18 +2476,18 @@ footer{
     font-weight: bold;
     color: #F9C100;
 }
+.user_name{
+  
+}
 .votes_box{
     position: absolute;
     right: 5px;
     bottom: 5px;
 }
 .gallery_vote_count {
-    font-family: 'syncopatebold';
     color: #f9c100;
     font-size: 22px !important;
-    display: inline-block;
     margin-bottom: 0;
-    width: 50px;
     height: auto !important;
     text-align: center;
 }
