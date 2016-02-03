@@ -21,10 +21,10 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-// var filePath = '/home/apps/popety-fb-app/temp/';
-// var uploadPath = '/home/apps/popety-fb-app/tmp/';
-var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
-var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+var filePath = '/home/apps/popety-fb-app/temp/';
+var uploadPath = '/home/apps/popety-fb-app/tmp/';
+// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+// var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),

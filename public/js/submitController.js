@@ -23,8 +23,6 @@ angular.module('popetyfbapp')
       if(err){
         console.log('error while adding the file name');
       }else {
-        if (valid) {
-        }else {
           console.log($scope.filenames);
           var condoinfo = {
             user_name: store.get('user_name'),
@@ -60,7 +58,6 @@ angular.module('popetyfbapp')
             loader.hide();
             console.log('Connection Problem..');
           });
-        }
       }
     });
   };
