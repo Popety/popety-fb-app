@@ -73,7 +73,7 @@ manager.addJob('add-watermark-thumb', {
             console.log(response);
           }else {
             var newThumbData = fs.readFileSync(imageData.newThumb).toString("base64");
-            galleryCrud.create({
+            galleryCrud.update({
               'image_id': imageData.image_id,
             }, {
               'thumb_images': 'data:image/png;base64,'+newThumbData
