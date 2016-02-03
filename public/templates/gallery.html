@@ -1,7 +1,7 @@
 <div class="container" data-ng-controller="galleryController" ng-init="getallcondolist()">
 	<div class="row next_prev_row" style="min-height: 640px;">
 		<div class="col col-12">
-			<p style="margin:5px;">Filter list by condo name</p>
+			<p class="filter_name">Filter list by condo name</p>
 			<ul class="list-unstyled">
 				<li class="active" ng-click="getallcondolist()" style="margin-right:10px;">All</li>
 			</ul>
@@ -26,11 +26,11 @@
 				    	<div class="padding">
 					    	<div style="margin-right: 45px;">
 					    		<h4>{{condo.condo_name}}</h4>
-					    		<h6>{{condo.user_name | limitTo: 15}}</h6>
+					    		<h6 class="user_name_1">{{condo.user_name | limitTo: 15}}</h6>
 					    	</div>
 					    	<div class="votes_box">
 						    	 <h4 class="gallery_vote_count">{{condo.votes}}</h4>
-						    	 <h6>VOTES</h6>
+						    	 <h6 class="user_name_1" style="text-align: center;">VOTES</h6>
 					    	</div>
 				    	</div>
 				    </span>
