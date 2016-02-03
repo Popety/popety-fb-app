@@ -10,9 +10,7 @@ angular.module('popetyfbapp')
   $scope.baseurl = baseurl + 'uploadFile';
 
   $scope.upload_1 = function (flow) {
-    console.log('hello');
-    console.log(flow);
-    flow.upload();
+    loader.fadeIn(200);
   };
 
   $scope.fileSuccess = function (flow, condodata) {
