@@ -1,6 +1,6 @@
 <div class="container padding_bottom" data-ng-controller="submitController">
   <div class="row submit_form_box" style="min-height:540px;" flow-init="{target: baseurl, testMethod: 'POST', testChunks: false, query: {
-    user_name: userName, user_id: user_id, mobile_no: condodata.mobile_no, bedroom: bedroomdata.selectedOption.name} }" flow-file-added="$flow.file.size < 2048" flow-complete="fileSuccess($flow, condodata)">
+    user_name: userName, user_id: user_id, mobile_no: condodata.mobile_no, bedroom: bedroomdata.selectedOption.name} }" flow-complete="fileSuccess($flow, condodata)">
     <div class="col col-6-desktop col-6-tablet">
         <form name="condosubmitform" class="submit_form" ng-submit="$flow.upload();upload_1($flow)" id="condofrm" novalidate>
           <fieldset>
