@@ -21,12 +21,12 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
-var filePath = '/home/apps/popety-fb-app/temp/';
-var uploadPath = '/home/apps/popety-fb-app/tmp/';
-// var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
-// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
-// var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+// var filePath = '/home/apps/popety-fb-app/temp/';
+// var uploadPath = '/home/apps/popety-fb-app/tmp/';
+var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
+var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -171,9 +171,9 @@ exports.condosubmit = function(req, res) {
               'condo_id': rows.insertId,
               'images': result.original,
               'thumb_images': result.thumb,
+              'status': 0,
               'created_on': cfg.timestamp()
             }, function (error, vals) {
-              console.log(error);
               if(vals.affectedRows === 1){
                 response = {
                   status: 1,

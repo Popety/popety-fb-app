@@ -4,10 +4,20 @@ angular.module('popetyfbapp')
 
   var loader = $("#loader-div");
   var filePopup = $("#file-popup");
+
   $scope.filenames = [];
+  $scope.isFile = false;
   $scope.userName = store.get('user_name');
   $scope.user_id = store.get('user_id');
   $scope.baseurl = baseurl + 'uploadFile';
+
+  $scope.add = function (files, events, flow) {
+    if(files.length > 4){
+      $scope.isFile = true;
+    }else {
+      $scope.isFile = false;
+    }
+  };
 
   $scope.upload_1 = function (flow) {
     loader.fadeIn(200);
@@ -215,13 +225,11 @@ angular.module('popetyfbapp')
           };
           oFReader.readAsDataURL(newfile);
         } else {
-          //fileDisplayArea.innerHTML = "File not supported!"
           $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
           $scope.showfilenotsupportmsg = true;
           $timeout(function() {
             $scope.showfilenotsupportmsg = false;
           }, 3000);
-
         }
       });
     }else {
@@ -229,9 +237,11 @@ angular.module('popetyfbapp')
     }
   };
 
-  // $scope.removeimage = function(img) {
-  //   $scope.imagefiles.splice($scope.imagefiles.indexOf(img), 1);
-  // };
+  $scope.removeimage = function(img) {
+    console.log(img);
+    img.files.splice(1);
+    console.log(img);
+  };
 
   $scope.closePopup = function () {
     filePopup.hide();
