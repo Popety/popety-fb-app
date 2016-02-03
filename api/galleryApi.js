@@ -178,7 +178,7 @@ exports.getAlphaNumericCondoList = function(req, res) {
         //console.log(rows);
         var data = [];
         async.each(rows, function(item, callback) {
-            var condoimagedata = "SELECT image_id, images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
+            var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
             //console.log(condoimagedata);
             db.query(condoimagedata, function(err, condolist) {
               if (!err) {
