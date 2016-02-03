@@ -1,9 +1,12 @@
 var http = require('http');
 // Require our module dependencies
+
 var exec = require('child_process').exec;
 var im = require('imagemagick');
+
 var fs = require('fs-extra');
 
+var flow = require('./flow-node.js')('tmp');
 var util = require('util');
 var mime = require('mime');
 
@@ -18,8 +21,10 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-var filePath = '/home/apps/popety-fb-app/temp/';
-// var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+// var filePath = '/home/apps/popety-fb-app/temp/';
+// var uploadPath = '/home/apps/popety-fb-app/tmp/';
+var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
+var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
@@ -33,26 +38,27 @@ function decodeBase64Image(dataString, callback) {
 }
 
 function watermark(imageData, callback) {
-  decodeBase64Image(imageData.image, function(result) {
-    var filename = Math.floor((Math.random() * 999999999999) + 1) + '.png';
-    fs.writeFile(filePath + "" + filename, result.data, function(error) {
-      // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
-      if (error) {
-        response = {
-          status: 0,
-          message: 'INTERNAL SERVER ERROR'
-        };
-        callback(response);
-      } else {
-        var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 9999) + 1) + filename;
+  // decodeBase64Image(imageData.image, function(result) {
+    // var filename = Math.floor((Math.random() * 999999999999) + 1) + '.png';
+    // fs.writeFile(filePath + "" + filename, result.data, function(error) {
+    //   // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
+    //   if (error) {
+    //     response = {
+    //       status: 0,
+    //       message: 'INTERNAL SERVER ERROR'
+    //     };
+    //     callback(response);
+    //   } else {
+        var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
         console.log(newFile);
+        console.log(uploadPath+imageData.name);
         var command = [
           'composite',
           '-dissolve', '90%',
           '-gravity', 'center',
           '-quality', 100,
           filePath + 'watermark.png',
-          filePath + "" + filename,
+          uploadPath + imageData.name,
           newFile
         ];
         // Join command array by a space character and then execute command
@@ -75,7 +81,7 @@ function watermark(imageData, callback) {
                 var height = features.height;
                 var width = features.width;
                 var type, diffwidth, diffheight;
-                var newThumb = filePath +'thumb_'+Math.floor((Math.random() * 9999999999) + 1);
+                var newThumb = filePath +'thumb_'+Math.floor((Math.random() * 9999999999) + 1)+'.png';
 
                 diffwidth = width / 360;
                 diffheight = height / diffwidth;
@@ -108,9 +114,9 @@ function watermark(imageData, callback) {
             });
           }
         });
-      }
-    });
-  });
+    //   }
+    // });
+  // });
 }
 
 exports.condoList = function(req, res) {
@@ -129,6 +135,20 @@ exports.condoList = function(req, res) {
   });
 };
 
+exports.uploadFile = function (req, res) {
+  flow.post(req, function(status, filename, original_filename, identifier) {
+    console.log('139 **********',req.body.flowChunkNumber, req.body.flowTotalChunks);
+    if (status === 'done' && req.body.flowChunkNumber === req.body.flowTotalChunks) {
+      var s = fs.createWriteStream(uploadPath + original_filename);
+      flow.write(identifier, s, {end: true});
+      s.on('finish', function () {
+        res.status(200).send();
+      });
+    }else {
+      res.status(200).send();
+    }
+  });
+};
 
 exports.condosubmit = function(req, res) {
   var query = "INSERT INTO fb_condo_list( user_id, user_name, mobile_no, condo_name, bedroom, created_on, edited_on) VALUES ('" + req.body.user_id + "','" + req.body.user_name + "'," + req.body.mobile_no + ",'" + req.body.condo_name + "','" + req.body.bedroom + "'," + cfg.timestamp() + "," + cfg.timestamp() + ")";
@@ -140,7 +160,7 @@ exports.condosubmit = function(req, res) {
         "message": "Internal Server Error"
       });
     } else {
-      async.each(req.body.attachmentfile, function(item, callback) {
+      async.each(req.body.fileNames, function(item, callback) {
         watermark(item, function(result) {
           galleryCrud.create({
             'condo_id': rows.insertId,
