@@ -91,15 +91,8 @@ angular.module('popetyfbapp')
     };
     $http.post(baseurl + 'getcondoimages', condo_id).success(function(res, req) {
       $scope.condoimagelist = res;
-      // $timeout(function () {
-        popup_2.fadeIn(200);
-        loader.hide();
-        // $scope.showPopup_1 = true;
-      // }, 300);
-      console.log($scope.condoimagelist);
-      // for (var i = 0; i < $scope.condoimagelist.length; i++) {
-      //   $scope.imagesobj.push($scope.condoimagelist[i].thumb_images);
-      // }
+      popup_2.fadeIn(200);
+      loader.hide();
     }).error(function(err) {
       console.log('Connection Problem..');
       $scope.connectionmsg = "Connection Problem..";
@@ -391,7 +384,6 @@ angular.module('popetyfbapp')
   };
 
   $scope.closePopup = function () {
-    $scope.showPopup_1 = false;
     popup_2.hide();
   };
 
