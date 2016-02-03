@@ -1681,7 +1681,8 @@ a.btn{
 }
 .thumbnail .padding h4{
     color: #f9c100;
-    font-size: 16px;
+    font-size: 14px;
+    height: 35px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -2466,7 +2467,7 @@ footer{
 .votes_box{
     position: absolute;
     right: 5px;
-    top: 5px;
+    bottom: 5px;
 }
 .gallery_vote_count {
     font-family: 'syncopatebold';
@@ -2475,6 +2476,7 @@ footer{
     display: inline-block;
     margin-bottom: 0;
     width: 50px;
+    height: auto !important;
     text-align: center;
 }
 .slider_indicator{
