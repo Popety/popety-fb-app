@@ -32,6 +32,7 @@ exports.register = function (req, res) {
   userCrud.load({
     'user_email': userData.email
   }, function (err, rows) {
+    console.log('35', err);
     if(err){
       response = {
         'status': 0,
@@ -60,7 +61,7 @@ exports.register = function (req, res) {
           'user_last_name': userData.last_name,
           'facebook_id': userData.id,
         }, function (error, vals) {
-          console.log(error);
+          console.log('64',error);
           if(vals.affectedRows === 1){
             // getUserVotes(vals.insertId, function (result) {
             //   if(result.status === 0){
