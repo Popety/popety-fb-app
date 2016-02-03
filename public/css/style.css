@@ -1512,19 +1512,23 @@ table caption {
   margin-left: 3px;
 }
 .list-unstyled li{
-    margin-top: 0;
+    margin-top: 0px;
     float: left;
     margin-bottom: 0;
-    padding: 4px 10px;
+    padding: 2px 10px;
     color: #4C4C4C;
     font-size: 14px;
     cursor: pointer;
+    margin-right: 5px;
+    background: #FFFFFF;
+    border-radius: 4px;
+    border: 1px solid #FAFAFA;
 }
 .list-unstyled .active{
-    color: #4C4C4C;
+    color: #222222;
     background: #F6F6F6;
     border-radius: 4px;
-    border: 1px solid #E4E4E4;
+    border: 1px solid #F4EDED;
 }
 .thumbnail img{
     width: 100%;
@@ -1677,7 +1681,8 @@ a.btn{
 }
 .thumbnail .padding h4{
     color: #f9c100;
-    font-size: 16px;
+    font-size: 14px;
+    height: 35px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -2462,7 +2467,7 @@ footer{
 .votes_box{
     position: absolute;
     right: 5px;
-    top: 5px;
+    bottom: 5px;
 }
 .gallery_vote_count {
     font-family: 'syncopatebold';
@@ -2471,6 +2476,7 @@ footer{
     display: inline-block;
     margin-bottom: 0;
     width: 50px;
+    height: auto !important;
     text-align: center;
 }
 .slider_indicator{
