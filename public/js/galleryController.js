@@ -364,7 +364,7 @@ angular.module('popetyfbapp')
     //     console.log(imageurl + '' + res.filename);
         FB.ui({
              method: 'share',
-             name: condo.condo_name,
+             name: 'Look for my submission on property: '+condo.condo_name,
              href: 'https://apps.popety.com/redirect.html',
              picture: 'https://apps.popety.com/images/share_image.jpg',
              description: condo.condo_name,
