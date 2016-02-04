@@ -74,10 +74,44 @@ exports.register = function (req, res) {
       }
     });
   }else {
-    response = {
-      'status': 3,
-      'error': 'No Email Address'
-    };
-    res.jsonp(response);
+    userCrud.load({
+      'facebook_id': userData.id
+    }, function (err, rows) {
+      if(rows.length === 1){
+          response = {
+            'status': 1,
+            'user_id': rows[0].user_id,
+            'error': 'Already Registered'
+          };
+          res.jsonp(response);
+      }else if(rows.length === 0){
+        userCrud.create({
+          'user_first_name': userData.first_name,
+          'user_last_name': userData.last_name,
+          'facebook_id': userData.id,
+        }, function (error, vals) {
+          if(vals.affectedRows === 1){
+            response = {
+              'status': 2,
+              'user_id': vals.insertId,
+              'error': 'User Registered'
+            };
+            res.jsonp(response);
+          }else {
+            response = {
+              'status': 0,
+              'error': 'Internal Server Error'
+            };
+            res.jsonp(response);
+          }
+        });
+      }else {
+        response = {
+          'status': 0,
+          'error': 'Internal Server Error'
+        };
+        res.jsonp(response);
+      }
+    });
   }
 };

@@ -14,7 +14,7 @@ angular.module('popetyfbapp')
             store.set('user_email', response.email);
             store.set('user_name', response.first_name + ' ' + response.last_name);
             $state.go('tab.submit');
-          }else if(res.status === 3 || res.status === 0){
+          }else if(res.status === 0){
             popup_4.fadeIn(200);
           }
           loader.hide();
