@@ -1985,6 +1985,7 @@ input[type=file] {
     color: #383821;
     padding: 10px;
     width: 100%;
+    margin-bottom: 25px !important;
 }
 input[type=file]:before {
     width: 100%;
