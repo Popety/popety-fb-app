@@ -29,31 +29,19 @@ var response;
 
 exports.register = function (req, res) {
   var userData = req.body;
-  userCrud.load({
-    'user_email': userData.email
-  }, function (err, rows) {
-    console.log('35', err);
-    if(err){
-      response = {
-        'status': 0,
-        'error': 'Internal Server Error'
-      };
-      res.jsonp(response);
-    }else {
+  console.log('32',userData);
+  if(userData.email){
+    userCrud.load({
+      'user_email': userData.email
+    }, function (err, rows) {
+      console.log('35', err);
       if(rows.length === 1){
-        // getUserVotes(rows[0].user_id, function (result) {
-        //   if(result.status === 0){
-        //     res.jsonp(result);
-        //   }else {
-            response = {
-              'status': 1,
-              'user_id': rows[0].user_id,
-              // 'vote_list': result,
-              'error': 'Already Registered'
-            };
-            res.jsonp(response);
-        //   }
-        // });
+          response = {
+            'status': 1,
+            'user_id': rows[0].user_id,
+            'error': 'Already Registered'
+          };
+          res.jsonp(response);
       }else if(rows.length === 0){
         userCrud.create({
           'user_email': userData.email,
@@ -63,18 +51,12 @@ exports.register = function (req, res) {
         }, function (error, vals) {
           console.log('64',error);
           if(vals.affectedRows === 1){
-            // getUserVotes(vals.insertId, function (result) {
-            //   if(result.status === 0){
-            //     res.jsonp(result);
-            //   }else {
-                response = {
-                  'status': 2,
-                  'user_id': vals.insertId,
-                  'error': 'User Registered'
-                };
-                res.jsonp(response);
-              // }
-            // });
+            response = {
+              'status': 2,
+              'user_id': vals.insertId,
+              'error': 'User Registered'
+            };
+            res.jsonp(response);
           }else {
             response = {
               'status': 0,
@@ -83,7 +65,19 @@ exports.register = function (req, res) {
             res.jsonp(response);
           }
         });
+      }else {
+        response = {
+          'status': 0,
+          'error': 'Internal Server Error'
+        };
+        res.jsonp(response);
       }
-    }
-  });
+    });
+  }else {
+    response = {
+      'status': 3,
+      'error': 'No Email Address'
+    };
+    res.jsonp(response);
+  }
 };
