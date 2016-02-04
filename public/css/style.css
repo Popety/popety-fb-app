@@ -1974,6 +1974,8 @@ input[type=file] {
     height: 40px;
     opacity: 0px;
     overflow: hidden;
+    z-index: 9999;
+    left: 0px;
     margin-bottom: 30px;
     margin-left: 0;
 }
