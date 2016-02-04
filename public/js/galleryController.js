@@ -367,7 +367,7 @@ angular.module('popetyfbapp')
              name: 'Look for my submission on property: '+condo.condo_name,
              href: 'https://apps.popety.com/redirect.html',
              picture: 'https://apps.popety.com/images/share_image.jpg',
-             description: condo.condo_name,
+             description: 'Look for my submission on property: '+condo.condo_name,
          },function(response) {
              console.log(response);
             //  if (response && !response.error_message) {
