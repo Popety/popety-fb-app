@@ -2655,6 +2655,16 @@ footer{
   .new_homepage ul li{
     width: 100%;
     margin-bottom: -5px;
+    padding: 19px 50px 18px 41%;
+    position: relative;
+    background: #EFF3F5;
+    border: 1px solid #CECECE;
+  }
+  .new_homepage ul li img {
+    width: 49px;
+    position: absolute;
+    left: 23%;
+    bottom: 9px;
   }
   .new_homepage ul li:first-child{
     border-bottom-left-radius: 0px;
