@@ -21,7 +21,7 @@
                 </div>
               </div>
               <div class="col col-12">
-                <label for="name"><img src="images/condo_name.png" class="input_icon">
+                <label><img src="images/condo_name.png" class="input_icon">
                 <div mass-autocomplete>
                   <input mass-autocomplete-item="ac_options_condos" name="condoname" type="text" cols="100" placeholder="CONDO NAME" data-ng-model="condodata.condo_name" required>
                 </div>
@@ -31,7 +31,8 @@
                 </div>
               </div>
               <div class="col col-12">
-                <label for="name"><img src="images/floor.png" class="input_icon">
+                <label>
+                  <img src="images/floor.png" class="input_icon">
                   <select name="mySelect" id="mySelect" ng-options="option.name for option in bedroomdata.availableOptions track by option.id" ng-model="bedroomdata.selectedOption" required></select>
                 </label>
               </div>
