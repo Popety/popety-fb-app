@@ -1993,6 +1993,13 @@ input[type=file] {
   cursor: pointer;
   max-width: 820px;
 }
+.mobile_home_bg{
+  display: none;
+  width:100%;
+  height:100%;
+  cursor: pointer;
+  max-width: 768px;
+}
 input[type=file]:before {
     width: 100%;
     height: 40px;
@@ -2691,6 +2698,38 @@ footer{
   }
   .next_prev_row{
     margin-top: 20px;
+  }
+  .home_bg{
+    display: none;
+  }
+  .mobile_home_bg{
+    display: block;
+  }
+  #loader-div {
+    position: absolute;
+    width: 50%;
+    height: 35%;
+    top: 19%;
+    left: 61%;
+    margin-left: -120px;
+    background-color: rgba(50, 50, 50, 0.78);
+    display: none;
+    z-index: 99999;
+    border-radius: 10px;
+  }
+  .loading {
+    position: absolute;
+    top: 57%;
+    left: 23%;
+    font-family: 'latoregular';
+    font-size: 18px;
+  }
+  .loader {
+    position: absolute;
+    top: 48px;
+    left: 50%;
+    width: 60px;
+    margin-left: -30px;
   }
 }
 
