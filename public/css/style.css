@@ -1630,18 +1630,10 @@ a.btn{
 
 .btn-close::before{
   margin-top:12px;
-  -webkit-transform:rotate(45deg);
-  -moz-transform:rotate(45deg);
-  -o-transform:rotate(45deg);
-  transform:rotate(45deg);
 }
 
 .btn-close::after{
   margin-top:-2px;
-  -webkit-transform:rotate(-45deg);
-  -moz-transform:rotate(-45deg);
-  -o-transform:rotate(-45deg);
-  transform:rotate(-45deg);
 }
 .share_icon{
     width: 60px !important;
@@ -1925,9 +1917,6 @@ a.btn{
   border-radius: 50px;
   padding: 4px;
   background: #F9C100;
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 .banner_submit_section p{
     font-size: 16px;
@@ -2414,9 +2403,6 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 8px;
   cursor: pointer;
   z-index: 99999;
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 .popup_close{
   position: absolute;
@@ -2426,9 +2412,6 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 8px;
   z-index: 99999;
   cursor: pointer;
-  -ms-transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  transform: rotate(45deg);
 }
 .popup_close_pos {
     height: 50px !important;
@@ -2437,7 +2420,6 @@ input[type=number]::-webkit-outer-spin-button {
     right: 0px;
     padding: 8px;
     cursor: pointer;
-    transform: rotate(45deg) !important;
 }
 kbd {
   display: inline-block;
@@ -2582,7 +2564,6 @@ footer{
     width: 18px;
     right: 16%;
     top: 22%;
-    transform: rotate(44deg);
 }
 #like-wrapper{
     position: absolute;
