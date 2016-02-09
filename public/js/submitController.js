@@ -110,7 +110,7 @@ angular.module('popetyfbapp')
         var limit = 10;
         for (var i = 0; i < condos.length; i++) {
           var condo = condos[i];
-          if (condo.unit_name.toLowerCase().indexOf(q) !== -1) {
+          if (condo.unit_name.toLowerCase().indexOf(q) !== -1 && condo.unit_name.toLowerCase().startsWith(q)) {
             if (results.length == limit)
               break;
             results.push({
