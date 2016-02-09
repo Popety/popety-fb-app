@@ -8,23 +8,18 @@ angular.module('popetyfbapp')
   $scope.filenames = [];
   $scope.isFile = false;
   $scope.fileCount = 0;
-  console.log($scope.isFile);
+
   $scope.userName = store.get('user_name');
   $scope.user_id = store.get('user_id');
   $scope.baseurl = baseurl + 'uploadFile';
 
   $scope.add = function (files, events, flow) {
-    //console.log(files);
-    //console.log(files.length);
-    //console.log(flow);
     $scope.fileCount = $scope.fileCount + files.length;
-    console.log($scope.fileCount);
     if($scope.fileCount > 3 && $scope.fileCount <= 10){
       $scope.isFile = true;
     }else {
       $scope.isFile = false;
     }
-    console.log($scope.isFile);
   };
 
   $scope.upload_1 = function (flow) {
@@ -41,7 +36,6 @@ angular.module('popetyfbapp')
       if(err){
         console.log('error while adding the file name');
       }else {
-          console.log($scope.filenames);
           var condoinfo = {
             user_name: store.get('user_name'),
             user_id: store.get('user_id'),
@@ -50,10 +44,8 @@ angular.module('popetyfbapp')
             condo_name: condodata.condo_name,
             fileNames: $scope.filenames
           };
-          console.log(condoinfo);
 
           $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
-            console.log(res);
             if (res.status == 1) {
               $scope.condosuccessmsg = 'Condo Successfully Added.';
               $scope.showcondosuccessmsg = true;
@@ -147,7 +139,6 @@ angular.module('popetyfbapp')
         suggest: suggest_condos,
         on_select: function(selected) {
           $scope.selected_condo = selected.obj;
-          console.log($scope.selected_condo);
         }
       };
     }
@@ -163,7 +154,6 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata, valid) {
-    console.log($scope.imagefiles);
     if (valid) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'Please Upload 4 Images';
@@ -246,12 +236,6 @@ angular.module('popetyfbapp')
   // };
 
   $scope.removeimage = function(img, flow) {
-    //console.log(img);
-    //console.log(flow);
-     // Remove the img from the flows list
-     // if(flow.indexOf(img) != -1){
-     //    flow.splice(indexOf(img), 1);
-     // }
     for (var i in flow) {
         if (flow[i] === img) {
             flow.splice(i, 1);
@@ -261,7 +245,6 @@ angular.module('popetyfbapp')
           }else {
             $scope.isFile = false;
           }
-          console.log($scope.isFile);
         }
     }
   };

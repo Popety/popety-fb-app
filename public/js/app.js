@@ -12,7 +12,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
 
   .state('tab', {
     url: "/tab",
-    authRequired : true,
+    // authRequired : true,
     templateUrl: "templates/tab.html",
   })
 
@@ -42,21 +42,34 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
   $urlRouterProvider.otherwise('/home');
 
 })
-.directive('validFile', function () {
-    return {
-        require: 'ngModel',
-        link: function (scope, el, attrs, ngModel) {
-            ngModel.$render = function () {
-                ngModel.$setViewValue(el.val());
-            };
-
-            el.bind('change', function () {
-                scope.$apply(function () {
-                    ngModel.$render();
-                });
-            });
-        }
-    };
+.run(function($rootScope, $state, AuthService, $http, store) {
+  $rootScope.$on("$stateChangeStart", function(event, toState, toParams, fromState, fromParams){
+    if ( toState.authRequired ) {
+      if( !store.get('isLogin') || store.get('isLogin') !== true ){
+        event.preventDefault();
+        AuthService.isAuthenticated = false;
+        store.remove('isLogin');
+        $state.go('home');
+      }
+    }
+  });
+})
+.service('AuthService', function(store){
+  FB.login(function(response) {
+      if (response.authResponse) {
+       FB.api('/me', {
+           fields: 'id,email,gender,first_name,last_name'
+       }, function(response) {
+           if (!response || response.error) {
+               alert('Error occured');
+           } else {
+               this.isAuthenticated = store.get('isLogin');
+           }
+       });
+      } else {
+       console.log('User cancelled login or did not fully authorize.');
+      }
+  });
 })
 // ...
 .factory('facebookService', function($q) {
