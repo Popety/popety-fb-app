@@ -36,9 +36,9 @@
 				    </span>
 				</a>
 			</div>
-			<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg">{{nextprevcondolist_conn_msg}}</div>
-			<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg">{{condolist_err_msg}}</div>
-			<div data-ng-model="connectionmsg" ng-show="showconnectionmsg">{{connectionmsg}}</div>
+			<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg"></div>
+			<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg"></div>
+			<div data-ng-model="connectionmsg" ng-show="showconnectionmsg"></div>
 			<ul class="list-unstyled" data-ng-if="letter_total_condos > 6 ">
 		      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
 		      <li ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
@@ -93,7 +93,9 @@
 			};
 
 	doc.on("click", "#close-popup-2", hidePopup_1);
+	doc.on("click", "#popup-1", hidePopup_1);
 	doc.on("click", "#close-popup-3", hidePopup_3);
+	doc.on("click", "#popup-3", hidePopup_3);
 
   doc.keypress(function (event) {
     if (event.keyCode === 27) { // esc key
