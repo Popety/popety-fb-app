@@ -38,7 +38,8 @@ angular.module('popetyfbapp')
       $scope.lastid = res[res.length - 1].condo_id;
     }).error(function(err) {
       console.log('Connection Problem..');
-      $scope.nextprevcondolist_conn_msg = "Connection Problem..";
+      //$scope.nextprevcondolist_conn_msg = "Connection Problem..";
+      alert('Connection Problem..');
       $scope.shownextprevcondolist_conn_msg = true;
       $timeout(function() {
         $scope.shownextprevcondolist_conn_msg = false;
@@ -57,7 +58,8 @@ angular.module('popetyfbapp')
     loader.fadeIn(200);
     $http.get(baseurl + 'getallcondolist').success(function(res, req) {
       if (res.status === 0) {
-        $scope.condolist_err_msg = "Error To Get Condo List";
+        //$scope.condolist_err_msg = "Error To Get Condo List";
+        alert("Error To Get Condo List");
         $scope.showcondolist_err_msg = true;
         $timeout(function() {
           $scope.showcondolist_err_msg = false;
@@ -95,7 +97,8 @@ angular.module('popetyfbapp')
       loader.hide();
     }).error(function(err) {
       console.log('Connection Problem..');
-      $scope.connectionmsg = "Connection Problem..";
+      //$scope.connectionmsg = "Connection Problem..";
+      alert("Connection Problem..");
       $scope.showconnectionmsg = true;
       $timeout(function() {
         $scope.showconnectionmsg = false;
