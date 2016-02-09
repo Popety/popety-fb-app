@@ -24,9 +24,14 @@ var response;
 var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
 var filePath = '/home/apps/popety-fb-app/temp/';
 var uploadPath = '/home/apps/popety-fb-app/tmp/';
+
 // var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
 // var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
 // var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
+
+// var waterMarkFile = '/xampp/htdocs/popety-fb-app/public/images/';
+// var filePath = '/xampp/htdocs/popety-fb-app/temp/';
+// var uploadPath = '/xampp/htdocs/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),

@@ -96,7 +96,7 @@ angular.module('popetyfbapp')
       popup_2.fadeIn(200);
       loader.hide();
     }).error(function(err) {
-      console.log('Connection Problem..');
+      console.log('Connection Problem...');
       //$scope.connectionmsg = "Connection Problem..";
       alert("Connection Problem..");
       $scope.showconnectionmsg = true;
