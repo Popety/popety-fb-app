@@ -41,14 +41,16 @@
                   <button class="button upload_btn">UPLOAD IMAGES</button>
                   <input type="file" class="hide_upload" flow-btn />
                   <div data-ng-if="condosubmitform.$submitted && !isFile" role="alert" class="valid_msg" style="margin-top: 10px;">
-                      <div style="margin-top: 10px;">Please Select Images.</div>
+                      <div ng-show="fileCount==0" >Please Select Images.</div>
+                      <div ng-show="fileCount<4 && fileCount!=0" >Please Select 4 Images.</div>
+                      <div ng-show="fileCount>10" >Only 10 Images Are Allowed.</div>
                   </div>
                   <!-- <input type="file" id="file_browse1" onchange="angular.element(this).scope().updateattachment('file_browse1');" accept="image/*" multiple ng-disabled="imagefiles.length >= 10"/> -->
                   <!-- <div data-ng-model="imgcompulsorymsg" ng-show="showimgcompulsorymsg" class="valid_msg" style="margin-top: 10px;">{{imgcompulsorymsg}}</div>
                   <div data-ng-model="imagelimitmsg" ng-show="showimagelimitmsg" class="valid_msg" style="margin-top: 10px;">{{imagelimitmsg}}</div> -->
                   <div ng-repeat="img in $flow.files" class="col col-6 img_preview">
-                      <!-- <span class="img_close"><img src="images/add.svg" style="height:auto;"></span> -->
-                      <img flow-img="img" multiple/>
+                      <span ng-click="removeimage(img, $flow.files)" class="img_close"><img src="images/add.svg" style="height:auto;"></span>
+                      <img  flow-img="img" />
                   </div>
               </div>
             <div class="col col-12">

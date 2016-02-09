@@ -7,16 +7,19 @@ angular.module('popetyfbapp')
 
   $scope.filenames = [];
   $scope.isFile = false;
+  $scope.fileCount = 0;
   console.log($scope.isFile);
   $scope.userName = store.get('user_name');
   $scope.user_id = store.get('user_id');
   $scope.baseurl = baseurl + 'uploadFile';
 
   $scope.add = function (files, events, flow) {
-    console.log(files);
-    console.log(files.length);
-    console.log(flow);
-    if(files.length > 3){
+    //console.log(files);
+    //console.log(files.length);
+    //console.log(flow);
+    $scope.fileCount = $scope.fileCount + files.length;
+    console.log($scope.fileCount);
+    if($scope.fileCount > 3 && $scope.fileCount <= 10){
       $scope.isFile = true;
     }else {
       $scope.isFile = false;
@@ -213,39 +216,54 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  $scope.updateattachment = function(file_browse) {
-    if(document.getElementById("file_browse1").files.length <= 10){
-      angular.forEach(document.getElementById("file_browse1").files, function(file) {
-        var fileDisplayArea = document.getElementById('fileDisplayArea');
-        var newfile = file;
-        var imageType = "image";
+  // $scope.updateattachment = function(file_browse) {
+  //   if(document.getElementById("file_browse1").files.length <= 10){
+  //     angular.forEach(document.getElementById("file_browse1").files, function(file) {
+  //       var fileDisplayArea = document.getElementById('fileDisplayArea');
+  //       var newfile = file;
+  //       var imageType = "image";
 
-        if (newfile.type.match(imageType)) {
-          var oFReader = new FileReader();
-          oFReader.onload = function(oFREvent) {
-            $scope.imagefiles.push({
-              'image': oFReader.result
-            });
-            $scope.$apply();
-          };
-          oFReader.readAsDataURL(newfile);
-        } else {
-          $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
-          $scope.showfilenotsupportmsg = true;
-          $timeout(function() {
-            $scope.showfilenotsupportmsg = false;
-          }, 3000);
+  //       if (newfile.type.match(imageType)) {
+  //         var oFReader = new FileReader();
+  //         oFReader.onload = function(oFREvent) {
+  //           $scope.imagefiles.push({
+  //             'image': oFReader.result
+  //           });
+  //           $scope.$apply();
+  //         };
+  //         oFReader.readAsDataURL(newfile);
+  //       } else {
+  //         $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
+  //         $scope.showfilenotsupportmsg = true;
+  //         $timeout(function() {
+  //           $scope.showfilenotsupportmsg = false;
+  //         }, 3000);
+  //       }
+  //     });
+  //   }else {
+  //     filePopup.fadeIn(200);
+  //   }
+  // };
+
+  $scope.removeimage = function(img, flow) {
+    //console.log(img);
+    //console.log(flow);
+     // Remove the img from the flows list
+     // if(flow.indexOf(img) != -1){
+     //    flow.splice(indexOf(img), 1);
+     // }
+    for (var i in flow) {
+        if (flow[i] === img) {
+            flow.splice(i, 1);
+            $scope.fileCount--;
+            if($scope.fileCount > 3 && $scope.fileCount <= 10){
+            $scope.isFile = true;
+          }else {
+            $scope.isFile = false;
+          }
+          console.log($scope.isFile);
         }
-      });
-    }else {
-      filePopup.fadeIn(200);
     }
-  };
-
-  $scope.removeimage = function(img) {
-    console.log(img);
-    img.files.splice(1);
-    console.log(img);
   };
 
   $scope.closePopup = function () {
