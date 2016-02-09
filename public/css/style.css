@@ -2336,16 +2336,10 @@ input[type=number]::-webkit-outer-spin-button {
   padding: 20px;
 }
 #loader-div{
-    position: absolute;
-    width: 320px;
-    height: 320px;
-    top: 19%;
-    left: 48%;
-    margin-left: -150px;
+    position: fixed;
     background-color: rgba(50, 50, 50, 0.78);
     display: none;
     z-index: 99999;
-    border-radius: 10px;
 }
 #thank_you{
     position: absolute;
@@ -2374,14 +2368,16 @@ input[type=number]::-webkit-outer-spin-button {
 .loader{
     position: absolute;
     top: 35%;
-    left: 38%;
+    left: 50%;
     width: 86px;
+    margin-left: -40px;
 }
 .loading{
     position: absolute;
-    top: 63%;
-    left: 30%;
+    top: 51%;
+    left: 50%;
     font-family: 'latoregular';
+    margin-left: -60px;
 }
 .ok-popup{
     padding: 4%;
@@ -2696,31 +2692,8 @@ footer{
   .mobile_home_bg{
     display: block;
   }
-  #loader-div {
-    position: fixed;
-    width: 50%;
-    height: 35%;
-    top: 23%;
-    left: 61%;
-    margin-left: -120px;
-    background-color: rgba(50, 50, 50, 0.78);
-    display: none;
-    z-index: 99999;
-    border-radius: 10px;
-  }
-  .loading {
-    position: absolute;
-    top: 57%;
-    left: 23%;
-    font-family: 'latoregular';
-    font-size: 18px;
-  }
-  .loader {
-    position: absolute;
-    top: 48px;
-    left: 50%;
-    width: 60px;
-    margin-left: -30px;
+  .loading{
+    top: 51%;
   }
   .padding_bottom{
     padding-bottom: 0px;
