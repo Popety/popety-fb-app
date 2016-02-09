@@ -7,21 +7,19 @@ angular.module('popetyfbapp')
 
   $scope.filenames = [];
   $scope.isFile = false;
-  console.log($scope.isFile);
+  $scope.fileCount = 0;
+
   $scope.userName = store.get('user_name');
   $scope.user_id = store.get('user_id');
   $scope.baseurl = baseurl + 'uploadFile';
 
   $scope.add = function (files, events, flow) {
-    console.log(files);
-    console.log(files.length);
-    console.log(flow);
-    if(files.length > 3){
+    $scope.fileCount = $scope.fileCount + files.length;
+    if($scope.fileCount > 3 && $scope.fileCount <= 10){
       $scope.isFile = true;
     }else {
       $scope.isFile = false;
     }
-    console.log($scope.isFile);
   };
 
   $scope.upload_1 = function (flow) {
@@ -38,7 +36,6 @@ angular.module('popetyfbapp')
       if(err){
         console.log('error while adding the file name');
       }else {
-          console.log($scope.filenames);
           var condoinfo = {
             user_name: store.get('user_name'),
             user_id: store.get('user_id'),
@@ -47,10 +44,8 @@ angular.module('popetyfbapp')
             condo_name: condodata.condo_name,
             fileNames: $scope.filenames
           };
-          console.log(condoinfo);
 
           $http.post(baseurl + 'condosubmit', condoinfo).success(function(res, req) {
-            console.log(res);
             if (res.status == 1) {
               $scope.condosuccessmsg = 'Condo Successfully Added.';
               $scope.showcondosuccessmsg = true;
@@ -115,7 +110,7 @@ angular.module('popetyfbapp')
         var limit = 10;
         for (var i = 0; i < condos.length; i++) {
           var condo = condos[i];
-          if (condo.unit_name.toLowerCase().indexOf(q) !== -1) {
+          if (condo.unit_name.toLowerCase().indexOf(q) !== -1 && condo.unit_name.toLowerCase().startsWith(q)) {
             if (results.length == limit)
               break;
             results.push({
@@ -144,7 +139,6 @@ angular.module('popetyfbapp')
         suggest: suggest_condos,
         on_select: function(selected) {
           $scope.selected_condo = selected.obj;
-          console.log($scope.selected_condo);
         }
       };
     }
@@ -160,7 +154,6 @@ angular.module('popetyfbapp')
    */
 
   $scope.condosubmit = function(condodata, valid) {
-    console.log($scope.imagefiles);
     if (valid) {
       if ($scope.imagefiles.length < 4) {
         $scope.imagelimitmsg = 'Please Upload 4 Images';
@@ -213,39 +206,47 @@ angular.module('popetyfbapp')
    @author sameer vedpathak
    @initialDate
    */
-  $scope.updateattachment = function(file_browse) {
-    if(document.getElementById("file_browse1").files.length <= 10){
-      angular.forEach(document.getElementById("file_browse1").files, function(file) {
-        var fileDisplayArea = document.getElementById('fileDisplayArea');
-        var newfile = file;
-        var imageType = "image";
+  // $scope.updateattachment = function(file_browse) {
+  //   if(document.getElementById("file_browse1").files.length <= 10){
+  //     angular.forEach(document.getElementById("file_browse1").files, function(file) {
+  //       var fileDisplayArea = document.getElementById('fileDisplayArea');
+  //       var newfile = file;
+  //       var imageType = "image";
 
-        if (newfile.type.match(imageType)) {
-          var oFReader = new FileReader();
-          oFReader.onload = function(oFREvent) {
-            $scope.imagefiles.push({
-              'image': oFReader.result
-            });
-            $scope.$apply();
-          };
-          oFReader.readAsDataURL(newfile);
-        } else {
-          $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
-          $scope.showfilenotsupportmsg = true;
-          $timeout(function() {
-            $scope.showfilenotsupportmsg = false;
-          }, 3000);
+  //       if (newfile.type.match(imageType)) {
+  //         var oFReader = new FileReader();
+  //         oFReader.onload = function(oFREvent) {
+  //           $scope.imagefiles.push({
+  //             'image': oFReader.result
+  //           });
+  //           $scope.$apply();
+  //         };
+  //         oFReader.readAsDataURL(newfile);
+  //       } else {
+  //         $scope.filenotsupportmsg = "Please Select .jpeg Images Only";
+  //         $scope.showfilenotsupportmsg = true;
+  //         $timeout(function() {
+  //           $scope.showfilenotsupportmsg = false;
+  //         }, 3000);
+  //       }
+  //     });
+  //   }else {
+  //     filePopup.fadeIn(200);
+  //   }
+  // };
+
+  $scope.removeimage = function(img, flow) {
+    for (var i in flow) {
+        if (flow[i] === img) {
+            flow.splice(i, 1);
+            $scope.fileCount--;
+            if($scope.fileCount > 3 && $scope.fileCount <= 10){
+            $scope.isFile = true;
+          }else {
+            $scope.isFile = false;
+          }
         }
-      });
-    }else {
-      filePopup.fadeIn(200);
     }
-  };
-
-  $scope.removeimage = function(img) {
-    console.log(img);
-    img.files.splice(1);
-    console.log(img);
   };
 
   $scope.closePopup = function () {

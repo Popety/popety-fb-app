@@ -37,9 +37,8 @@ angular.module('popetyfbapp')
       $scope.prev_id = res[0].condo_id;
       $scope.lastid = res[res.length - 1].condo_id;
     }).error(function(err) {
-      console.log('Connection Problem..');
       //$scope.nextprevcondolist_conn_msg = "Connection Problem..";
-      alert('Connection Problem..');
+      alert('Connection Problem.');
       $scope.shownextprevcondolist_conn_msg = true;
       $timeout(function() {
         $scope.shownextprevcondolist_conn_msg = false;
@@ -348,6 +347,9 @@ angular.module('popetyfbapp')
         loader.hide();
         var popup_3 = $("#popup-3");
         popup_3.fadeIn(200);
+      }else if (res.status === 0) {
+        loader.hide();
+        alert('Internal Server Error. Please Try Again Later.');
       }
     }).error(function(err) {
       loader.hide();

@@ -9,7 +9,7 @@ angular.module('popetyfbapp')
       facebookService.getUserData().then(function(response){
         $http.post( baseurl + 'register', response).success(function (res, req) {
           if(res.status === 1 || res.status === 2){
-            store.set('login', true);
+            store.set('isLogin', true);
             store.set('user_id', res.user_id);
             if(response.email) store.set('user_email', response.email);
             store.set('user_name', response.first_name + ' ' + response.last_name);
@@ -19,6 +19,7 @@ angular.module('popetyfbapp')
           }
           loader.hide();
         }).error(function (err) {
+          loader.hide();
           console.log(err);
         });
       });
