@@ -2697,10 +2697,10 @@ footer{
     display: block;
   }
   #loader-div {
-    position: absolute;
+    position: fixed;
     width: 50%;
     height: 35%;
-    top: 19%;
+    top: 23%;
     left: 61%;
     margin-left: -120px;
     background-color: rgba(50, 50, 50, 0.78);
