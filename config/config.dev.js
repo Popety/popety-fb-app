@@ -8,7 +8,7 @@ config.connection = mysql.createPool({
     host: 'n2.transparent.sg',
     user: 'transparent',
     password: '10gXWOqeaf',
-    database: 'popety_fbapp'
+    database: 'photocontest'
 });
 
 config.timestamp = function() {
