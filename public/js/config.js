@@ -1,4 +1,4 @@
-var instance = "prod";
+var instance = "dev";
 
 if (instance == "prod"){
 	var baseurl = 'api/';
