@@ -61,13 +61,20 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
            fields: 'id,email,gender,first_name,last_name'
        }, function(response) {
            if (!response || response.error) {
-               alert('Error occured');
+               store.remove('isLogin');
+               $state.go('home');
            } else {
+              //  store.set('isLogin', true);
+              //  store.set('user_id', res.user_id);
+              //  if(response.email) store.set('user_email', response.email);
+              //  store.set('user_name', response.first_name + ' ' + response.last_name);
                this.isAuthenticated = store.get('isLogin');
            }
        });
       } else {
-       console.log('User cancelled login or did not fully authorize.');
+        store.remove('isLogin');
+        $state.go('home');
+        console.log('User cancelled login or did not fully authorize.');
       }
   });
 })

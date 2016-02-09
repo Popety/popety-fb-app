@@ -1,6 +1,6 @@
 angular.module('popetyfbapp')
 
-.controller('homeController', function ($state, $stateParams, $scope, $http, $q, store, facebookService) {
+.controller('homeController', function ($state, $stateParams, $scope, $http, $q, store, facebookService, AuthService) {
   var popup_4 = $("#popup-4");
   var loader = $("#loader-div");
 
@@ -13,6 +13,7 @@ angular.module('popetyfbapp')
             store.set('user_id', res.user_id);
             if(response.email) store.set('user_email', response.email);
             store.set('user_name', response.first_name + ' ' + response.last_name);
+            AuthService.isAuthenticated = store.get('isLogin');
             $state.go('tab.submit');
           }else if(res.status === 0){
             popup_4.fadeIn(200);
