@@ -93,7 +93,10 @@ angular.module('popetyfbapp')
     };
     $http.post(baseurl + 'getcondoimages', condo_id).success(function(res, req) {
       $scope.condoimagelist = res;
-      popup_2.fadeIn(200);
+      if($scope.condoimagelist.length)
+      {
+        popup_2.fadeIn(200);
+      }
       loader.hide();
     }).error(function(err) {
       console.log('Connection Problem...');
