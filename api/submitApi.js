@@ -49,81 +49,47 @@ function decodeBase64Image(dataString, callback) {
 }
 
 function watermark(imageData, callback) {
-  // decodeBase64Image(imageData.image, function(result) {
-    // var filename = Math.floor((Math.random() * 999999999999) + 1) + '.png';
-    // fs.writeFile(filePath + "" + filename, result.data, function(error) {
-    //   // fs.writeFile("/Users/nitin/Projects/popety-fb-app/temp/"+filename, result.data, function(error) {
-    //   if (error) {
-    //     response = {
-    //       status: 0,
-    //       message: 'INTERNAL SERVER ERROR'
-    //     };
-    //     callback(response);
-    //   } else {
-        // var newFile = filePath + "" + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
-        // var command = [
-        //   'composite',
-        //   '-dissolve', '90%',
-        //   '-gravity', 'center',
-        //   '-quality', 100,
-        //   waterMarkFile + 'watermark.png',
-        //   uploadPath + imageData.name,
-        //   newFile
-        // ];
-        // Join command array by a space character and then execute command
-        // exec(command.join(' '), function(err, stdout, stderr) {
-        //   if (err) {
-        //     response = {
-        //       status: 0,
-        //       message: 'INTERNAL SERVER ERROR'
-        //     };
-        //     callback(response);
-        //   } else {
-            im.identify(uploadPath + imageData.name, function(err, features){
-              if (err) {
-                response = {
-                  status: 0,
-                  message: 'INTERNAL SERVER ERROR 77'
-                };
-                callback(response);
-              }else {
-                var height = features.height;
-                var width = features.width;
-                var type, diffwidth, diffheight;
-                var newThumb = filePath +'thumb_'+Math.floor((Math.random() * 9999999999) + 1)+'.png';
 
-                diffwidth = width / 360;
-                diffheight = height / diffwidth;
+  im.identify(uploadPath + imageData.name, function(err, features) {
+    if (err) {
+      response = {
+        status: 0,
+        message: 'INTERNAL SERVER ERROR 77'
+      };
+      callback(response);
+    } else {
+      var height = features.height;
+      var width = features.width;
+      var type, diffwidth, diffheight;
+      var newThumb = filePath + 'thumb_' + Math.floor((Math.random() * 9999999999) + 1) + '.png';
 
-                im.resize({
-                  srcPath: uploadPath + imageData.name,
-                  dstPath: newThumb,
-                  width: 360,
-                  height: diffheight
-                }, function(err, stdout, stderr){
-                  if (err){
-                    console.log(err);
-                    response = {
-                      status: 0,
-                      message: 'INTERNAL SERVER ERROR 98'
-                    };
-                    callback(response);
-                  }else {
-                    var newFileData = fs.readFileSync(uploadPath + imageData.name).toString("base64");
-                    var newThumbData = fs.readFileSync(newThumb).toString("base64");
-                    callback({
-                      'original': 'data:image/png;base64,'+newFileData,
-                      'thumb': 'data:image/png;base64,'+newThumbData
-                    });
-                  }
-                });
-              }
-            });
-        //   }
-        // });
-    //   }
-    // });
-  // });
+      diffwidth = width / 360;
+      diffheight = height / diffwidth;
+
+      im.resize({
+        srcPath: uploadPath + imageData.name,
+        dstPath: newThumb,
+        width: 360,
+        height: diffheight
+      }, function(err, stdout, stderr) {
+        if (err) {
+          console.log(err);
+          response = {
+            status: 0,
+            message: 'INTERNAL SERVER ERROR 98'
+          };
+          callback(response);
+        } else {
+          var newFileData = fs.readFileSync(uploadPath + imageData.name).toString("base64");
+          var newThumbData = fs.readFileSync(newThumb).toString("base64");
+          callback({
+            'original': 'data:image/png;base64,' + newFileData,
+            'thumb': 'data:image/png;base64,' + newThumbData
+          });
+        }
+      });
+    }
+  });
 }
 
 exports.condoList = function(req, res) {
@@ -142,16 +108,18 @@ exports.condoList = function(req, res) {
   });
 };
 
-exports.uploadFile = function (req, res) {
+exports.uploadFile = function(req, res) {
   flow.post(req, function(status, filename, original_filename, identifier) {
-    console.log('139 **********',req.body.flowChunkNumber, req.body.flowTotalChunks);
+    console.log('139 **********', req.body.flowChunkNumber, req.body.flowTotalChunks);
     if (status === 'done' && req.body.flowChunkNumber === req.body.flowTotalChunks) {
-      var s = fs.createWriteStream(uploadPath + original_filename);
-      flow.write(identifier, s, {end: true});
-      s.on('finish', function () {
+      var s = fs.createWriteStream(uploadPath + identifier+'.jpeg');
+      flow.write(identifier, s, {
+        end: true
+      });
+      s.on('finish', function() {
         res.status(200).send();
       });
-    }else {
+    } else {
       res.status(200).send();
     }
   });
@@ -169,27 +137,27 @@ exports.condosubmit = function(req, res) {
     } else {
       async.each(req.body.fileNames, function(item, callback) {
         watermark(item, function(result) {
-          if(result.status === 0){
+          if (result.status === 0) {
             response = {
               status: 0,
               message: 'INTERNAL ERROR condo information.'
             };
             console.log(response);
-          }else {
+          } else {
             galleryCrud.create({
               'condo_id': rows.insertId,
               'images': result.original,
               'thumb_images': result.thumb,
               'status': 0,
               'created_on': cfg.timestamp()
-            }, function (error, vals) {
-              if(vals.affectedRows === 1){
+            }, function(error, vals) {
+              if (vals.affectedRows === 1) {
                 response = {
                   status: 1,
                   message: 'Image Upload successfully.'
                 };
                 console.log(response);
-              }else {
+              } else {
                 response = {
                   status: 0,
                   message: 'INTERNAL ERROR condo information.'
