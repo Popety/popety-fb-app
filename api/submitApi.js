@@ -49,7 +49,6 @@ function decodeBase64Image(dataString, callback) {
 }
 
 function watermark(imageData, callback) {
-
   im.identify(uploadPath + imageData.name, function(err, features) {
     if (err) {
       response = {
@@ -73,7 +72,6 @@ function watermark(imageData, callback) {
         height: diffheight
       }, function(err, stdout, stderr) {
         if (err) {
-          console.log(err);
           response = {
             status: 0,
             message: 'INTERNAL SERVER ERROR 98'
@@ -113,6 +111,7 @@ exports.uploadFile = function(req, res) {
     console.log('139 **********', req.body.flowChunkNumber, req.body.flowTotalChunks);
     if (status === 'done' && req.body.flowChunkNumber === req.body.flowTotalChunks) {
       var s = fs.createWriteStream(uploadPath + identifier+'.jpeg');
+      console.log(uploadPath + identifier+'.jpeg');
       flow.write(identifier, s, {
         end: true
       });

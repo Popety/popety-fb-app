@@ -29,7 +29,7 @@ angular.module('popetyfbapp')
   $scope.fileSuccess = function (flow, condodata) {
     async.each(flow.files, function (file, callback) {
       $scope.filenames.push({
-        'name': file.uniqueIdentifier
+        'name': file.uniqueIdentifier+'.jpeg'
       });
       callback();
     }, function (err) {
