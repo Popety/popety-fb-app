@@ -2731,6 +2731,12 @@ footer{
   .terms_padding{
       padding: 20px 10px 10px;
   }
+  .list-unstyled li{
+      padding: 2px 9px;
+  }
+  select {
+    font-size: 90%;
+  }
 }
 
 @media(max-width:600px){
