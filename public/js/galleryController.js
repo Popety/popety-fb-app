@@ -98,7 +98,7 @@ angular.module('popetyfbapp')
         }
         $scope.onloadletter_total_condos = res.letter_total_condos;
         $scope.onloadlastid = $scope.min_max_id.min;
-        console.log($scope.onloadlastid);
+        //console.log($scope.onloadlastid);
       }
       loader.hide();
     }).error(function(err) {
