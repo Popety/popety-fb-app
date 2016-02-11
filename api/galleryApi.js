@@ -26,7 +26,7 @@ function decodeBase64Image (dataString, callback) {
 
 exports.getallcondolist = function(req, res) {
   db.query("SELECT COUNT(condo_id) as all_letter_condos FROM fb_condo_list", function(err, countrow) {
-    console.log(countrow[0].all_letter_condos);
+    //console.log(countrow[0].all_letter_condos);
     var condo_list_query = "SELECT * FROM fb_condo_list ORDER by fb_condo_list.condo_id desc limit 0,6";
     db.query(condo_list_query, function(err, rows) {
       if (err) {
@@ -36,11 +36,11 @@ exports.getallcondolist = function(req, res) {
           "message": "Internal Server Error"
         });
       } else {
-        console.log(rows);
+        //console.log(rows);
         var data = [];
         async.each(rows, function(item, callback) {
             var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
-            console.log(condoimagedata);
+            //console.log(condoimagedata);
             db.query(condoimagedata, function(err, condolist) {
               if (!err) {
 
@@ -84,7 +84,7 @@ exports.getallcondolist = function(req, res) {
 };
 
 exports.nextprevcondolist = function(req, res) {
-  console.log(req.body);
+  //console.log(req.body);
 
   if (req.body.condo_last_id) {
     var conditionpart = "condo_id < " + req.body.condo_last_id + " ORDER BY condo_id DESC";
@@ -93,7 +93,7 @@ exports.nextprevcondolist = function(req, res) {
   }
 
   var condo_list_query = " SELECT * FROM fb_condo_list WHERE " + conditionpart + " LIMIT 6";
-  console.log(condo_list_query);
+  //console.log(condo_list_query);
   db.query(condo_list_query, function(err, rows) {
     if (err) {
       res.status(500);
@@ -173,9 +173,9 @@ exports.getAlphaNumericCondoList = function(req, res) {
     var limit_part = "LIMIT " + req.body.pageno + ",6";
   }
   db.query("SELECT COUNT(condo_id) as all_letter_condos FROM fb_condo_list WHERE " + where_part, function(err, countrow) {
-    console.log(countrow[0].all_letter_condos);
+//    console.log(countrow[0].all_letter_condos);
     var condo_list_query = "SELECT * FROM fb_condo_list WHERE " + where_part + " ORDER BY fb_condo_list.condo_name desc " + limit_part;
-    console.log(condo_list_query);
+    //console.log(condo_list_query);
     db.query(condo_list_query, function(err, rows) {
       if (err) {
         res.status(500);
