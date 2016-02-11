@@ -25,54 +25,62 @@ function decodeBase64Image (dataString, callback) {
 }
 
 exports.getallcondolist = function(req, res) {
-  var condo_list_query = "SELECT * FROM fb_condo_list ORDER by fb_condo_list.condo_id desc LIMIT 6 ";
-  db.query(condo_list_query, function(err, rows) {
-    if (err) {
-      res.status(500);
-      res.jsonp({
-        "status": 500,
-        "message": "Internal Server Error"
-      });
-    } else {
+  db.query("SELECT COUNT(condo_id) as all_letter_condos FROM fb_condo_list", function(err, countrow) {
+    console.log(countrow[0].all_letter_condos);
+    var condo_list_query = "SELECT * FROM fb_condo_list ORDER by fb_condo_list.condo_id desc limit 0,6";
+    db.query(condo_list_query, function(err, rows) {
+      if (err) {
+        res.status(500);
+        res.jsonp({
+          "status": 500,
+          "message": "Internal Server Error"
+        });
+      } else {
+        console.log(rows);
+        var data = [];
+        async.each(rows, function(item, callback) {
+            var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
+            console.log(condoimagedata);
+            db.query(condoimagedata, function(err, condolist) {
+              if (!err) {
 
-      var data = [];
-      async.each(rows, function(item, callback) {
-          var condoimagedata = "SELECT image_id, thumb_images, condo_id FROM fb_condo_images where condo_id = " + item.condo_id + " LIMIT 1";
-          console.log(condoimagedata);
-          db.query(condoimagedata, function(err, condolist) {
-            if (!err) {
+                for (var i = 0; i < condolist.length; i++) {
+                  item.condolist = condolist[i];
+                }
 
-              for (var i = 0; i < condolist.length; i++) {
-                item.condolist = condolist[i];
+                data.push(item);
+                callback();
+              } else {
+                response = {
+                  status: 0,
+                  message: 'INTERNAL ERROR condo information.'
+                };
+
               }
-
-              data.push(item);
-              callback();
+            });
+          },
+          function(err) {
+            if (!err) {
+              response = {
+                status: 1,
+                message: 'Success.',
+                condolist: data,
+                letter_total_condos: countrow[0].all_letter_condos,
+              };
+              res.jsonp(response);
             } else {
               response = {
                 status: 0,
                 message: 'INTERNAL ERROR condo information.'
               };
-
+              res.jsonp(response);
             }
           });
-        },
-        function(err) {
-          if (!err) {
-            res.jsonp(data);
-          } else {
-            response = {
-              status: 0,
-              message: 'INTERNAL ERROR condo information.'
-            };
-            res.jsonp(response);
-          }
-        });
 
-    }
+      }
 
+    });
   });
-
 };
 
 exports.nextprevcondolist = function(req, res) {
@@ -85,6 +93,7 @@ exports.nextprevcondolist = function(req, res) {
   }
 
   var condo_list_query = " SELECT * FROM fb_condo_list WHERE " + conditionpart + " LIMIT 6";
+  console.log(condo_list_query);
   db.query(condo_list_query, function(err, rows) {
     if (err) {
       res.status(500);

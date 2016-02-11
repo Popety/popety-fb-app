@@ -1,9 +1,9 @@
-<div class="container" data-ng-controller="galleryController" ng-init="getallcondolist()">
+<div class="container" data-ng-controller="galleryController" ng-init="getallcondolist(0)">
 	<div class="row next_prev_row" style="min-height: 611px;padding: 0px;margin-bottom: 10px;">
 		<div class="col col-12">
 			<p class="filter_name">Filter list by condo name</p>
 			<ul class="list-unstyled">
-				<li class="active" ng-click="getallcondolist()" style="margin-right:10px;">All</li>
+				<li class="active" ng-click="getallcondolist(0)" style="margin-right:10px;">All</li>
 			</ul>
 		    <ul class="list-unstyled" >
 					<li data-ng-show="nextIndex > 5" data-ng-click="nextIndex = nextIndex - 4; prevIndex = prevIndex - 4;"><</li>
@@ -29,7 +29,7 @@
 					    		<h6 class="user_name_1">{{condo.user_name}}</h6>
 					    	</div>
 					    	<div class="votes_box">
-						    	 <h4 class="gallery_vote_count">{{condo.votes}}</h4>
+						    	 <h4 class="gallery_vote_count">{{condo.condo_id}}</h4>
 						    	 <h6 class="user_name_1" style="text-align: center;">VOTES</h6>
 					    	</div>
 				    	</div>
@@ -45,6 +45,12 @@
 		      <li data-ng-click="getCondoListAlphabeticallyNextPrev('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
 		      <li ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
 		    </ul>
+		    <ul class="list-unstyled" data-ng-if="onloadletter_total_condos > 6 ">
+		      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
+		      
+		      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
+		    </ul>
+
 		</div>
 	</div>
 	<div class="popup" id="popup-2">

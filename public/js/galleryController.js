@@ -18,11 +18,15 @@ angular.module('popetyfbapp')
   $scope.selectedLetter = null; // currently selected letter
   $scope.letter_total_condos = 0; // for no. of total condos from letter
   $scope.nextprevcondolist = function(btn) {
+    loader.fadeIn(200);
+    if ($scope.count * 6 >= $scope.onloadletter_total_condos) {
+      $scope.count = 0;
+    }
     var nextprevid;
     if (btn == 'next') {
       $scope.count++;
       nextprevid = {
-        condo_last_id: $scope.lastid,
+        condo_last_id: $scope.onloadlastid,
         condo_letter: $scope.selectedLetter
       };
     } else {
@@ -34,8 +38,21 @@ angular.module('popetyfbapp')
     }
     $http.post(baseurl + 'nextprevcondolist', nextprevid).success(function(res, req) {
       $scope.allcondolist = res;
-      $scope.prev_id = res[0].condo_id;
-      $scope.lastid = res[res.length - 1].condo_id;
+      if (res.length > 0)
+        {
+          $scope.cid = [];
+          
+          for(var i = 0; i < $scope.allcondolist.length; i++){
+             $scope.cid.push($scope.allcondolist[i].condo_id);
+          }
+          $scope.min_max_id = {
+            min: Math.min.apply( Math,  $scope.cid ),
+            max: Math.max.apply( Math,  $scope.cid ),
+          };
+        }
+      $scope.prev_id = $scope.min_max_id.max;
+      $scope.onloadlastid = $scope.min_max_id.min;
+      loader.hide();
     }).error(function(err) {
       //$scope.nextprevcondolist_conn_msg = "Connection Problem..";
       alert('Connection Problem.');
@@ -43,7 +60,9 @@ angular.module('popetyfbapp')
       $timeout(function() {
         $scope.shownextprevcondolist_conn_msg = false;
       }, 3000);
+      loader.hide();
     });
+
   };
 
 
@@ -64,8 +83,22 @@ angular.module('popetyfbapp')
           $scope.showcondolist_err_msg = false;
         }, 3000);
       } else if (res.length !== 0){
-        $scope.allcondolist = res;
-        $scope.lastid = res[res.length - 1].condo_id;
+        $scope.allcondolist = res.condolist;
+        if (res.condolist.length > 0)
+        {
+          $scope.cid = [];
+          $scope.onloadlastid = res.condolist[res.condolist.length - 1].condo_id;
+          for(var i = 0; i < $scope.allcondolist.length; i++){
+             $scope.cid.push($scope.allcondolist[i].condo_id);
+          }
+          $scope.min_max_id = {
+            min: Math.min.apply( Math,  $scope.cid ),
+            max: Math.max.apply( Math,  $scope.cid ),
+          };
+        }
+        $scope.onloadletter_total_condos = res.letter_total_condos;
+        $scope.onloadlastid = $scope.min_max_id.min;
+        console.log($scope.onloadlastid);
       }
       loader.hide();
     }).error(function(err) {
@@ -112,7 +145,7 @@ angular.module('popetyfbapp')
   $scope.paginationAlphabetical = [{
       letter: '0-9',
       id: 0,
-      status: true,
+      status: false,
       pageno: 0,
     }, {
       letter: 'A',
