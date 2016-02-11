@@ -1536,7 +1536,7 @@ table caption {
     height: 240px;
 }
 .thumbnail{
-  padding: 15px;
+  padding: 7px;
   position: relative;
 }
 .vote_icon{
@@ -1849,7 +1849,7 @@ a.btn{
     font-size: 13px;
 }
 .left_submit{
-    width: 100%;
+    width: 107%;
     height: 538px;
     margin-top: -1px;
     margin-left: 2px;
@@ -2643,6 +2643,12 @@ footer{
   position:relative;
   width: 54%;
 }
+@media(min-width:768px){
+  .left_submit {
+    width: 109%;
+  }
+}
+
 @media(max-width:768px){
 
   .new_homepage ul li{
