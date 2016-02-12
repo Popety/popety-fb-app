@@ -1539,6 +1539,11 @@ table caption {
   padding: 7px;
   position: relative;
 }
+.footer_ul{
+  position: absolute;
+  bottom: -24px;
+  left: 11px;
+}
 .vote_icon{
     width: 60px !important;
     height: auto !important;
