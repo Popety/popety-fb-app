@@ -39,7 +39,8 @@
 			<div data-ng-model="nextprevcondolist_conn_msg" ng-show="shownextprevcondolist_conn_msg"></div>
 			<div data-ng-model="condolist_err_msg" ng-show="showcondolist_err_msg"></div>
 			<div data-ng-model="connectionmsg" ng-show="showconnectionmsg"></div>
-			<ul class="list-unstyled" data-ng-if="letter_total_condos > 6 ">
+			<div class="clear-fix"></div>
+			<ul class="list-unstyled footer_ul" data-ng-if="letter_total_condos > 6 ">
 		      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
 		      <li ng-if="count == 0" ng-class="{deactiveprev:count == 0}" >Prev</li>
 		      <li data-ng-click="getCondoListAlphabeticallyNextPrev('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
