@@ -46,7 +46,7 @@
 		      <li data-ng-click="getCondoListAlphabeticallyNextPrev('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
 		      <li ng-if="!(allcondolist.length >= 6)" ng-class="{deactivenext:!(allcondolist.length >= 6)}" >Next</li>
 		    </ul>
-		    <ul class="list-unstyled" data-ng-if="onloadletter_total_condos > 6 ">
+		    <ul class="list-unstyled footer_ul" data-ng-if="onloadletter_total_condos > 6 ">
 		      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
 
 		      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
