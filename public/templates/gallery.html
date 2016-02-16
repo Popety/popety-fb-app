@@ -25,6 +25,7 @@
 		      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
 		    </ul>
 		</div>
+		<img src="images/sumbit_highlight.gif" ui-sref="tab.submit" style="position: absolute;right: 9px;top: 16px;cursor: pointer;">
 		<div class="clear-fix"></div>
 		<div class="row" style="margin: 0px;padding: 0px;">
 
@@ -56,14 +57,14 @@
 			<div class="clear-fix"></div>
 		</div>
 	</div>
-	<div class="popup" id="popup-2">
-	  <div class="popup__inner">
+	<div class="popup__inner">
 			<div slide-source="condoimage in condoimagelist" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
 				<img src="images/add_yellow.svg" class="popup_close_pos" data-ng-click="closePopup()" style="height:42px !important;">
 				<img data-ng-src="{{condoimage.thumb_images}}" />
 				<h4 class="slider_indicator"> {{$index+1}} OF {{condoimagelist.length}}</h4>
 			</div>
-	  </div><!-- /popup__inner -->
+	</div><!-- /popup__inner -->
+	<div class="popup" id="popup-2">
 	</div><!-- /popup -->
 	<div class="popup" id="popup-1">
 	  <div id="thank_you">
