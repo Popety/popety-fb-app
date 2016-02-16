@@ -1,4 +1,4 @@
-var instance = "prod";
+var instance = "local";
 
 if (instance == "prod"){
 	var baseurl = 'api/';

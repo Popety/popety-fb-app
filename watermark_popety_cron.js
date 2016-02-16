@@ -20,17 +20,17 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
-var filePath = '/home/apps/popety-fb-app/temp/';
-var uploadPath = '/home/apps/popety-fb-app/tmp/';
+// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+// var filePath = '/home/apps/popety-fb-app/temp/';
+// var uploadPath = '/home/apps/popety-fb-app/tmp/';
 
 // var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
 // var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
 // var uploadPath = '/Users/nitin/Projects/popety-fb-app/tmp/';
 
-// var waterMarkFile = '/home/transparent/popety-fb-app/public/images/';
-// var filePath = '/home/transparent/popety-fb-app/temp/';
-// var uploadPath = '/home/transparent/popety-fb-app/tmp/';
+var waterMarkFile = '/home/transparent/popety-fb-app/public/images/';
+var filePath = '/home/transparent/popety-fb-app/temp/';
+var uploadPath = '/home/transparent/popety-fb-app/tmp/';
 
 var cron = require('cron');
 
@@ -76,7 +76,7 @@ var fiveMinuteCron = cron.job('0 * * * * *', function(){
                 var newFile = filePath + 'new_' + Math.floor((Math.random() * 99999999999) + 1)+'.png';
                 var command = [
                   'composite',
-                  '-dissolve', '90%',
+                  '-dissolve', '70%',
                   '-gravity', 'center',
                   '-quality', 100,
                   waterMarkFile + 'watermark.png',
