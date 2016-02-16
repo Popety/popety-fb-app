@@ -2657,7 +2657,7 @@ footer{
   width: 54%;
 }
  .high{
-    position: absolute;right: 9px;top: 16px;cursor: pointer;
+    position: absolute;z-index: 999;right: 9px;top: 16px;cursor: pointer;
   }
 @media(min-width:768px){
   .left_submit {
