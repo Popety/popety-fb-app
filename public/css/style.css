@@ -1512,18 +1512,27 @@ table caption {
 .list-unstyled{
   margin-left: 3px;
 }
+.footer_ul {
+    margin: 15px 0 0 0;
+    display: inline-block;
+}
+.footer_ul li{
+    background: #5E5E5E !important;
+    color: #fff !important;
+    border: none !important;
+   } 
 .list-unstyled li{
     margin-top: 0px;
     float: left;
     margin-bottom: 0;
     padding: 2px 10px;
-    color: #4C4C4C;
+    color: #222222;
     font-size: 14px;
     cursor: pointer;
     margin-right: 5px;
-    background: #FFFFFF;
+    background: #F6F6F6;
     border-radius: 4px;
-    border: 1px solid #FAFAFA;
+    border: 1px solid #F4EDED;
 }
 .list-unstyled .active{
     color: #222222;
@@ -1538,11 +1547,6 @@ table caption {
 .thumbnail{
   padding: 7px;
   position: relative;
-}
-.footer_ul{
-  position: absolute;
-  bottom: -24px;
-  left: 11px;
 }
 .vote_icon{
     width: 60px !important;
