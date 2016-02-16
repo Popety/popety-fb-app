@@ -2739,7 +2739,7 @@ footer{
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
     border: 1px solid #f9c100;
   }
-  .slide-viewer img {height: 300px; }
+  .slide-viewer img {height: 450px !important; }
   .terms_padding{
       padding: 20px 10px 10px;
   }

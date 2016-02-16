@@ -57,7 +57,7 @@
 	<div class="popup" id="popup-2">
 	  <div class="popup__inner">
 			<div slide-source="condoimage in condoimagelist" class="slide-viewer" next-arrow-class="slide-next" previous-arrow-class="slide-previous" uib-collapse="isCollapsed">
-				<img src="images/add_yellow.svg" class="popup_close_pos" data-ng-click="closePopup()">
+				<img src="images/add_yellow.svg" class="popup_close_pos" data-ng-click="closePopup()" style="height:25px !important;">
 				<img data-ng-src="{{condoimage.thumb_images}}" />
 				<h4 class="slider_indicator"> {{$index+1}} OF {{condoimagelist.length}}</h4>
 			</div>
