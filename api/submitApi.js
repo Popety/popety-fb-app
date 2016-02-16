@@ -62,7 +62,7 @@ function watermark(imageData, callback) {
       var type, diffwidth, diffheight;
       var newThumb = filePath + 'thumb_' + Math.floor((Math.random() * 9999999999) + 1) + '.png';
 
-      diffwidth = width / 360;
+      diffwidth = width / 750;
       diffheight = height / diffwidth;
 
       im.resize({
