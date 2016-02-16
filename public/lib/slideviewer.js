@@ -224,7 +224,7 @@ slideViewer.directive('slideSource', ['$compile', '$timeout', '$swipe', '$interv
                    childScope[$scope.displayVariable] = $scope._currentSelectedItem;
                    childScope['$index'] = $scope[$scope._index];
                    transclude(childScope, function (clone) {
-                       var slideStyle = "position: absolute;width: 100%; height: 100%;";
+                       var slideStyle = "position: relative;width: 100%; height: 100%;";
                        var backgroundImage = $scope.getBackgroundUrl();
                        if (typeof backgroundImage != "undefined" && backgroundImage !== null) {
                          slideStyle += "background: url('" + backgroundImage + "') center center no-repeat; background-size: cover;";

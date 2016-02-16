@@ -2366,11 +2366,14 @@ input[type=number]::-webkit-outer-spin-button {
 }
 .popup__inner {
     background-color: #f2f2f2;
-    width: 90%;
-    top: 0;
+    width: 650px;
+    top: 50%;
+    margin-left: -320px;
+    left: 50%;
+    margin-top: -250px;
     z-index: 9999999;
     position: absolute;
-    margin: 2em auto 0;
+    /* margin: 2em auto 0; */
     border-radius: 2px;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
     border: 1px solid #f9c100;
@@ -2653,6 +2656,9 @@ footer{
   position:relative;
   width: 54%;
 }
+ .high{
+    position: absolute;right: 9px;top: 16px;cursor: pointer;
+  }
 @media(min-width:768px){
   .left_submit {
     width: 109%;
@@ -2744,6 +2750,12 @@ footer{
     border-radius: 2px;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
     border: 1px solid #f9c100;
+    margin-left: -40%;
+
+  }
+  .high{
+    position: relative;
+    margin-left: 15px;
   }
   .terms_padding{
       padding: 20px 10px 10px;
