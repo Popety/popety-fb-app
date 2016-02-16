@@ -41,7 +41,7 @@ angular.module('popetyfbapp')
       if (res.length > 0)
         {
           $scope.cid = [];
-          
+
           for(var i = 0; i < $scope.allcondolist.length; i++){
              $scope.cid.push($scope.allcondolist[i].condo_id);
           }
@@ -278,8 +278,8 @@ angular.module('popetyfbapp')
       status: false,
       pageno: 0,
     }
-
   ];
+  
   $scope.getCondoListAlphabetically = function(page, pageno) {
     loader.fadeIn(200);
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {

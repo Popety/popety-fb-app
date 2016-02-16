@@ -1,4 +1,4 @@
-<div class="container" data-ng-controller="galleryController" ng-init="getallcondolist(0)">
+<div class="container" data-ng-controller="galleryController" ng-init="getallcondolist()">
 	<div class="row next_prev_row" style="min-height: 611px;padding: 0px;margin-bottom: 10px;">
 		<div class="col col-12">
 			<p class="filter_name">Filter list by condo name</p>
@@ -48,7 +48,7 @@
 		    </ul>
 		    <ul class="list-unstyled" data-ng-if="onloadletter_total_condos > 6 ">
 		      <li data-ng-click="nextprevcondolist('prev')" ng-if="count != 0" ng-class="{activeprev:count != 0}">Prev</li>
-		      
+
 		      <li data-ng-click="nextprevcondolist('next')" ng-if="allcondolist.length >= 6" ng-class="{activenext:allcondolist.length >= 6}">Next</li>
 		    </ul>
 
@@ -64,7 +64,7 @@
 	  </div><!-- /popup__inner -->
 	</div><!-- /popup -->
 	<div class="popup" id="popup-1">
-	  <div id="thank_you"> 
+	  <div id="thank_you">
 	  		<img src="images/add.svg" id="close-popup-2" class="popup_close_pos ng-scope" style="top:0px;">
 	  		<img src="images/thank_.png">
 	  </div><!-- /popup__inner -->
