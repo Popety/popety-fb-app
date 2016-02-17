@@ -1532,13 +1532,13 @@ table caption {
     margin-right: 5px;
     background: #F6F6F6;
     border-radius: 4px;
-    border: 1px solid #F4EDED;
+    border: 1px solid #B2B1AD;
 }
 .list-unstyled .active{
-    color: #222222;
-    background: #F6F6F6;
+    color: #1E1E1E;
+    background: #F9CD34;
     border-radius: 4px;
-    border: 1px solid #F4EDED;
+    border: 1px solid #DBAB07;
 }
 .thumbnail img{
     width: 100%;
