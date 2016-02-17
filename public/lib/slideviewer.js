@@ -230,7 +230,7 @@ slideViewer.directive('slideSource', ['$compile', '$timeout', '$swipe', '$interv
                          slideStyle += "background: url('" + backgroundImage + "') center center no-repeat; background-size: cover;";
                        }
 
-                       var newElement = $compile('<div ng-hide="' + $scope._index + ' != ' + $scope[$scope._index] + '" class="slide-animation ng-hide" ' +
+                       var newElement = $compile('<div ng-hide="' + $scope._index + ' != ' + $scope[$scope._index] + '" class="ng-hide" ' +
                            'style="' + slideStyle + '"></div>')(childScope);
                         // left: -1000px;
                        newElement.append(clone);

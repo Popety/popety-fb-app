@@ -2371,6 +2371,8 @@ input[type=number]::-webkit-outer-spin-button {
     margin-left: -320px;
     left: 50%;
     margin-top: -250px;
+    max-height: 500px;
+    overflow: hidden;
     z-index: 9999999;
     position: absolute;
     /* margin: 2em auto 0; */
@@ -2743,15 +2745,14 @@ footer{
 
   .popup__inner {
     background-color: #f2f2f2;
-    width: 80%;
+    width: 90%;
     top: 50%;
     margin-top: -158px;
     position: fixed;
     border-radius: 2px;
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
     border: 1px solid #f9c100;
-    margin-left: -40%;
-
+    margin-left: -44%;
   }
   .high{
     position: relative;
@@ -2775,4 +2776,18 @@ footer{
       cursor: pointer;
       left: -10px;
   }
+
 }
+@media(max-width:360px){
+  .popup__inner{
+    background-color: #f2f2f2;
+    width: 84% !important;
+    top: 50%;
+    margin-top: -158px;
+    position: fixed;
+    border-radius: 2px;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+    border: 1px solid #f9c100;
+    margin-left: -48% !important;
+    }
+ }   
