@@ -21,9 +21,9 @@ var CRUD = require('mysql-crud');
 var galleryCrud = CRUD(db, 'fb_condo_images');
 
 var response;
-var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
-var filePath = '/home/apps/popety-fb-app/temp/';
-var uploadPath = '/home/apps/popety-fb-app/tmp/';
+// var waterMarkFile = '/home/apps/popety-fb-app/public/images/';
+// var filePath = '/home/apps/popety-fb-app/temp/';
+// var uploadPath = '/home/apps/popety-fb-app/tmp/';
 
 // var waterMarkFile = '/Users/nitin/Projects/popety-fb-app/public/images/';
 // var filePath = '/Users/nitin/Projects/popety-fb-app/temp/';
@@ -33,9 +33,9 @@ var uploadPath = '/home/apps/popety-fb-app/tmp/';
 // var filePath = '/xampp/htdocs/popety-fb-app/temp/';
 // var uploadPath = '/xampp/htdocs/popety-fb-app/tmp/';
 
-// var waterMarkFile = '/home/transparent/popety-fb-app/public/images/';
-// var filePath = '/home/transparent/popety-fb-app/temp/';
-// var uploadPath = '/home/transparent/popety-fb-app/tmp/';
+var waterMarkFile = '/home/transparent/popety-fb-app/public/images/';
+var filePath = '/home/transparent/popety-fb-app/temp/';
+var uploadPath = '/home/transparent/popety-fb-app/tmp/';
 
 function decodeBase64Image(dataString, callback) {
   var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
