@@ -2756,8 +2756,9 @@ footer{
   }
   .high{
     position: relative;
-    margin-left: 15px;
-    width: 90%;
+    margin-left: 17px;
+    width: 80%;
+    margin-bottom: 7px;
   }
   .vote_icon{
     left: 7px;
