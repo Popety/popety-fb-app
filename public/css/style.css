@@ -2757,6 +2757,13 @@ footer{
   .high{
     position: relative;
     margin-left: 15px;
+    width: 90%;
+  }
+  .vote_icon{
+    left: 7px;
+  }
+  .share_icon{
+    right: 7px;
   }
   .terms_padding{
       padding: 20px 10px 10px;
