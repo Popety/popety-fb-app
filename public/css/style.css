@@ -2801,4 +2801,7 @@ footer{
     .slide-viewer img{
       max-height: 290px
     }
+    .add_icon{
+      left: 36px;
+    }
  }   
