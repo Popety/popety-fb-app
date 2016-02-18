@@ -5,6 +5,7 @@
 .slide-viewer p { text-align: center; }
 .slide-viewer img {
     max-width: 100%;
+    margin-bottom: -5px;
 }
 
 /* [CONTROLS - IMAGES] Set the background images for the controls (sprite based) */
