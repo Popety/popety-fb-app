@@ -2788,7 +2788,7 @@ footer{
 @media(max-width:360px){
   .popup__inner{
     background-color: #f2f2f2;
-    width: 84% !important;
+    width: 96% !important;
     top: 50%;
     margin-top: -158px;
     position: fixed;
