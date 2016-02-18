@@ -4,8 +4,7 @@
 .slide-viewer {height: 100%;overflow: visible !important; text-align: center; width 100%; background: #DDD; position: relative;}
 .slide-viewer p { text-align: center; }
 .slide-viewer img {
-    margin-bottom: -5px;
-    height: 500px;
+    max-width: 100%;
 }
 
 /* [CONTROLS - IMAGES] Set the background images for the controls (sprite based) */
