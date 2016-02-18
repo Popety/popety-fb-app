@@ -2798,4 +2798,7 @@ footer{
     border: 1px solid #f9c100;
     margin-left: -48% !important;
     }
+    .slide-viewer img{
+      max-height: 290px
+    }
  }   
