@@ -2800,7 +2800,7 @@ footer{
     margin-left: -48% !important;
     }
     .slide-viewer img{
-      max-height: 290px
+      max-height: 290px !important;
     }
     .add_icon{
       left: 36px;
