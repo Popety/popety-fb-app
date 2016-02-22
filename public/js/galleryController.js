@@ -279,7 +279,7 @@ angular.module('popetyfbapp')
       pageno: 0,
     }
   ];
-  
+
   $scope.getCondoListAlphabetically = function(page, pageno) {
     loader.fadeIn(200);
     for (var i = 0; i < $scope.paginationAlphabetical.length; i++) {
@@ -407,7 +407,7 @@ angular.module('popetyfbapp')
              method: 'share',
              name: 'Look for my submission on property: '+condo.condo_name,
              href: 'https://apps.popety.com/redirect.html',
-             picture: 'https://apps.popety.com/images/share_image.jpg',
+             picture: 'https://apps.popety.com/images/photo_contest.jpeg',
              description: 'Look for my submission on property: '+condo.condo_name,
          },function(response) {
              console.log(response);
