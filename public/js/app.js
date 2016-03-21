@@ -7,7 +7,7 @@ angular.module('popetyfbapp',['ui.router', 'angular-storage', 'MassAutoComplete'
     .state('home', {
     url: "/home",
     templateUrl: "templates/contest_over.html",
-   })
+   });
   // .state('home', {
   //   url: "/home",
   //   templateUrl: "templates/home.html",
